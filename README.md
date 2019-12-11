@@ -24,6 +24,25 @@ npm run test
 ```
 npm run lint
 ```
+## Quick Guide
+
+### /components
+
+Εδω μπαινουν τα components της viue
+
+### /views
+
+Εδω μπαινουν τα view που ειναι components . Μια σελιδα αντιστοιχει σε ενα vue
+οπου μπορουμε να βαλουμε πολλαπλα components (πχ. μενου , navigation , breadcrumb)
+
+### /router
+
+Εδω γινεται το routing για καθε σελιδα . Δηλαδη , καλειται το αντιστοιχο view που θελουμε.
+
+### App.vue / main.js
+
+Αρχεια config
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
