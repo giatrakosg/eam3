@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="blue darken-3"
+      color="primary"
       dark
     >
       <div class="d-flex align-center">
