@@ -10,7 +10,7 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="oasaLogo.png"
+          src="./assets/oasaLogo.png"
           transition="scale-transition"
           width="40"
         />
