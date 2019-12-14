@@ -7,14 +7,15 @@ import VueRouter from 'vue-router'
 import router from './router'
 import vuetify from './plugins/vuetify';
 import BootstrapVue from 'bootstrap-vue'
+import '@fortawesome/fontawesome-free/css/all.css'
 
-Vue.use(BootstrapVue)
-Vue.use(VueRouter)
+Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),
   router,
   vuetify
-}).$mount('#app')
+}).$mount('#app');
