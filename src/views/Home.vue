@@ -1,13 +1,13 @@
 <template>
-  <v-row>
+  <v-row justify="start">
 
     <v-col class="m-2" >
-      <v-parallax  height="500"
-                   src="../../public/oasa2.jpg">
+      <v-img  contain  position="left"
+                   src="../../public/eisitiria1217sk.png">
 
 
       <SearchRouteForm class="m-5"/>
-      </v-parallax>
+      </v-img>
 
     </v-col>
 
