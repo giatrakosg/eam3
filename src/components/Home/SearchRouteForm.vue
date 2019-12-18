@@ -1,6 +1,6 @@
 <template>
     <v-card
-            max-width="344"
+            max-width="400"
             color="#FAFAFA"
             elevation="10"
 
@@ -15,6 +15,7 @@
                         <v-text-field
                                 label="FROM"
                                 required
+                                v-model="from"
                         />
                     </v-col>
                     <v-spacer/>
@@ -24,44 +25,18 @@
                         <v-text-field
                                 label="TO"
                                 required
+                                v-model="to"
                         />
                     </v-col>
                     <v-col >
-                        <v-btn text width="100%">
+                        <v-btn text  width="100%" to="SearchRoutes" >
                             <i  class="fas fa-arrow-right fa-2x" style="color: #1565C0"/>
                         </v-btn>
 
                     </v-col>
 
                 </v-row>
-                <v-row align="center" dense>
-                    <v-col>
-                        <v-menu
-                                v-model="menu2"
-                                :close-on-content-click="false"
-                                :nudge-right="40"
-                                transition="scale-transition"
-                                offset-y
-                                min-width="290px"
-                        >
-                            <template v-slot:activator="{ on }">
-                                <v-text-field
-                                        v-model="date"
-                                        prepend-icon="fas fa-calendar-week"
-                                        v-on="on"
-                                />
-                            </template>
-                            <v-date-picker v-model="date" @input="menu2 = false"/>
-                        </v-menu>
-                    </v-col>
-                    <v-col>
-                        <div style="height: 20">
-                        <input  v-model="time" type="time"
-                               required style="justify-self: center">
-                        </div>
-                    </v-col>
-                </v-row>
-
+                <DateTime v-on:childToParentTime="onChildClickTime" v-on:childToParentDate="onChildClickDate"/>
 
             </v-container>
         </v-form>
@@ -70,15 +45,25 @@
 </template>
 
 <script>
+    import DateTime from "../DateTime/DateTime";
     export default {
         name: "SearchRouteForm",
+        components: {DateTime},
         data: () => ({
-            date: new Date().toISOString().substr(0, 10),
-            modal: false,
-            menu2: false,
-            menu3:false,
+            to:null,
+            from:null,
+            date:null,
             time:null
-        })
+
+        }),
+        methods:{
+            onChildClickTime(value){
+                this.time=value;
+            },
+            onChildClickDate(value){
+                this.date=value;
+            }
+        }
     }
 </script>
 
