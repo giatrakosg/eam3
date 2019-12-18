@@ -3,11 +3,8 @@
 
     <v-col >
 
-      <v-img  contain  position="right"
-
+      <v-img  contain
                    src="../../public/athena-card.png">
-
-
       <SearchRouteForm class="m-5"/>
       </v-img>
 
