@@ -56,7 +56,7 @@
 <script>
     import DateTime from "../DateTime/DateTime";
     export default {
-        name: "SearchRoutesResultsForm",
+        name: "SearchRoutesForm",
         components:{DateTime}
 
 
