@@ -55,28 +55,43 @@
         </v-flex>
 
       </v-layout>
-        <v-layout row>
-          <v-flex xs1 sm1 md1 >
-            <v-spacer></v-spacer>
-          </v-flex>
+      <v-layout row>
+        <v-flex xs5 sm5 md5 align-left >
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Name</th>
+                  <th class="text-left">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in routes[0].stations" :key="item.name">
+                  <td>{{ item.name }}</td>
+                  <td>keno</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-flex>
+        <v-flex xs7 sm7 md7 align-left >
+          <l-map :zoom="zoom" :center="center"
+          >
+            <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+            <l-marker :lat-lng="marker"></l-marker>
+          </l-map>
+        </v-flex>
 
-          <v-flex xs10 sm10 md10 align-left >
-            <v-timeline>
-              <v-timeline-item v-for="item in routes[0].stations" :key="item.id" class="text-right" right>
-                <v-card>
-                  <v-card-title>{{item.name}}</v-card-title>
-                </v-card>
-              </v-timeline-item>
-            </v-timeline>
-          </v-flex>
-        </v-layout>
+      </v-layout>
 
-      </v-container>
-
+    </v-container>
   </div>
 </template>
 
 <script>
+import {LMap, LTileLayer, LMarker } from 'vue2-leaflet';
+import L from 'leaflet'
+
 export default {
   name : 'Route' ,
   props : ['id'] ,
@@ -92,9 +107,39 @@ export default {
 
         ]
        ,
+       zoom:13,
+       center: L.latLng(47.413220, -1.219482),
+       url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+       attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+       marker: L.latLng(47.413220, -1.219482),
+
     }
   } ,
   components: {
+    LMap ,
+    LTileLayer, LMarker
+  } ,
+  methods : {
+    zoomUpdated (zoom) {
+        this.zoom = zoom;
+    },
+    centerUpdated (center) {
+        this.center = center;
+    },
+    boundsUpdated (bounds) {
+        this.bounds = bounds;
+    } ,
+    removeMarker(index) {
+        this.markers.splice(index, 1);
+    },
+    addMarker(event) {
+        this.markers.push(event.latlng);
+    } ,
+  } ,
+  mounted() {
+      this.$nextTick(() => {
+        this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
+      })
   }
 
 }
