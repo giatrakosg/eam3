@@ -10,13 +10,17 @@
         <v-container class="p-0 m-0"  fluid  >
             <v-row  align="center"  dense >
                 <v-col cols="auto" >
-                    <v-img
-                            class="shrink mr-2  flex-fill"
-                            contain
-                            src="oasaLogo.png"
-                            transition="scale-transition"
-                            width="40"
-                    />
+                    <v-btn href="/" text color="transparent">
+                        <v-img
+                                class="shrink mr-2  flex-fill"
+                                contain
+                                src="oasaLogo.png"
+                                transition="scale-transition"
+                                width="40"
+
+                        />
+                    </v-btn>
+
                 </v-col>
                 <v-col cols="auto" >
                     <v-btn text>

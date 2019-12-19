@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Route from '../components/StationInfo/Route.vue'
-Vue.use(VueRouter)
+import SearchRoutes from "../views/SearchRoutes";
+import Route from "../components/StationInfo/Route"
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -11,11 +12,17 @@ const routes = [
     component: Home
   },
   {
+    path: '/SearchRoutes',
+    name: 'search_routes',
+    component: SearchRoutes
+  } ,
+  {
     path: '/bus/route/:id' ,
     name: 'routepage' ,
     component : Route ,
     props : true
   }
+
 ];
 
 const router = new VueRouter({
