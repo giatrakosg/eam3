@@ -4,7 +4,7 @@
     <v-col >
 
       <v-img  contain
-                   src="../../public/athena-card.png">
+                   src="../assets/athena-card.png">
       <SearchRouteForm class="m-5"/>
       </v-img>
 
@@ -17,7 +17,7 @@
 <script>
 
 
-import SearchRouteForm from "../components/Home/SearchRouteForm";
+import SearchRouteForm from "../components/Home/HomeSearchRouteForm";
 export default {
   name: 'Home',
   components: {SearchRouteForm},
