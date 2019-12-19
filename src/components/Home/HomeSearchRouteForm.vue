@@ -9,8 +9,8 @@
             <span style="color: aliceblue">Where To Next?</span>
         </v-card-title>
         <v-form>
-            <v-container fluid >
-                <v-row    dense>
+            <v-container >
+                <v-row justify="center" dense>
                     <v-col>
                         <v-text-field
                                 label="FROM"
@@ -20,7 +20,7 @@
                     </v-col>
                     <v-spacer/>
                 </v-row>
-                <v-row align="center" dense>
+                <v-row justify="center" dense>
                     <v-col>
                         <v-text-field
                                 label="TO"
