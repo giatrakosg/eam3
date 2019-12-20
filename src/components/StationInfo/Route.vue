@@ -80,9 +80,16 @@ export default {
   props : ['id'] ,
   data() {
     return {
-      routes : [{id:2,number:136,direction:'Προς Στ. Φιξ',from:'Νεα Σμυρνη' ,to : 'Φιξ' ,
-      stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]}] ,
-      stations : [{id : 0 , name : 'ev'},{id : 1 , name : 'ag 1'},{id : 2 , name : 'ag 3'},{id : 3 , name : 'ef'},{id : 4 , name : 'pa'},{id : 5 , name : 'f'}] ,
+      routes : [
+        {id:2,number:136,direction:'Προς Στ. Φιξ',from:'Νεα Σμυρνη' ,to : 'Φιξ' ,
+        stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]} ,
+        {id:3,number:136,direction:'Προς Συνταγμα',from:'Νεο Κοσμο' ,to : 'Φιξ' ,
+        stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]}
+      ] ,
+
+
+      stations : [{id : 0 , name : 'ev'},{id : 1 , name : 'ag 1'},{id : 2 , name : 'ag 3'},{id : 3 , name : 'ef'},{id : 4 , name : 'pa'},{id : 5 , name : 'f'} ,
+      ] ,
       headers :
         [
           {text : 'id' , value : 'id'},
@@ -124,6 +131,7 @@ export default {
     } ,
   } ,
   mounted() {
+    document.title = "Διαδρομη " + this.routes[this.id].number ;
       this.$nextTick(() => {
         this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
       })
@@ -133,13 +141,4 @@ export default {
 </script>
 
 <style>
-.v-timeline-item__divider {
-  min-width: 64px;
-}
-.v-timeline--dense .v-timeline-item__body {
-  max-width: calc(100% - 64px);
-}
-.v-application--is-ltr .v-timeline--dense:not(.v-timeline--reverse):before {
-    left: 0px
-}
 </style>
