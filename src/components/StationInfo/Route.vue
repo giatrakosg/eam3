@@ -34,42 +34,31 @@
           <v-spacer></v-spacer>
         </v-flex>
         <v-flex xs10 sm10 md10 >
-          <v-data-table
-            :headers="headers"
-            :items="routes[0].stations"
-            :items-per-page="5"
-            class="elevation-1"
-            hide-default-header
-            hide-default-footer
-          >
-          <template v-slot:item.id="{ id }">
-            <v-chip :color="primary" dark>{{ item.id }}</v-chip>
-          </template>
-
-          </v-data-table>
         </v-flex>
 
       </v-layout>
       <v-layout row>
-        <v-flex xs5 sm5 md5 align-left >
-          <v-simple-table>
+        <v-flex xs5 sm5 md5 >
+          <v-simple-table raised>
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Calories</th>
+                  <th class="text-left">Ονομα Στασης</th>
+                  <th class="text-left">Πληροφοριες</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in routes[0].stations" :key="item.name">
                   <td>{{ item.name }}</td>
-                  <td>keno</td>
+                  <td class="align-left"> <i class="fa fa-info-circle"></i>
+                  </td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
         </v-flex>
-        <v-flex xs7 sm7 md7 align-left >
+        <v-flex xs1 sm1 md1></v-flex>
+        <v-flex xs6 sm6 md6 align-left >
           <l-map :zoom="zoom" :center="center"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
