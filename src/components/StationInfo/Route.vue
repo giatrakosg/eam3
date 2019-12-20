@@ -1,36 +1,31 @@
 <template lang="html">
   <div >
     <v-container>
-        <v-layout row class="my-4">
-            <v-flex xs1 sm1 md1 >
-              <v-card flat color="primary" height="100%" tile>
-              <v-card-title class=" white--white" >{{routes[0].number}}</v-card-title>
-              </v-card>
-            </v-flex>
-            <v-flex xs11 sm11 md11 >
-              <v-card  color="white" tile raised>
-              <v-card-title class=" white--white" >{{routes[0].direction}}</v-card-title>
-              </v-card>
-            </v-flex>
+        <v-layout row class="my-4" wrap>
+          <v-flex xs12 sm12 md12 >
+            <v-card
+              class="mx-auto"
+              outlined raised
+            >
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <v-list-item-title class="headline mb-1">{{routes[0].direction}}</v-list-item-title>
+                  <v-list-item-subtitle>Απο : {{routes[0].from}}</v-list-item-subtitle>
+                  <v-list-item-subtitle>Προς : {{routes[0].to}}</v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-avatar
+                  raised
+                  size="80"
+                  color="primary"
+                >136</v-list-item-avatar>
+              </v-list-item>
+            </v-card>
+          </v-flex>
         </v-layout>
         <v-layout row class="my-4" >
           <v-flex xs1 sm1 md1 >
             <v-spacer></v-spacer>
-          </v-flex>
-          <v-flex xs3 sm3 md3 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Απο: {{routes[0].from}}</v-card-title>
-            </v-card>
-          </v-flex>
-          <v-flex xs3 sm3 md3 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Προς : {{routes[0].to}}</v-card-title>
-            </v-card>
-          </v-flex>
-          <v-flex xs4 sm4 md4 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Show map</v-card-title>
-            </v-card>
           </v-flex>
       </v-layout>
       <v-layout row
@@ -83,7 +78,6 @@
         </v-flex>
 
       </v-layout>
-
     </v-container>
   </div>
 </template>
