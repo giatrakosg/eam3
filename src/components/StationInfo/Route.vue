@@ -62,7 +62,7 @@
           <l-map :zoom="zoom" :center="center"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-marker :lat-lng="marker"></l-marker>
+            <l-marker v-for="marker in markers" :key="marker.id" :lat-lng="marker"></l-marker>
           </l-map>
         </v-flex>
 
@@ -91,10 +91,14 @@ export default {
         ]
        ,
        zoom:13,
-       center: L.latLng(47.413220, -1.219482),
+       center: L.latLng(37.938451, 23.721009),
        url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
        attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-       marker: L.latLng(47.413220, -1.219482),
+       markers : [
+         {id : 0 ,lat : 37.933163 , lng: 23.714648 },
+         {id : 1 ,lat : 37.938451 , lng: 23.721009 },
+         {id : 2 ,lat : 37.943653 , lng: 23.727682 },
+       ]
 
     }
   } ,
