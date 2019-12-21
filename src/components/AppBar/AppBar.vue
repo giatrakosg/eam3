@@ -1,4 +1,4 @@
-<template>
+<template lang="HTML">
     <v-app-bar
             app
             color="blue darken-3"
