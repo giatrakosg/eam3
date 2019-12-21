@@ -1,4 +1,4 @@
-<template>
+<template lang="HTML">
     <v-app-bar
             app
             color="blue darken-3"
@@ -14,7 +14,11 @@
                         <v-img
                                 class="shrink mr-2  flex-fill"
                                 contain
+
                                 src="../../assets/oasaLogo.png"
+
+                                
+
                                 transition="scale-transition"
                                 width="40"
 

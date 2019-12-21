@@ -1,36 +1,31 @@
 <template lang="html">
   <div >
     <v-container>
-        <v-layout row class="my-4">
-            <v-flex xs1 sm1 md1 >
-              <v-card flat color="primary" height="100%" tile>
-              <v-card-title class=" white--white" >{{routes[0].number}}</v-card-title>
-              </v-card>
-            </v-flex>
-            <v-flex xs11 sm11 md11 >
-              <v-card  color="white" tile raised>
-              <v-card-title class=" white--white" >{{routes[0].direction}}</v-card-title>
-              </v-card>
-            </v-flex>
+        <v-layout row class="my-4" wrap>
+          <v-flex xs12 sm12 md12 >
+            <v-card
+              class="mx-auto"
+              outlined raised
+            >
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <v-list-item-title class="headline mb-1">{{routes[0].direction}}</v-list-item-title>
+                  <v-list-item-subtitle>Απο : {{routes[0].from}}</v-list-item-subtitle>
+                  <v-list-item-subtitle>Προς : {{routes[0].to}}</v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-avatar
+                  raised
+                  size="80"
+                  color="primary"
+                >136</v-list-item-avatar>
+              </v-list-item>
+            </v-card>
+          </v-flex>
         </v-layout>
         <v-layout row class="my-4" >
           <v-flex xs1 sm1 md1 >
             <v-spacer></v-spacer>
-          </v-flex>
-          <v-flex xs3 sm3 md3 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Απο: {{routes[0].from}}</v-card-title>
-            </v-card>
-          </v-flex>
-          <v-flex xs3 sm3 md3 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Προς : {{routes[0].to}}</v-card-title>
-            </v-card>
-          </v-flex>
-          <v-flex xs4 sm4 md4 >
-            <v-card  color="white" tile>
-            <v-card-title class=" white--white" >Show map</v-card-title>
-            </v-card>
           </v-flex>
       </v-layout>
       <v-layout row
@@ -39,51 +34,39 @@
           <v-spacer></v-spacer>
         </v-flex>
         <v-flex xs10 sm10 md10 >
-          <v-data-table
-            :headers="headers"
-            :items="routes[0].stations"
-            :items-per-page="5"
-            class="elevation-1"
-            hide-default-header
-            hide-default-footer
-          >
-          <template v-slot:item.id="{ id }">
-            <v-chip :color="primary" dark>{{ item.id }}</v-chip>
-          </template>
-
-          </v-data-table>
         </v-flex>
 
       </v-layout>
       <v-layout row>
-        <v-flex xs5 sm5 md5 align-left >
-          <v-simple-table>
+        <v-flex xs5 sm5 md5 >
+          <v-simple-table raised>
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Calories</th>
+                  <th class="text-left">Ονομα Στασης</th>
+                  <th class="text-left">Πληροφοριες</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in routes[0].stations" :key="item.name">
                   <td>{{ item.name }}</td>
-                  <td>keno</td>
+                  <td class="align-left"> <i class="fa fa-info-circle"></i>
+                  </td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
         </v-flex>
-        <v-flex xs7 sm7 md7 align-left >
+        <v-flex xs1 sm1 md1></v-flex>
+        <v-flex xs6 sm6 md6 align-left >
           <l-map :zoom="zoom" :center="center"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-marker :lat-lng="marker"></l-marker>
+            <l-marker v-for="marker in markers" :key="marker.id" :lat-lng="marker"></l-marker>
           </l-map>
         </v-flex>
 
       </v-layout>
-
     </v-container>
   </div>
 </template>
@@ -97,9 +80,16 @@ export default {
   props : ['id'] ,
   data() {
     return {
-      routes : [{id:2,number:136,direction:'Προς Στ. Φιξ',from:'Νεα Σμυρνη' ,to : 'Φιξ' ,
-      stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]}] ,
-      stations : [{id : 0 , name : 'ev'},{id : 1 , name : 'ag 1'},{id : 2 , name : 'ag 3'},{id : 3 , name : 'ef'},{id : 4 , name : 'pa'},{id : 5 , name : 'f'}] ,
+      routes : [
+        {id:2,number:136,direction:'Προς Στ. Φιξ',from:'Νεα Σμυρνη' ,to : 'Φιξ' ,
+        stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]} ,
+        {id:3,number:136,direction:'Προς Συνταγμα',from:'Νεο Κοσμο' ,to : 'Φιξ' ,
+        stations : [{id : 0 , name : 'Ευαγγελικη'},{id : 1 , name : 'Αιγαιου 1'},{id : 2 , name : 'Αιγαιου 3'},{id : 3 , name : 'Εφεσου'},{id : 4 , name : 'Παντειος'},{id : 5 , name : 'Φιξ'}]}
+      ] ,
+
+
+      stations : [{id : 0 , name : 'ev'},{id : 1 , name : 'ag 1'},{id : 2 , name : 'ag 3'},{id : 3 , name : 'ef'},{id : 4 , name : 'pa'},{id : 5 , name : 'f'} ,
+      ] ,
       headers :
         [
           {text : 'id' , value : 'id'},
@@ -108,10 +98,14 @@ export default {
         ]
        ,
        zoom:13,
-       center: L.latLng(47.413220, -1.219482),
+       center: L.latLng(37.938451, 23.721009),
        url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
        attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-       marker: L.latLng(47.413220, -1.219482),
+       markers : [
+         {id : 0 ,lat : 37.933163 , lng: 23.714648 },
+         {id : 1 ,lat : 37.938451 , lng: 23.721009 },
+         {id : 2 ,lat : 37.943653 , lng: 23.727682 },
+       ]
 
     }
   } ,
@@ -137,6 +131,7 @@ export default {
     } ,
   } ,
   mounted() {
+    document.title = "Διαδρομη " + this.routes[this.id].number ;
       this.$nextTick(() => {
         this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
       })
@@ -144,6 +139,7 @@ export default {
 
 }
 </script>
+
 
 <style scoped>
 .v-timeline-item__divider {
@@ -155,4 +151,5 @@ export default {
 .v-application--is-ltr .v-timeline--dense:not(.v-timeline--reverse):before {
     left: 0px
 }
+
 </style>

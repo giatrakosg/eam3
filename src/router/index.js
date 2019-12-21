@@ -20,7 +20,10 @@ const routes = [
     path: '/bus/route/:id' ,
     name: 'routepage' ,
     component : Route ,
-    props : true
+    props : true ,
+    meta: {
+      title: 'Σταση'
+    },
   }
 
 ];
