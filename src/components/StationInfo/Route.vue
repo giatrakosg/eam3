@@ -145,7 +145,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-timeline-item__divider {
   min-width: 64px;
 }

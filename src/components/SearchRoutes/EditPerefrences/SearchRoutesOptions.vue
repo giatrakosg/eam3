@@ -11,8 +11,8 @@
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
                            <div style="margin-bottom: -8px">Buses</div>
-                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../assets/bus.png"/>
-                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../assets/troley.png"/>
+                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/bus.png"/>
+                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/troley.png"/>
                         </template>
 
                     </v-checkbox>
@@ -22,7 +22,7 @@
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
                             <div style="margin-bottom: -8px">Metro </div>
-                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../assets/metro.png"/>
+                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/metro.png"/>
                         </template>
 
                     </v-checkbox>
@@ -32,7 +32,7 @@
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
                             <div style="margin-bottom: -8px">Tram</div>
-                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../assets/tram.png"/>
+                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/tram.png"/>
                         </template>
 
                     </v-checkbox>
@@ -42,7 +42,7 @@
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
                             <div style="margin-bottom: -8px">Accessibility for disabled</div>
-                            <i  class="fas fa-wheelchair fa-2x ml-2"></i>
+                            <i  class="fas fa-wheelchair fa-2x ml-2"/>
                         </template>
 
                     </v-checkbox>

@@ -11,6 +11,16 @@
         </v-row>
 
 
+        <v-row >
+            <v-col>
+            <v-card>
+            <SearchRoutesDirections/>
+            </v-card>
+            </v-col>
+        </v-row>
+
+
+
     </v-container>
 
 
@@ -18,10 +28,11 @@
 
 <script>
 
-    import SearchRoutesEditPreferences from "../components/SearchRoutes/SearchRoutesEditPreferences";
+    import SearchRoutesEditPreferences from "../components/SearchRoutes/EditPerefrences/SearchRoutesEditPreferences";
+    import SearchRoutesDirections from "../components/SearchRoutes/SearchRoutesResults/SearchRoutesDirections";
     export default {
         name: "SearchRoutes",
-        components: {SearchRoutesEditPreferences}
+        components: {SearchRoutesDirections, SearchRoutesEditPreferences}
     }
 </script>
 
