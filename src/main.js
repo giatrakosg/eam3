@@ -8,18 +8,10 @@ import router from './router'
 import vuetify from './plugins/vuetify';
 import BootstrapVue from 'bootstrap-vue'
 import '@fortawesome/fontawesome-free/css/all.css'
-import Breadcrumb from './components/Breadcrumb/Breadcrumb'
 
 import { LMap, LTileLayer, LMarker , LPolyline } from 'vue2-leaflet';
-import { Icon } from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
-
-
-/////////SECTION OF ERROR IN MAP////////////////////////////
-
-/////////////////////////////////////////////////////////
-
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
