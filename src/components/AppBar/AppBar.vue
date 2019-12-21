@@ -14,7 +14,11 @@
                         <v-img
                                 class="shrink mr-2  flex-fill"
                                 contain
-                                src="oasaLogo.png"
+
+                                src="../../assets/oasaLogo.png"
+
+                                
+
                                 transition="scale-transition"
                                 width="40"
 

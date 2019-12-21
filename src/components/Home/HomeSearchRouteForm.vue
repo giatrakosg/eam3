@@ -47,7 +47,7 @@
 <script>
     import DateTime from "../DateTime/DateTime";
     export default {
-        name: "SearchRouteForm",
+        name: "HomeSearchRouteForm",
         components: {DateTime},
         data: () => ({
             to:null,

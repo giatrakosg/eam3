@@ -198,5 +198,16 @@ export default {
 }
 </script>
 
-<style>
+
+<style scoped>
+.v-timeline-item__divider {
+  min-width: 64px;
+}
+.v-timeline--dense .v-timeline-item__body {
+  max-width: calc(100% - 64px);
+}
+.v-application--is-ltr .v-timeline--dense:not(.v-timeline--reverse):before {
+    left: 0px
+}
+
 </style>

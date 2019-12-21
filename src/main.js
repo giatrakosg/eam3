@@ -15,20 +15,18 @@ import { Icon } from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
 
+
+/////////SECTION OF ERROR IN MAP////////////////////////////
+
+/////////////////////////////////////////////////////////
+
+
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
 Vue.component('l-marker', LMarker);
 Vue.component('l-polyline', LPolyline);
 
-Vue.use(Breadcrumb)
 
-delete Icon.Default.prototype._getIconUrl;
-
-Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-});
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
