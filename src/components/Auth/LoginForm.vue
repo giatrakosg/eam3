@@ -1,16 +1,13 @@
 <template lang="html">
   <div class="">
-    <LoginForm/>
+    <v-form>
+    </v-form>
   </div>
 </template>
 
 <script>
-import LoginForm from "../components/Auth/LoginForm"
 export default {
-  name : 'LoginPage' ,
-  components : {
-    LoginForm
-  }
+  name : 'LoginForm'
 }
 </script>
 
