@@ -45,14 +45,13 @@
                     </v-text-field>
                   </validation-provider>
                 </v-col>
-              </v-row>
-              <v-row>
                 <v-col>
                   <validation-provider rules="required" v-slot="{ errors }">
                     <v-text-field
                       v-model="email"
                       label="Email.."
                       v-on:keyup.enter.native="showPassword"
+                      append-icon="mdi-email"
                     >
                     </v-text-field>
                     <span>{{ errors[0] }}</span>
@@ -91,7 +90,7 @@
                 <v-text-field
                   v-model="tel"
                   label="Telephone.."
-                  append-icon="mdi-eye-off"
+                  append-icon="mdi-cellphone"
                   type="number"
                   @keyup.enter="handleSubmit()"
                 >
