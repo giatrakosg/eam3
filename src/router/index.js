@@ -2,7 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SearchRoutes from "../views/SearchRoutes";
+import LoginPage from "../views/LoginPage";
 import Route from "../components/StationInfo/Route"
+
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,7 +27,13 @@ const routes = [
     meta: {
       title: 'Σταση'
     },
-  }
+  } ,
+  {
+    path: '/login' ,
+    name: 'loginpage' ,
+    component : LoginPage ,
+  } ,
+
 
 ];
 
