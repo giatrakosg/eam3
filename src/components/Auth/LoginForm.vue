@@ -28,6 +28,7 @@
 
                   v-model="email"
                   label="Email"
+                  v-on:keyup.enter.native="showPassword"
 
                 >
                 </v-text-field>
@@ -41,11 +42,13 @@
                   append-icon="mdi-eye-off"
                   type="password"
                   v-show="hiddenPassword"
+                  @keyup.enter="handleSubmit()"
                 >
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
                 <v-btn
                 @click="showPassword"
+
                 v-show="hiddenCont"
                 >Συνεχεια</v-btn>
               </validation-provider>
@@ -81,7 +84,7 @@ export default {
   },
   data () {
     return {
-      name : '' ,
+      email : '' ,
       password : '' ,
       hiddenPassword : false ,
       hiddenCont : true
@@ -89,7 +92,7 @@ export default {
   } ,
   methods : {
     handleSubmit() {
-      console.log(this.name,this.password);
+      console.log(this.email,this.password);
     } ,
     showPassword() {
       this.hiddenPassword = true ;
