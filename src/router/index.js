@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SearchRoutes from "../views/SearchRoutes";
 import LoginPage from "../views/LoginPage";
+import SignUpPage from "../views/SignUpPage";
 import Route from "../components/StationInfo/Route"
 
 
@@ -33,6 +34,12 @@ const routes = [
     name: 'loginpage' ,
     component : LoginPage ,
   } ,
+  {
+    path: '/signup' ,
+    name: 'signuppage' ,
+    component : SignUpPage ,
+  } ,
+
 
 
 ];

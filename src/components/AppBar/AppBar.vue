@@ -49,7 +49,7 @@
 
                 <v-spacer/>
                 <v-col cols="auto"  >
-                    <v-btn text outlined > Sign Up </v-btn>
+                    <v-btn text outlined to="/signup"> Sign Up </v-btn>
                 </v-col>
                 <v-col cols="auto" >
                     <v-btn text outlined to="/login"> Login</v-btn>
