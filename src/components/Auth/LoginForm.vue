@@ -16,7 +16,13 @@
                 <span>{{ errors[0] }}</span>
               </validation-provider>
               <validation-provider rules="required" v-slot="{ errors }">
-                <v-text-field solo v-model="password" label="Password">
+                <v-text-field
+                  solo
+                  v-model="password"
+                  label="Password"
+                  append-icon="mdi-eye-off"
+                  type="password"
+                >
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
               </validation-provider>
