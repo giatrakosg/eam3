@@ -11,7 +11,7 @@
           <v-card-text>
             <v-form >
               <validation-provider rules="required" v-slot="{ errors }">
-                <v-text-field solo v-model="name" label="Name">
+                <v-text-field solo v-model="email" label="Email">
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
               </validation-provider>
@@ -22,11 +22,19 @@
                   label="Password"
                   append-icon="mdi-eye-off"
                   type="password"
+                  v-show="hiddenPassword"
                 >
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
+                <v-btn
+                @click="showPassword"
+                v-show="hiddenCont"
+                >Συνεχεια</v-btn>
               </validation-provider>
-              <v-btn @click="handleSubmit()">Εισοδος</v-btn>
+              <v-btn
+                @click="handleSubmit()"
+                v-show="hiddenPassword"
+                >Εισοδος</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -66,12 +74,18 @@ export default {
   data () {
     return {
       name : '' ,
-      password : ''
+      password : '' ,
+      hiddenPassword : false ,
+      hiddenCont : true
     }
   } ,
   methods : {
     handleSubmit() {
       console.log(this.name,this.password);
+    } ,
+    showPassword() {
+      this.hiddenPassword = true ;
+      this.hiddenCont = false ;
     }
   }
 }
