@@ -6,18 +6,36 @@
         <v-spacer></v-spacer>
       </v-flex>
       <v-flex sm8 md8 lg8>
-        <v-card>
-          <v-card-title>Εισοδος</v-card-title>
+        <v-card tile>
+          <v-card-title class="justify-center">
+            <v-img
+              src="https://www.newsit.gr/wp-content/uploads/2017n/10/karta-2-768x512.jpg"
+              height="200"
+              gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+              >
+            </v-img>
+          </v-card-title >
+          <v-card-title class="justify-center">Εισοδος
+            <v-icon>
+              mdi-account
+            </v-icon>
+          </v-card-title>
+          <v-divider></v-divider>
           <v-card-text>
             <v-form >
               <validation-provider rules="required" v-slot="{ errors }">
-                <v-text-field solo v-model="email" label="Email">
+                <v-text-field
+
+                  v-model="email"
+                  label="Email"
+
+                >
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
               </validation-provider>
               <validation-provider rules="required" v-slot="{ errors }">
                 <v-text-field
-                  solo
+
                   v-model="password"
                   label="Password"
                   append-icon="mdi-eye-off"
@@ -38,16 +56,6 @@
             </v-form>
           </v-card-text>
         </v-card>
-      </v-flex>
-      <v-flex sm2 md2 lg2>
-        <v-spacer></v-spacer>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex sm2 md2 lg2>
-        <v-spacer></v-spacer>
-      </v-flex>
-      <v-flex sm8 md8 lg8>
       </v-flex>
       <v-flex sm2 md2 lg2>
         <v-spacer></v-spacer>
