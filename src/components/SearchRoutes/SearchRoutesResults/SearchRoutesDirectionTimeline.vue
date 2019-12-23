@@ -10,7 +10,7 @@
                                                        }"
                 >
                 <v-timeline-item fill-dot   :color="direction.transport" class="pb-0 pt-0 ">
-                  <v-btn  small  v-on:click="new ShowStations(i)" >
+                  <v-btn  small  v-on:click="ShowStations(i)" >
 
                         Take {{direction.name}} from {{direction.from}} to {{direction.to}}
                   </v-btn>
