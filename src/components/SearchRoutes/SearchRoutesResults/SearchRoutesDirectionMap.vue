@@ -1,17 +1,23 @@
 <template >
 
-        <l-map  style="height: 600px;z-index: 0" :zoom="zoom" :center="center">
-            <l-tile-layer
-                    :url="url"
-            />
-            <l-polyline
-                    :lat-lngs="polyline.latlngs"
-                    :color="polyline.color"
-                    >
-            </l-polyline>
 
-        </l-map>
+    <l-map  style="height: 600px;z-index: 0" :zoom="zoom" :center="center">
+        <l-tile-layer
+                :url="url"
+        />
+        <l-polyline
+                v-for="(line,i) in m_data"
+                :key="i"
+                :lat-lngs="line.coordinates"
+                :color="getColor(i)"
+                :dash-array="getDash(i)"
+                :weight="5"
+        >
 
+        </l-polyline>
+
+
+    </l-map>
 
 
 </template>
@@ -21,23 +27,51 @@
     export default {
         data () {
             return {
-                url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-                zoom: 10,
+                url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                zoom: 13,
                 componentKey:0,
-                markerLatLng: [47.313220, -1.319482],
-                center: [47.413220, -1.219482],
+                center: [37.984888, 23.730851],
+                circle: {
+                    center:[38.024167, 23.691184],
+                    radius: 6,
+                    color: 'red'
+                },
 
-                polyline: {
-                    latlngs: [[47.334852, -1.509485], [47.342596, -1.328731], [47.241487, -1.190568], [47.234787, -1.358337]],
-                    color: 'green',
 
-                }
+                m_data: this.map_data
+
             };
         },
-        methods: {
+        props:['map_data'],
+        methods:{
+            getColor(i){
+                switch (this.map_data[i].transport) {
+                    case "metro":
+                        return "#006C4A";
+                    case "bus":
+                        return "#009EC7";
+                    case "tram":
+                        return "#DD137B";
+                    case "trolley":
+                        return "#F27D00";
+                    case "walk":
+                        return "#9E9E9E";
+                    default:
+                        return "black";
 
+                }
+            },
+            getDash(i){
+                switch (this.map_data[i].transport) {
+                    case "walk":
+                        return 7;
+                    default:
+                        return 0;
 
+                }
+            }
         }
+
 
 
     }

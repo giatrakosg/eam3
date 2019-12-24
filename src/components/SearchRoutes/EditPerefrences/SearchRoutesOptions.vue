@@ -12,6 +12,16 @@
                         <template v-slot:label>
                            <div style="margin-bottom: -8px">Buses</div>
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/bus.png"/>
+
+                        </template>
+
+                    </v-checkbox>
+                </v-col>
+                <v-col>
+                    <v-checkbox    color="primary" hide-details >
+                        <template v-slot:label>
+                            <div style="margin-bottom: -8px">Trolleys</div>
+
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/troley.png"/>
                         </template>
 
