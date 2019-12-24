@@ -17,7 +17,7 @@
 
                                 src="../../assets/oasaLogo.png"
 
-                                
+
 
                                 transition="scale-transition"
                                 width="40"
@@ -49,10 +49,10 @@
 
                 <v-spacer/>
                 <v-col cols="auto"  >
-                    <v-btn text outlined > Sign Up </v-btn>
+                    <v-btn text outlined to="/signup"> Sign Up </v-btn>
                 </v-col>
                 <v-col cols="auto" >
-                    <v-btn text outlined> Login</v-btn>
+                    <v-btn text outlined to="/login"> Login</v-btn>
                 </v-col>
 
                 <v-col cols="1" class="d-sm-none d-md-flex">
