@@ -8,9 +8,17 @@
         </v-img>
       </v-col>
     </v-row>
+    <v-layout row>
+      <v-flex sm1 md1 lg1>
+        <v-spacer></v-spacer>
+      </v-flex>
+      <v-flex sm4 md4 lg4>
+        <Traffic />
+
+      </v-flex>
+    </v-layout>
     <v-row>
       <v-col>
-        <Traffic />
       </v-col>
     </v-row>
   </div>
