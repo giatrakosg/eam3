@@ -5,6 +5,7 @@ import SearchRoutes from "../views/SearchRoutes";
 import LoginPage from "../views/LoginPage";
 import SignUpPage from "../views/SignUpPage";
 import Route from "../components/StationInfo/Route"
+import StopPage from "../views/StopPage";
 
 
 Vue.use(VueRouter);
@@ -24,6 +25,15 @@ const routes = [
     path: '/bus/route/:id' ,
     name: 'routepage' ,
     component : Route ,
+    props : true ,
+    meta: {
+      title: 'Δρομολογιο'
+    },
+  } ,
+  {
+    path: '/stop/:id' ,
+    name: 'StopPage' ,
+    component : StopPage ,
     props : true ,
     meta: {
       title: 'Σταση'
