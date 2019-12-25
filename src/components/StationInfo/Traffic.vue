@@ -1,16 +1,14 @@
 <template lang="html">
   <div class="">
     <v-card>
+      <v-card-title style="background:#1565C0 ">
+        <span style="color: aliceblue">
+          <v-icon> mdi-refresh </v-icon>
+          Πληροφορίες Κίνησης στις  {{this.timestamp}}
+        </span>
+      </v-card-title>
       <v-layout row wrap>
-        <v-flex sm11 md11 lg11>
-          <v-card-title class="justify-center">
-            <v-icon> mdi-refresh </v-icon>
-            Πληροφορίες Κίνησης στις  {{this.timestamp}}
-          </v-card-title>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex sm1 md1 lg1>
+        <v-flex sm2 md2 lg2>
           <v-card-text>
               <v-img
                 height="40"
@@ -40,7 +38,7 @@
         </v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex sm1 md1 lg1>
+        <v-flex sm2 md2 lg2>
           <v-card-text>
               <v-img
               height="40"
@@ -70,7 +68,7 @@
         </v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex sm1 md1 lg1>
+        <v-flex sm2 md2 lg2>
           <v-card-text>
               <v-img
               height="40"
@@ -86,7 +84,7 @@
         </v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex sm1 md1 lg1>
+        <v-flex sm2 md2 lg2>
           <v-card-text>
               <v-img
               height="40"
