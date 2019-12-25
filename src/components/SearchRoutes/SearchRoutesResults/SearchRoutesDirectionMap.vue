@@ -5,16 +5,89 @@
         <l-tile-layer
                 :url="url"
         />
-        <l-polyline
-                v-for="(line,i) in m_data"
-                :key="i"
-                :lat-lngs="line.coordinates"
-                :color="getColor(i)"
-                :dash-array="getDash(i)"
-                :weight="5"
+        <div  v-for="(line,i) in m_data"
+              :key="i"
         >
+            <l-polyline
 
-        </l-polyline>
+                    :lat-lngs="line.coordinates"
+                    :color="getColor(line.transport)"
+                    :dash-array="getDash(line.transport)"
+                    :weight="5"
+            >
+
+            </l-polyline>
+            <l-marker
+                    v-if="line.transport==='bus'"
+                    :lat-lng="line.coordinates[0]"
+
+            >
+
+                <l-icon>
+
+                    <img src="../../../assets/bus.png" style="width: 25px" >
+                </l-icon>
+
+            </l-marker>
+
+
+
+
+            <l-marker
+                    v-if="line.transport==='metro'"
+                    :lat-lng="line.coordinates[0]"
+            >
+
+                <l-icon>
+
+                    <img src="../../../assets/metro.png" style="width: 25px" >
+                </l-icon>
+
+            </l-marker>
+            <l-marker
+                    v-if="line.transport==='walk'"
+                    :lat-lng="line.coordinates[0]"
+            >
+
+                <l-icon>
+
+                    <i class="fas fa-walking fa-2x fa-flip-horizontal" style="color: darkslategray"/>
+                </l-icon>
+
+            </l-marker>
+
+
+
+
+            <l-marker
+                    v-if="line.transport==='tram'"
+                    :lat-lng="line.coordinates[0]"
+            >
+
+                <l-icon>
+
+                    <img src="../../../assets/tram.png" style="width: 25px" >
+                </l-icon>
+
+            </l-marker>
+
+
+
+            <l-marker
+                    v-if="line.transport==='trolley'"
+                    :lat-lng="line.coordinates[0]"
+            >
+
+                <l-icon>
+
+                    <img src="../../../assets/troley.png" style="width: 25px" >
+                </l-icon>
+
+            </l-marker>
+
+
+        </div>
+
 
 
     </l-map>
@@ -31,11 +104,7 @@
                 zoom: 13,
                 componentKey:0,
                 center: [37.984888, 23.730851],
-                circle: {
-                    center:[38.024167, 23.691184],
-                    radius: 6,
-                    color: 'red'
-                },
+                icon_url:'../../../assets/bus.png',
 
 
                 m_data: this.map_data
@@ -44,8 +113,8 @@
         },
         props:['map_data'],
         methods:{
-            getColor(i){
-                switch (this.map_data[i].transport) {
+            getColor(tr){
+                switch (tr) {
                     case "metro":
                         return "#006C4A";
                     case "bus":
@@ -61,15 +130,17 @@
 
                 }
             },
-            getDash(i){
-                switch (this.map_data[i].transport) {
+            getDash(tr){
+                switch (tr) {
                     case "walk":
-                        return 7;
+                        return "4";
                     default:
-                        return 0;
+                        return "0";
 
                 }
             }
+
+
         }
 
 

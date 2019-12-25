@@ -11,10 +11,23 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import { Icon } from 'leaflet'
 
-import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker ,LIcon} from 'vue2-leaflet';
+
 
 import 'leaflet/dist/leaflet.css'
 
+////Map Marker  ERROR////////////////////////////////
+
+import L from 'leaflet';
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
+/////////////////////////////////////////////////////////////
 
 
 
@@ -25,6 +38,7 @@ Vue.component('l-tile-layer', LTileLayer);
 Vue.component('l-marker', LMarker);
 Vue.component('l-circle-marker', LCircleMarker);
 Vue.component('l-polyline', LPolyline);
+Vue.component('l-icon', LIcon);
 
 delete Icon.Default.prototype._getIconUrl;
 
