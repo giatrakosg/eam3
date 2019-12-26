@@ -178,7 +178,7 @@ export default {
   computed : {
     points () {
       let route = this.routes[0];
-      let positions = []
+      let positions = [];
       for (var i = 0; i < route.stations.length; i++) {
         positions.push({ id : route.stations[i].id , position : route.stations[i].position });
       }
@@ -186,7 +186,7 @@ export default {
     },
     positions () {
       let route = this.routes[0];
-      let positions = []
+      let positions = [];
       for (var i = 0; i < route.stations.length; i++) {
         positions.push(route.stations[i].position );
       }

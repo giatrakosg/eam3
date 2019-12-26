@@ -1,39 +1,52 @@
 <template>
     <v-card color="#FAFAFA" elevation="0">
         <v-timeline
-                v-for="(direction,i) in directions"
+                v-for="(t,i) in td"
                 :key="i"
                 dense
-                v-bind:class="{'myClassGreen':(direction.transport==='#DD137B'),                                        //tram
-                                                       'myClassPink':(direction.transport==='#009EC7'),                 //bus
-                                                       'myClassLightBlue':(direction.transport==='#F27D00'),            //trolley
-                                                       }"
-                >
-                <v-timeline-item fill-dot   :color="direction.transport" class="pb-0 pt-0 ">
-                  <v-btn  small  v-on:click="ShowStations(i)" >
+                v-bind:class="{'myClassGreen':(t.transport==='metro'),                                        //tram
+                                                       'myClassLightBlue':(t.transport==='bus'),                 //bus
+                                                       'myClassPink':(t.transport==='tram'),            //trolley
+                                                       'myClassOrange':(t.transport==='trolley'),
+                                                       'myClassGray':(t.transport==='walk')}"
 
-                        Take {{direction.name}} from {{direction.from}} to {{direction.to}}
+                class="pb-5 pt-0">
+                <v-timeline-item fill-dot :color="getColor(t.transport)"   class="pb-0">
+                    <template v-slot:icon>
+                        <img  v-if="t.transport==='bus'" src="../../../assets/bus.png" style="width: 50px">
+                        <img  v-if="t.transport==='metro'" src="../../../assets/metro.png" style="width: 50px">
+                        <img  v-if="t.transport==='trolley'" src="../../../assets/trolley.png" style="width: 50px">
+                        <img  v-if="t.transport==='tram'" src="../../../assets/tram.png" style="width: 50px">
+                        <i v-if="t.transport==='walk'" class="fas fa-walking fa-2x fa-flip-horizontal" style="color: darkslategray"/>
+                    </template>
+                  <v-btn  small  v-on:click="t.show=!t.show" >
+                      <div style="font-weight: 300">
+                        <div v-if="t.transport==='walk'">
+                            <span style="font-weight: 900">walk</span>,  {{t.places[0]}} > {{t.places[t.places.length-1]}}
+
+                        </div>
+                        <div v-else>
+                            <span style="font-weight: 900">{{t.route}}</span>, {{t.places[0]}} > {{t.places[t.places.length-1]}}
+                        </div>
+                      </div>
                   </v-btn>
                 </v-timeline-item>
-                <div v-if="direction.show_stations">
-                    <v-timeline dense    v-bind:class="{'myClassGreen':(direction.transport==='#006C4A'),           //metro
-                                                       'myClassPink':(direction.transport==='#DD137B'),             //tram
-                                                       'myClassLightBlue':(direction.transport==='#009EC7'),        //bus ////trolley
-                                                       'myClassOrange':(direction.transport==='#F27D00')}" class="p-0" >
+
+                <v-timeline dense   v-if="t.show"   class="p-0" >
 
 
-                        <v-timeline-item class="pb-1" hide-dot
+                    <v-timeline-item class="pb-1" hide-dot
 
-                                         v-for="k in direction.stops"
-                                         v-bind:key="k"
-                                         :color="direction.transport">
-                            Stop {{k}}
+                                     v-for="k in t.places"
+                                     v-bind:key="k"
+                                     >
+                         {{k}}
 
-                        </v-timeline-item>
+                    </v-timeline-item>
 
-                    </v-timeline>
+                </v-timeline>
 
-                </div>
+
 
         </v-timeline>
     </v-card>
@@ -42,22 +55,33 @@
 <script>
     export default {
         name: "SearchRouteDirectionTimeline",
-        data: () =>({
-            directions:[
-                {transport:"#006C4A",name:"1",from:"ok",to:"lol",stops:5,show_stations:false},      //
-                {transport:"#DD137B",name:"2",from:"ok2",to:"lol2",stops:7,show_stations:false},
-                {transport:"#009EC7",name:"3",from:"ok3",to:"lol3",stops:9,show_stations:false},
-                {transport:"#F27D00",name:"4",from:"ok4",to:"lol4",stops:9,show_stations:false}
-            ],
+        props:['timeline_data'],
+        data: function() {
+            return{
+                td:this.timeline_data,
+            }
 
-        }),
-        props:['points'],
+        },
 
         methods:{
-            ShowStations(key){
-               this.directions[key].show_stations=!this.directions[key].show_stations;
 
-            }
+            getColor(tr){
+                switch (tr) {
+                    case "metro":
+                        return "#006C4A";
+                    case "bus":
+                        return "#009EC7";
+                    case "tram":
+                        return "#DD137B";
+                    case "trolley":
+                        return "#F27D00";
+                    case "walk":
+                        return "#9E9E9E";
+                    default:
+                        return "blue";
+
+                }
+            },
         }
     }
 </script>
@@ -68,6 +92,11 @@
     .myClassGreen.theme--light.v-timeline:before {
             background: #006C4A;
             width: 5px;
+    }
+
+    .myClassGray.theme--light.v-timeline:before {
+        background: #9E9E9E;
+        width: 5px;
     }
 
     .myClassPink.theme--light.v-timeline:before {
