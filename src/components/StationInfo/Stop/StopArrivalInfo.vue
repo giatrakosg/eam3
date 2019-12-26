@@ -6,13 +6,18 @@
       </v-flex>
       <v-flex sm10 md10 lg10>
         <v-card color="secondary">
-          <v-card-title> Αφίξεις στις {{this.timestamp}}</v-card-title>
+          <v-card-title>
+            <v-icon> mdi-refresh </v-icon>
+            Αφίξεις στις
+            {{this.timestamp}}
+          </v-card-title>
           <v-card-text>
             <template>
               <v-data-table raised tile
                 :headers="headers"
                 :items="route"
                 :items-per-page="5"
+                striped
                 hide-default-footer
               ></v-data-table>
             </template>
