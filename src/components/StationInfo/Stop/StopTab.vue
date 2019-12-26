@@ -10,7 +10,7 @@
         :vertical="vertical"
       >
         <v-tab>
-            Όλες οι γραμμες 
+            Όλες οι γραμμες
         </v-tab>
         <v-tab>
             <v-icon>
@@ -25,7 +25,7 @@
             137
         </v-tab>
         <v-tab-item>
-          Lorem ipsum .
+          <StopArrivalInfo :id="100" />
         </v-tab-item>
         <v-tab-item>
           Lorem ipsum dolor
@@ -38,7 +38,11 @@
 </template>
 
 <script>
+import StopArrivalInfo from './StopArrivalInfo'
 export default {
+  components : {
+    StopArrivalInfo
+  }
 }
 </script>
 
