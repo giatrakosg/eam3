@@ -5,7 +5,12 @@
         <v-spacer></v-spacer>
       </v-flex>
       <v-flex sm10 md10 lg10>
-        <StopTab />
+        <v-card>
+          <v-card-title >Σταση Αιγαίου 3</v-card-title>
+          <v-card-text>
+            <StopTab />
+          </v-card-text>
+        </v-card>
       </v-flex>
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
