@@ -22,7 +22,7 @@
                         <template v-slot:label>
                             <div style="margin-bottom: -8px">Trolleys</div>
 
-                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/troley.png"/>
+                            <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/trolley.png"/>
                         </template>
 
                     </v-checkbox>

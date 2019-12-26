@@ -5,7 +5,7 @@
         <l-tile-layer
                 :url="url"
         />
-        <div  v-for="(line,i) in m_data"
+        <div  v-for="(line,i) in map_data"
               :key="i"
         >
             <l-polyline
@@ -22,17 +22,12 @@
                     :lat-lng="line.coordinates[0]"
 
             >
-
                 <l-icon>
 
                     <img src="../../../assets/bus.png" style="width: 25px" >
                 </l-icon>
 
             </l-marker>
-
-
-
-
             <l-marker
                     v-if="line.transport==='metro'"
                     :lat-lng="line.coordinates[0]"
@@ -55,10 +50,6 @@
                 </l-icon>
 
             </l-marker>
-
-
-
-
             <l-marker
                     v-if="line.transport==='tram'"
                     :lat-lng="line.coordinates[0]"
@@ -70,9 +61,6 @@
                 </l-icon>
 
             </l-marker>
-
-
-
             <l-marker
                     v-if="line.transport==='trolley'"
                     :lat-lng="line.coordinates[0]"
@@ -80,15 +68,12 @@
 
                 <l-icon>
 
-                    <img src="../../../assets/troley.png" style="width: 25px" >
+                    <img src="../../../assets/trolley.png" style="width: 25px" >
                 </l-icon>
 
             </l-marker>
 
-
         </div>
-
-
 
     </l-map>
 
@@ -105,9 +90,6 @@
                 componentKey:0,
                 center: [37.984888, 23.730851],
                 icon_url:'../../../assets/bus.png',
-
-
-                m_data: this.map_data
 
             };
         },

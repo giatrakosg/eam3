@@ -2,17 +2,29 @@
     <v-tabs>
         <v-tab >
 
-                Route option 1
+               <span v-for="(t,k) in map_data"
+                    :key="k"
+                     style="color: black"
+
+               >
+                   <span v-if="k===(map_data.length-1)">
+                       {{t.route}}
+                   </span>
+                   <span v-else>
+                       {{t.route}} >
+                   </span>
+
+               </span>
 
         </v-tab>
         <v-tab-item>
             <v-container fluid lazy >
                 <v-row   dense style="height: auto"  >
                     <v-col md="4" >
-                        <SearchRouteDirectionTimeline/>
+                        <SearchRouteDirectionTimeline v-bind:timeline_data="map_data"/>
                     </v-col>
                     <v-col md="8">
-                        <SearchRoutesDirectionMap  v-bind:map_data="this.map_data"/>
+                        <SearchRoutesDirectionMap  v-bind:map_data="map_data"/>
                     </v-col>
                 </v-row>
             </v-container>
@@ -30,16 +42,14 @@
 
      class Map_Line{
         coordinates=[];
+        places=[];
         transport="";
         route="";
+        show=false;
 
     }
 
-    class Time_Point{
-         places=[];
-         transport="";
-         route="";
-    }
+
 
     export default {
         name: "SearchRoutesDirections",
@@ -55,24 +65,18 @@
                 {coordinates:[37.983604, 23.730130],name:"place 5",transport:"trolley",route:"11"},
                 {coordinates:[37.983604, 23.730130],name:"place 5",transport:"walk",route:""},
                 {coordinates:[37.988610, 23.710346],name:"place 6",transport:"walk",route:""},
-                {coordinates:[37.988610, 23.710346],name:"place 6",transport:"metro",route:"M1"},
                 {coordinates:[37.988610, 23.710346],name:"place 7",transport:"tram",route:"T1"},
                 {coordinates:[38.024167, 23.691184],name:"place 8",transport:"tram",route:"T1"},
             ],
             map_data:[],
-            timeline_data:[],
-
-
-
-
-        }),
+          }),
 
         created() {
             let p,next_route;
 
 
-            this.map_data=new Array(Map_Line);
-            this.timeline_data=new Array(Time_Point);
+            this.map_data=[];
+
 
             let md=new Map_Line();
 
@@ -93,6 +97,7 @@
                     md=new Map_Line();
 
                     md.coordinates=[p.coordinates];
+                    md.places=[p.name];
                     md.route=next_route;
                     md.transport=p.transport;
                     cur_route=next_route;
@@ -100,6 +105,7 @@
                 }
                 else{
                     md.coordinates.push(p.coordinates);
+                    md.places.push(p.name);
 
                 }
 
