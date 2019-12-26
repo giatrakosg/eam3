@@ -6,7 +6,7 @@
       </v-flex>
       <v-flex sm10 md10 lg10>
         <v-card color="secondary">
-          <v-card-title> {{ this.id }}</v-card-title>
+          <v-card-title> Αφίξεις στις {{this.timestamp}}</v-card-title>
           <v-card-text>
             <template>
               <v-data-table raised tile
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name : 'StopArrivalInfo' ,
   props : ['id'] ,
@@ -40,7 +42,8 @@ export default {
         { text: 'Δρομολογιο', value: 'id' },
         { text: 'Αφιξη', value: 'time' },
 
-      ]
+      ],
+      timestamp : ''
     }
   } ,
   computed : {
@@ -60,7 +63,16 @@ export default {
       }
       return ret
     }
+  } ,
+  created() {
+      setInterval(this.getNow, 1000);
+  },
+  methods : {
+    getNow: function() {
+        this.timestamp = moment().format('h:mm');
+    }
   }
+
 }
 </script>
 
