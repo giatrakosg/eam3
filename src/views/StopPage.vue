@@ -1,16 +1,28 @@
-<template lang="html">
-  <div >
-    {{ id }}
+<template>
+  <div>
+    <v-layout row>
+      <v-flex sm1 md1 lg1>
+        <v-spacer></v-spacer>
+      </v-flex>
+      <v-flex sm10 md10 lg10>
+        <StopTab />
+      </v-flex>
+      <v-flex sm1 md1 lg1>
+        <v-spacer></v-spacer>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
 <script>
-export default {
-  name : 'StopPage' ,
-  props : ['id']
-
-}
+import StopTab from "../components/StationInfo/Stop/StopTab"
+  export default {
+    name : 'StopPage' ,
+    props : ['id'] ,
+    components : {
+      StopTab
+    }
+  }
 </script>
-
 <style lang="css" scoped>
 </style>
