@@ -40,8 +40,8 @@ export default {
   data () {
     return {
       arrivals : [
-        {id : '136' , times : ['5mins','10mins']} ,
-        {id : '137' , times : ['5mins','20mins']} ,
+        {id : '136' , times : ['5\'','10\'']} ,
+        {id : '137' , times : ['5\'','20\'']} ,
       ] ,
       headers : [
         { text: 'Δρομολογιο', value: 'id' },
