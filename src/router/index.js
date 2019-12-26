@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import SearchRoutes from "../views/SearchRoutes";
 import LoginPage from "../views/LoginPage";
 import SignUpPage from "../views/SignUpPage";
-import Route from "../components/StationInfo/Route"
+import RoutePage from "../views/RoutePage";
 import StopPage from "../views/StopPage";
 
 
@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/bus/route/:id' ,
     name: 'routepage' ,
-    component : Route ,
+    component : RoutePage ,
     props : true ,
     meta: {
       title: 'Δρομολογιο'
