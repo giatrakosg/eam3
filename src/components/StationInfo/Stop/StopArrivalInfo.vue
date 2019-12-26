@@ -1,17 +1,14 @@
 <template lang="html">
   <v-container fluid>
     <v-layout row>
-      <v-flex sm1 md1 lg1>
-        <v-spacer></v-spacer>
-      </v-flex>
-      <v-flex sm10 md10 lg10>
+      <v-flex sm12 md12 lg12>
         <v-card color="secondary">
           <v-card-title>
             <v-icon> mdi-refresh </v-icon>
             Αφίξεις στις
             {{this.timestamp}}
           </v-card-title>
-          <v-card-text>
+          <v-card-text >
             <template>
               <v-data-table raised tile
                 :headers="headers"
@@ -23,9 +20,6 @@
             </template>
           </v-card-text>
         </v-card>
-      </v-flex>
-      <v-flex sm1 md1 lg1>
-        <v-spacer></v-spacer>
       </v-flex>
     </v-layout>
   </v-container>

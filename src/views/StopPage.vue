@@ -7,7 +7,7 @@
       <v-flex sm10 md10 lg10>
         <v-card>
           <v-card-title >Σταση Αιγαίου 3</v-card-title>
-          <v-card-text>
+          <v-card-text class="ma-0 pa-0">
             <StopTab />
           </v-card-text>
         </v-card>
