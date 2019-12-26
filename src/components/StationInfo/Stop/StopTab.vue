@@ -5,9 +5,6 @@
         background-color="primary"
         class="elevation-2"
         dark
-        :centered="centered"
-        :grow="grow"
-        :vertical="vertical"
       >
         <v-tab>
             Όλες οι γραμμες
@@ -25,13 +22,13 @@
             137
         </v-tab>
         <v-tab-item>
-          <StopArrivalInfo :id="100" />
+          <StopArrivalInfo :id="-1" />
         </v-tab-item>
         <v-tab-item>
-          Lorem ipsum dolor
+          <StopArrivalInfo :id="136" />
         </v-tab-item>
         <v-tab-item>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+          <StopArrivalInfo :id="137" />
         </v-tab-item>
       </v-tabs>
     </div>
