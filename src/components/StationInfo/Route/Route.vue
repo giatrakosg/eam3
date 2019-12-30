@@ -136,8 +136,7 @@ export default {
        ,
        zoom:13,
        center: L.latLng(37.938451, 23.721009),
-       url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-       attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+       url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
        markers : [
          {id : 0 ,lat : 37.933163 , lng: 23.714648 },
          {id : 1 ,lat : 37.938451 , lng: 23.721009 },
