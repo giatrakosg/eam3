@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout row>
+    <v-layout row class="my-4">
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
@@ -8,9 +8,20 @@
         <v-card>
           <v-card-title >Σταση Αιγαίου 3</v-card-title>
           <v-card-text class="ma-0 pa-0">
-            <StopTab />
+            <!-- <StopTab /> -->
           </v-card-text>
         </v-card>
+      </v-flex>
+      <v-flex sm1 md1 lg1>
+        <v-spacer></v-spacer>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex sm1 md1 lg1>
+        <v-spacer></v-spacer>
+      </v-flex>
+      <v-flex sm10 md10 lg10>
+        <StopTab />
       </v-flex>
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
