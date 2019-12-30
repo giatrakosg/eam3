@@ -37,7 +37,7 @@
                     </v-btn>
                 </v-col>
                 <v-col cols="auto"  >
-                    <v-btn text >
+                    <v-btn text href="/contact" style="text-decoration:none ">
                         Contact
                     </v-btn>
                 </v-col>
