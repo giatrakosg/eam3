@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
+    <v-breadcrumbs :items="this.GetCrumbs()" divider=">"/>
   </div>
 </template>
 
@@ -8,28 +8,43 @@
   export default {
     name : 'Breadcrumb' ,
     data: () => ({
-      items: [
-        {
-          text: 'Dashboard',
-          disabled: false,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Link 1',
-          disabled: false,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Link 2',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
-      divider: '/',
-      dividers: ['/', '\\', '.', ';', '>', '-'],
-      large: false,
-      customDiv: false,
+
     }),
+    methods:{
+      GetCrumbs(){
+
+        let info,k;
+        let breadcrumbs_array=[
+          {
+            text: 'Home',
+            disabled: false,
+            href: '/',
+          }
+
+        ];
+
+        info=this.$route.matched;
+
+        for ( k in info ) {
+          if (info.hasOwnProperty(k)) {
+            // eslint-disable-next-line no-console
+            console.log(info[k])
+            let path = info[k].path;
+            if(path===""){continue;}
+
+            let text = info[k].meta.breadCrumb;
+
+            breadcrumbs_array.push({
+              text: text,
+              disabled: false,
+              href: path
+            })
+          }
+        }
+
+        return breadcrumbs_array;
+      }
+    }
   }
 </script>
 

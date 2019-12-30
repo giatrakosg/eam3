@@ -14,12 +14,18 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta:{
+      breadCrumb:'Home'
+    }
   },
   {
     path: '/SearchRoutes',
     name: 'search_routes',
-    component: SearchRoutes
+    component: SearchRoutes,
+    meta:{
+      breadCrumb:'Search Results'
+    }
   } ,
   {
     path: '/bus/route/:id' ,
@@ -27,6 +33,7 @@ const routes = [
     component : Route ,
     props : true ,
     meta: {
+      breadCrumb:'Routes',
       title: 'Σταση'
     },
   } ,
@@ -34,16 +41,25 @@ const routes = [
     path: '/login' ,
     name: 'loginpage' ,
     component : LoginPage ,
+    meta:{
+      breadCrumb:'Login'
+    }
   } ,
   {
     path: '/signup' ,
     name: 'signuppage' ,
     component : SignUpPage ,
+    meta:{
+      breadCrumb:'Sign Up'
+    }
   } ,
   {
     path: '/contact' ,
     name: 'contact' ,
     component : Contact ,
+    meta:{
+      breadCrumb:'Contact'
+    }
   }
 
 
