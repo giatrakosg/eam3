@@ -29,8 +29,8 @@
                         />
                     </v-col>
                     <v-col >
-                        <v-btn text  width="100%" to="SearchRoutes" >
-                            <i  class="fas fa-arrow-right fa-2x" style="color: #1565C0"/>
+                        <v-btn text  width="100%" to="SearchRoutes"  style="text-decoration: none">
+                            <i  class="fas fa-arrow-right fa-2x" style="color: #1565C0;"/>
                         </v-btn>
 
                     </v-col>

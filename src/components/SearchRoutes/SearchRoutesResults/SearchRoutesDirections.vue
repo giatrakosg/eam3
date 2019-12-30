@@ -4,18 +4,25 @@
 
                <span v-for="(t,k) in map_data"
                     :key="k"
-                     style="color: black"
 
                >
-                   <span v-if="k===(map_data.length-1)">
-                       {{t.route}}
-                   </span>
-                   <span v-else>
-                       {{t.route}} >
-                   </span>
+                   <span class="Route" v-bind:class="{'Green':(t.transport==='metro'),                                        //tram
+                                                       'LightBlue':(t.transport==='bus'),                 //bus
+                                                       'Pink':(t.transport==='tram'),            //trolley
+                                                       'Orange':(t.transport==='trolley')
+                                                        }">
+                       <span v-if="t.transport!=='walk'">
+                           {{t.route}}
+                       </span>
+                       <span v-else>
+                             <i class="fas fa-walking fa-2x" style="color: darkslategray;line-height: 15px"/>
+                       </span>
 
+                   </span>
+                   <span v-if="k!==(map_data.length-1)" class="m-1" style="color: black;">
+                        >
+                   </span>
                </span>
-
         </v-tab>
         <v-tab-item>
             <v-container fluid lazy >
@@ -120,5 +127,33 @@
 </script>
 
 <style scoped>
+
+
+    .Green{
+        background-color: #006C4A;
+    }
+
+    .Gray{
+        background-color: #9E9E9E;
+    }
+
+    .Pink {
+        background-color: #DD137B;
+    }
+
+    .LightBlue{
+        background-color: #009EC7;
+    }
+
+    .Orange{
+        background-color: #F27D00;
+    }
+
+    .Route{
+        color: whitesmoke;
+        border-radius: 7px;
+        padding: 5px;
+        display: inline-block;
+    }
 
 </style>

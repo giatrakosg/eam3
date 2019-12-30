@@ -4,8 +4,13 @@ import Home from '../views/Home.vue'
 import SearchRoutes from "../views/SearchRoutes";
 import LoginPage from "../views/LoginPage";
 import SignUpPage from "../views/SignUpPage";
+
+import Route from "../components/StationInfo/Route"
+import Contact from "../views/Contact";
+
 import RoutePage from "../views/RoutePage";
 import StopPage from "../views/StopPage";
+
 
 
 Vue.use(VueRouter);
@@ -49,6 +54,11 @@ const routes = [
     name: 'signuppage' ,
     component : SignUpPage ,
   } ,
+  {
+    path: '/contact' ,
+    name: 'contact' ,
+    component : Contact ,
+  }
 
 
 

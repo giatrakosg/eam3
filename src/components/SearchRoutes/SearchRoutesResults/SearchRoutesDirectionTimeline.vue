@@ -17,7 +17,7 @@
                         <img  v-if="t.transport==='metro'" src="../../../assets/metro.png" style="width: 50px">
                         <img  v-if="t.transport==='trolley'" src="../../../assets/trolley.png" style="width: 50px">
                         <img  v-if="t.transport==='tram'" src="../../../assets/tram.png" style="width: 50px">
-                        <i v-if="t.transport==='walk'" class="fas fa-walking fa-2x fa-flip-horizontal" style="color: darkslategray"/>
+                        <i v-if="t.transport==='walk'" class="fas fa-walking fa-2x" style="color: darkslategray"/>
                     </template>
                   <v-btn  small  v-on:click="t.show=!t.show" >
                       <div style="font-weight: 300">

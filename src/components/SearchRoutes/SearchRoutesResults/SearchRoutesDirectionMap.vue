@@ -46,7 +46,7 @@
 
                 <l-icon>
 
-                    <i class="fas fa-walking fa-2x fa-flip-horizontal" style="color: darkslategray"/>
+                    <i class="fas fa-walking fa-2x " style="color: darkslategray"/>
                 </l-icon>
 
             </l-marker>
