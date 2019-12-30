@@ -5,7 +5,6 @@ import SearchRoutes from "../views/SearchRoutes";
 import LoginPage from "../views/LoginPage";
 import SignUpPage from "../views/SignUpPage";
 
-import Route from "../components/StationInfo/Route"
 import Contact from "../views/Contact";
 
 import RoutePage from "../views/RoutePage";
@@ -19,12 +18,19 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {
+      breadCrumb: 'Home'
+    },
+
   },
   {
     path: '/SearchRoutes',
     name: 'search_routes',
-    component: SearchRoutes
+    component: SearchRoutes,
+    meta: {
+      breadCrumb: 'Search Route'
+    },
   } ,
   {
     path: '/bus/route/:id' ,
@@ -48,16 +54,25 @@ const routes = [
     path: '/login' ,
     name: 'loginpage' ,
     component : LoginPage ,
+    meta: {
+      breadCrumb: 'Login'
+    },
   } ,
   {
     path: '/signup' ,
     name: 'signuppage' ,
     component : SignUpPage ,
+    meta: {
+      breadCrumb: 'SignUp'
+    },
   } ,
   {
     path: '/contact' ,
     name: 'contact' ,
     component : Contact ,
+    meta: {
+      breadCrumb: 'Contact'
+    },
   }
 
 
