@@ -48,13 +48,14 @@
                 <span>{{ errors[0] }}</span>
                 <v-btn
                 @click="showPassword"
-
+                color="success"
                 v-show="hiddenCont"
                 >Συνεχεια</v-btn>
               </validation-provider>
               <v-btn
                 @click="handleSubmit()"
                 v-show="hiddenPassword"
+                color="success"
                 >Εισοδος</v-btn>
             </v-form>
           </v-card-text>
