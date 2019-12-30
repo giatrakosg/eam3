@@ -9,6 +9,7 @@ import Contact from "../views/Contact";
 
 import RoutePage from "../views/RoutePage";
 import StopPage from "../views/StopPage";
+import BusMapsPage from "../views/BusMapsPage";
 
 
 
@@ -73,10 +74,15 @@ const routes = [
     meta: {
       breadCrumb: 'Contact'
     },
+  } ,
+  {
+    path: '/maps/bus' ,
+    name: 'bussearchpage' ,
+    component : BusMapsPage ,
+    meta: {
+      breadCrumb: 'Bus Maps'
+    },
   }
-
-
-
 ];
 
 const router = new VueRouter({
