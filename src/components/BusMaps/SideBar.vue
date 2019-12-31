@@ -1,16 +1,50 @@
 <template lang="html">
   <div class="">
-    <v-card>
+    <v-card tile raised>
       <v-card-title>
-        Αναζητηση :
+        Αναζήτηση Στάσης ή Γραμμής:
       </v-card-title>
+      <v-card-text>
+        <div>
+          <v-autocomplete
+            v-model="selected"
+            label="Αναζητηση"
+            :items="components"
+            item-color="primary"
+          ></v-autocomplete>
+          <div v-if="selected">
+            {{selected}}
+          </div>
+        </div>
+      </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script>
 export default {
-  name : 'SideBar'
+  name : 'SideBar' ,
+  data() {
+    return {
+      routes: [
+        { text : '136 προς Νεο Κοσμο' , value : { id : 0 , type : 'route'}},
+        { text : '136 προς Φαληρο'    , value : { id : 1 , type : 'route'} },
+        { text : '218 προς Πειραια'   , value : { id : 2 , type : 'route'} },
+        { text : '218 προς Καλιθέα'   , value : { id : 3 , type : 'route'} },
+      ],
+      stops : [
+        { text : '3η Αιγαιου'  , value : { id : 4 , type : 'stop'} },
+        { text : '10η Αιγαιου' , value : { id : 5 , type : 'stop'} },
+        { text : 'Νεκροταφεία' , value : { id : 6 , type : 'stop'} },
+      ] ,
+      selected : ''
+    }
+  } ,
+  computed : {
+    components() {
+      return this.routes.concat(this.stops) ;
+    }
+  }
 }
 </script>
 
