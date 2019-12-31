@@ -1,24 +1,19 @@
 import '@babel/polyfill'
 import 'mutationobserver-shim'
 import Vue from 'vue'
-import './plugins/bootstrap-vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './router'
 import vuetify from './plugins/vuetify';
-import BootstrapVue from 'bootstrap-vue'
 import '@fortawesome/fontawesome-free/css/all.css'
+import store from './store'
 
 import { Icon } from 'leaflet'
 
 import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker ,LIcon , LPopup} from 'vue2-leaflet';
-
-
 import 'leaflet/dist/leaflet.css'
-
-////Map Marker  ERROR////////////////////////////////
-
 import L from 'leaflet';
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -50,7 +45,6 @@ Icon.Default.mergeOptions({
 });
 
 
-Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -58,5 +52,6 @@ Vue.config.productionTip = false;
 new Vue({
   render: h => h(App),
   router,
+  store,
   vuetify
 }).$mount('#app');
