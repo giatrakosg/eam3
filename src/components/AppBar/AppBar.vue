@@ -27,7 +27,7 @@
 
                 </v-col>
                 <v-col cols="auto" >
-                    <v-btn text>
+                    <v-btn text to="/maps/bus">
                         Routes
                     </v-btn>
                 </v-col>
