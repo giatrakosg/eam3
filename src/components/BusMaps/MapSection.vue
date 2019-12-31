@@ -2,20 +2,17 @@
   <div >
     <v-container>
       <v-layout row>
-        <v-flex xs1 sm1 md1></v-flex>
-        <v-flex xs10 sm10 md10 >
-          <div class="map">
-            <l-map :zoom="zoom" :center="center"
-            style="z-index: 0; height: 50vh; width: 100"
+        <v-flex xs12 sm12 md12 >
+          <l-map :zoom="zoom" :center="center"
+          style="z-index: 0; height: 50vh; width: 100"
+          >
+            <l-tile-layer :url="url" ></l-tile-layer>
+            <l-marker v-for="marker in points" :key="marker.id" :lat-lng="marker.position"></l-marker>
+            <l-polyline
+              :lat-lngs="positions"
             >
-              <l-tile-layer :url="url" ></l-tile-layer>
-              <l-marker v-for="marker in points" :key="marker.id" :lat-lng="marker.position"></l-marker>
-              <l-polyline
-                :lat-lngs="positions"
-              >
-              </l-polyline>
-            </l-map>
-          </div>
+            </l-polyline>
+          </l-map>
         </v-flex>
 
       </v-layout>
@@ -145,9 +142,5 @@ export default {
 </script>
 
 
-<style lang="css" scoed>
-.foobar1 {
-  width: 100%;
-  height: 400px;
-}
+<style lang="css" scoped>
 </style>
