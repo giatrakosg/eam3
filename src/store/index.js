@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setLanguage(state , payload) {
-      state.lang = payload ;
+      state.lang = payload.lang ;
     }
   },
   actions: {

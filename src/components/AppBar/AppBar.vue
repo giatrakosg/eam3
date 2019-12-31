@@ -70,10 +70,11 @@
                 <v-col cols="1">
                     <v-select
                             :items="languages"
-                            label="select lunguage"
+                            label="select language"
                             height="54"
                             v-model="select"
                             single-line
+                            @change="setLanguage"
                     />
                 </v-col>
             </v-row>
@@ -83,15 +84,24 @@
 </template>
 
 <script>
+
     export default {
         name: "AppBar",
         data(){
             return{
                 languages:[
-                    "Greek","English"
+                  { text : 'Greek' , value : 'gr'} ,
+                  { text : 'English' , value : 'en'} ,
                 ] ,
                 select : ''
             }
+        } ,
+        methods : {
+          setLanguage() {
+            //this.$store.setLanguage(this.select)
+            return this.$store.commit('setLanguage' ,
+            {'lang' : this.select})
+          }
         }
     }
 </script>
