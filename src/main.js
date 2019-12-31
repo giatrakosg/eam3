@@ -11,7 +11,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import { Icon } from 'leaflet'
 
-import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker ,LIcon} from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker ,LIcon , LPopup} from 'vue2-leaflet';
 
 
 import 'leaflet/dist/leaflet.css'
@@ -39,6 +39,7 @@ Vue.component('l-marker', LMarker);
 Vue.component('l-circle-marker', LCircleMarker);
 Vue.component('l-polyline', LPolyline);
 Vue.component('l-icon', LIcon);
+Vue.component('l-popup', LPopup);
 
 delete Icon.Default.prototype._getIconUrl;
 
