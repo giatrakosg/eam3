@@ -33,6 +33,9 @@
           <v-btn
           :to="'/bus/route/' + this.id"
           color="success"
+          block
+          raised
+          tile
           >
             Περισσοτερες Πληροφοριες
           </v-btn>

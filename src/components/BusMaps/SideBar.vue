@@ -17,7 +17,7 @@
               Route : <RouteInfoCard :id="selected.id" />
             </div>
             <div v-if="selected.type == 'stop'">
-              Stop : {{selected}}
+              Stop :  <StopInfoCard :id="selected.id" />
             </div>
           </div>
         </div>
@@ -28,6 +28,7 @@
 
 <script>
 import RouteInfoCard from '../StationInfo/Route/RouteInfoCard'
+import StopInfoCard from '../StationInfo/Stop/StopInfoCard'
 export default {
   name : 'SideBar' ,
   data() {
@@ -47,7 +48,8 @@ export default {
     }
   } ,
   components : {
-    RouteInfoCard
+    RouteInfoCard ,
+    StopInfoCard ,
   },
   computed : {
     components() {
