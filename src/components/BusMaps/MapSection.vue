@@ -7,7 +7,9 @@
           style="z-index: 0; height: 50vh; width: 100"
           >
             <l-tile-layer :url="url" ></l-tile-layer>
-            <l-marker v-for="marker in points" :key="marker.id" :lat-lng="marker.position"></l-marker>
+            <l-marker v-for="marker in points" :key="marker.id" :lat-lng="marker.position">
+              <l-popup></l-popup>
+            </l-marker>
             <l-polyline
               :lat-lngs="positions"
             >
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker , LPolyline } from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker , LPolyline , LPopup} from 'vue2-leaflet';
 import L from 'leaflet'
 
 export default {
@@ -94,7 +96,8 @@ export default {
     LMap ,
     LTileLayer,
     LMarker ,
-    LPolyline
+    LPolyline ,
+    LPopup
   } ,
   methods : {
     zoomUpdated (zoom) {
