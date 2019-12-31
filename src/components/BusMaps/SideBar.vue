@@ -13,7 +13,12 @@
             item-color="primary"
           ></v-autocomplete>
           <div v-if="selected">
-            {{selected}}
+            <div v-if="selected.type == 'route'">
+              Route : <RouteInfoCard :id="selected.id" />
+            </div>
+            <div v-if="selected.type == 'stop'">
+              Stop : {{selected}}
+            </div>
           </div>
         </div>
       </v-card-text>
@@ -22,6 +27,7 @@
 </template>
 
 <script>
+import RouteInfoCard from '../StationInfo/Route/RouteInfoCard'
 export default {
   name : 'SideBar' ,
   data() {
@@ -40,6 +46,9 @@ export default {
       selected : ''
     }
   } ,
+  components : {
+    RouteInfoCard
+  },
   computed : {
     components() {
       return this.routes.concat(this.stops) ;
