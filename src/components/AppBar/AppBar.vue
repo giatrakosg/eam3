@@ -72,6 +72,7 @@
                             :items="languages"
                             label="select lunguage"
                             height="54"
+                            v-model="select"
                             single-line
                     />
                 </v-col>
@@ -88,7 +89,8 @@
             return{
                 languages:[
                     "Greek","English"
-                ]
+                ] ,
+                select : ''
             }
         }
     }
