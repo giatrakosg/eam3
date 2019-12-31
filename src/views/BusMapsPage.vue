@@ -20,18 +20,14 @@
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
-      <v-flex sm5 md5 lg5>
-        <v-card>
-          <v-card-text>hello</v-card-text>
-        </v-card>
+      <v-flex sm3 md3 lg3>
+        <SideBar />
       </v-flex>
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
-      <v-flex sm4 md4 lg4>
-        <v-card>
-          <v-card-text>hello</v-card-text>
-        </v-card>
+      <v-flex sm6 md6 lg6>
+        <MapSection />
       </v-flex>
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
@@ -41,8 +37,14 @@
 </template>
 
 <script>
+import MapSection from "../components/BusMaps/MapSection"
+import SideBar from "../components/BusMaps/SideBar"
+
 export default {
-  name : 'BusMapsPage'
+  name : 'BusMapsPage' ,
+  components : {
+    MapSection , SideBar
+  }
 }
 </script>
 
