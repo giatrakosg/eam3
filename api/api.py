@@ -38,26 +38,25 @@ im = pyimgur.Imgur(client_id)
 
 cors = CORS(app)
 
-dbUsers = SQLAlchemy(app)
-dbItems =pymysql.connect(user='root',password='root',database='AuctionsSite',charset = 'utf8mb4',cursorclass = pymysql.cursors.DictCursor)
+dbOASA = SQLAlchemy(app)
 
-class User(dbUsers.Model):
-    id = dbUsers.Column(dbUsers.Integer, primary_key=True)
-    public_id = dbUsers.Column(dbUsers.String(50), unique=True)
-    name = dbUsers.Column(dbUsers.String(50),unique=True)
-    password = dbUsers.Column(dbUsers.String(80))
-    admin = dbUsers.Column(dbUsers.Boolean)
-    pending = dbUsers.Column(dbUsers.Boolean)
-    first_name = dbUsers.Column(dbUsers.String(50))
-    last_name = dbUsers.Column(dbUsers.String(50))
-    email = dbUsers.Column(dbUsers.String(50),unique=True)
-    phone = dbUsers.Column(dbUsers.String(15)) #Support for international phone numbers
+class User(dbOASA.Model):
+    id = dbOASA.Column(dbOASA.Integer, primary_key=True)
+    public_id = dbOASA.Column(dbOASA.String(50), unique=True)
+    name = dbOASA.Column(dbOASA.String(50),unique=True)
+    password = dbOASA.Column(dbOASA.String(80))
+    admin = dbOASA.Column(dbOASA.Boolean)
+    pending = dbOASA.Column(dbOASA.Boolean)
+    first_name = dbOASA.Column(dbOASA.String(50))
+    last_name = dbOASA.Column(dbOASA.String(50))
+    email = dbOASA.Column(dbOASA.String(50),unique=True)
+    phone = dbOASA.Column(dbOASA.String(15)) #Support for international phone numbers
     # length 15
-    tin = dbUsers.Column(dbUsers.String(9)) # AFM = TIN (Tax Identification number)
+    tin = dbOASA.Column(dbOASA.String(9)) # AFM = TIN (Tax Identification number)
     # We restrict to 9 digits
-    location = dbUsers.Column(dbUsers.Float())
+    location = dbOASA.Column(dbOASA.Float())
     # when the user was registered
-    register = dbUsers.Column(dbUsers.Date())
+    register = dbOASA.Column(dbOASA.Date())
 
 
 def token_required(f):
@@ -81,10 +80,6 @@ def token_required(f):
 
     return decorated
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 @app.route('/hello',methods=['POST'])
 def upload_file():
     if request.method == 'POST':
@@ -106,14 +101,7 @@ def upload_file():
 
 @app.route('/',methods=['GET'])
 def hello():
-    output = """<!DOCTYPE html>
-            <html lang="en">
-
-            <head>
-                <meta charset="utf-8">
-                <link rel="stylesheet" type="text/css" href="static/style.css">
-                """
-
+    output = ''
     # Open the README file
     with open(os.path.dirname(app.root_path) + '/README.md', 'r') as markdown_file:
 
@@ -122,12 +110,7 @@ def hello():
 
         # Convert to HTML
         output += markdown.markdown(content)
-        output += """
-        </head>
-
-        <body>
-        """
-        return output
+    return output
 @app.route('/login')
 def login():
     auth = request.authorization
@@ -221,13 +204,9 @@ def addUserRequest():
     new_user = User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, admin=False,
     pending=True,first_name=data['first_name'],last_name=data['last_name'],email=data['email'],
     phone=data['phone'],tin=data['tin'],location=data['location'])
-    dbUsers.session.add(new_user)
-    dbUsers.session.commit()
+    dbOASA.session.add(new_user)
+    dbOASA.session.commit()
     return jsonify({'message' : 'New user created!'})
 
 if __name__ == '__main__':
-    scheduler = APScheduler()
-    scheduler.add_job(func=updateDB, trigger='interval', id='job', seconds=30)
-    scheduler.init_app(app)
-    scheduler.start()
     app.run(debug=True)
