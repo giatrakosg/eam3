@@ -13,22 +13,12 @@ import sys
 import markdown
 import datetime
 from functools import wraps
-import threading
 from schema import Schema, And, Use, Optional
 from pprint import pprint
-
-sem = threading.Semaphore()
-
-UPLOAD_FOLDER = '/tmp/'
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisissecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
-client_id = 'e4d20924ee4c9f1'
-client_secret = 'f61fd060aaeac98748b387826d44f841d901c3bd'
 
 cors = CORS(app)
 
@@ -39,17 +29,10 @@ class User(dbOASA.Model):
     public_id = dbOASA.Column(dbOASA.String(50), unique=True)
     name = dbOASA.Column(dbOASA.String(50),unique=True)
     password = dbOASA.Column(dbOASA.String(80))
-    admin = dbOASA.Column(dbOASA.Boolean)
-    pending = dbOASA.Column(dbOASA.Boolean)
     first_name = dbOASA.Column(dbOASA.String(50))
     last_name = dbOASA.Column(dbOASA.String(50))
     email = dbOASA.Column(dbOASA.String(50),unique=True)
     phone = dbOASA.Column(dbOASA.String(15)) #Support for international phone numbers
-    # length 15
-    tin = dbOASA.Column(dbOASA.String(9)) # AFM = TIN (Tax Identification number)
-    # We restrict to 9 digits
-    location = dbOASA.Column(dbOASA.Float())
-    # when the user was registered
     register = dbOASA.Column(dbOASA.Date())
 
 
@@ -74,25 +57,6 @@ def token_required(f):
 
     return decorated
 
-@app.route('/hello',methods=['POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            print('no file part')
-            return jsonify({'message' : 'no file part'}) , 401
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            print('no selected file')
-            return jsonify({'message' : 'no selected file'}) , 401
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return jsonify({'message' : 'success upload'}) , 200
-
-
 @app.route('/',methods=['GET'])
 def hello():
     output = ''
@@ -105,6 +69,7 @@ def hello():
         # Convert to HTML
         output += markdown.markdown(content)
     return output
+
 @app.route('/login')
 def login():
     auth = request.authorization
