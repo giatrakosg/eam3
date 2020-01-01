@@ -1,24 +1,35 @@
 import '@babel/polyfill'
 import 'mutationobserver-shim'
 import Vue from 'vue'
-import './plugins/bootstrap-vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './router'
 import vuetify from './plugins/vuetify';
-import BootstrapVue from 'bootstrap-vue'
+import VueI18n from 'vue-i18n';
 import '@fortawesome/fontawesome-free/css/all.css'
+import store from './store'
+
+Vue.use(VueI18n)
+
+
+import { ENGLISH_TRANSLATIONS } from './translations/en';
+import { GREEK_TRANSLATIONS } from './translations/gr';
+
+const TRANSLATIONS = {
+  en: ENGLISH_TRANSLATIONS,
+  gr: GREEK_TRANSLATIONS
+}
+const i18n = new VueI18n({
+  locale: 'en',
+  messages: TRANSLATIONS,
+})
 
 import { Icon } from 'leaflet'
 
 import { LMap, LTileLayer, LMarker,LPolyline,LCircleMarker ,LIcon , LPopup} from 'vue2-leaflet';
-
-
 import 'leaflet/dist/leaflet.css'
-
-////Map Marker  ERROR////////////////////////////////
-
 import L from 'leaflet';
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -26,12 +37,6 @@ L.Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
-
-/////////////////////////////////////////////////////////////
-
-
-
-
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
@@ -50,7 +55,6 @@ Icon.Default.mergeOptions({
 });
 
 
-Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -58,5 +62,7 @@ Vue.config.productionTip = false;
 new Vue({
   render: h => h(App),
   router,
-  vuetify
+  store,
+  vuetify ,
+  i18n
 }).$mount('#app');
