@@ -49,7 +49,7 @@
 
                 <v-spacer/>
                 <v-col cols="auto"  >
-                    <v-btn text outlined to="/signup"> Sign Up </v-btn>
+                    <v-btn text outlined to="/signup"> {{ $t("text.route")}}Sign Up </v-btn>
                 </v-col>
                 <v-col cols="auto" >
                     <v-btn text outlined to="/login"> Login</v-btn>
@@ -99,6 +99,7 @@
         methods : {
           setLanguage() {
             //this.$store.setLanguage(this.select)
+            this.$i18n.locale = this.select ;
             return this.$store.commit('setLanguage' ,
             {'lang' : this.select})
           }

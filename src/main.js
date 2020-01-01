@@ -5,8 +5,24 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './router'
 import vuetify from './plugins/vuetify';
+import VueI18n from 'vue-i18n';
 import '@fortawesome/fontawesome-free/css/all.css'
 import store from './store'
+
+Vue.use(VueI18n)
+
+
+import { ENGLISH_TRANSLATIONS } from './translations/en';
+import { GREEK_TRANSLATIONS } from './translations/gr';
+
+const TRANSLATIONS = {
+  en: ENGLISH_TRANSLATIONS,
+  gr: GREEK_TRANSLATIONS
+}
+const i18n = new VueI18n({
+  locale: 'en',
+  messages: TRANSLATIONS,
+})
 
 import { Icon } from 'leaflet'
 
@@ -21,12 +37,6 @@ L.Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
-
-/////////////////////////////////////////////////////////////
-
-
-
-
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
@@ -53,5 +63,6 @@ new Vue({
   render: h => h(App),
   router,
   store,
-  vuetify
+  vuetify ,
+  i18n
 }).$mount('#app');
