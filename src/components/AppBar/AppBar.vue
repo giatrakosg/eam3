@@ -28,31 +28,31 @@
                 </v-col>
                 <v-col cols="auto" >
                     <v-btn text to="/maps/bus">
-                        Routes
+                        {{ $t("text.route")}}
                     </v-btn>
                 </v-col>
                 <v-col cols="auto">
                     <v-btn text>
-                        Tickets
+                        {{ $t("text.tickets")}}
                     </v-btn>
                 </v-col>
                 <v-col cols="auto"  >
                     <v-btn text href="/contact" style="text-decoration:none ">
-                        Contact
+                        {{ $t("text.contact")}}
                     </v-btn>
                 </v-col>
                 <v-col cols="auto" >
                     <v-btn text >
-                        About us
+                        {{ $t("text.about")}}
                     </v-btn>
                 </v-col>
 
                 <v-spacer/>
                 <v-col cols="auto"  >
-                    <v-btn text outlined to="/signup"> {{ $t("text.route")}}Sign Up </v-btn>
+                    <v-btn text outlined to="/signup"> {{ $t("text.signup")}}</v-btn>
                 </v-col>
                 <v-col cols="auto" >
-                    <v-btn text outlined to="/login"> Login</v-btn>
+                    <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
                 </v-col>
 
                 <v-col cols="1" class="d-sm-none d-md-flex">
