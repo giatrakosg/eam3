@@ -7,19 +7,15 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import ImmutableMultiDict
 import jwt
 import datetime
-import pymysql
 import json
 import os
 import sys
 import markdown
 import datetime
 from functools import wraps
-from imgurpython import ImgurClient
-import pyimgur
 import threading
 from schema import Schema, And, Use, Optional
 from pprint import pprint
-from flask_apscheduler import APScheduler
 
 sem = threading.Semaphore()
 
@@ -33,8 +29,6 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 client_id = 'e4d20924ee4c9f1'
 client_secret = 'f61fd060aaeac98748b387826d44f841d901c3bd'
-
-im = pyimgur.Imgur(client_id)
 
 cors = CORS(app)
 
