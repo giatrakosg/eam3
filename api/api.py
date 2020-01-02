@@ -33,8 +33,10 @@ class User(dbOASA.Model):
     last_name = dbOASA.Column(dbOASA.String(50))
     email = dbOASA.Column(dbOASA.String(50),unique=True)
     phone = dbOASA.Column(dbOASA.String(15)) #Support for international phone numbers
-    register = dbOASA.Column(dbOASA.Date())
+    hasReduced = dbOASA.Column(dbOASA.Boolean())
 
+dbOASA.create_all()
+dbOASA.session.commit()
 
 def token_required(f):
     @wraps(f)
@@ -160,9 +162,17 @@ def addUserRequest():
         return jsonify({'message' : 'Email already exists!'}),400
 
 
-    new_user = User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, admin=False,
-    pending=True,first_name=data['first_name'],last_name=data['last_name'],email=data['email'],
-    phone=data['phone'],tin=data['tin'],location=data['location'])
+    new_user = User(
+    public_id=str(uuid.uuid4()),
+    name=data['name'],
+    password=hashed_password,
+    first_name=data['first_name'],
+    last_name=data['last_name'],
+    email=data['email'],
+    phone=data['phone'],
+    hasReduced=False,
+    )
+
     dbOASA.session.add(new_user)
     dbOASA.session.commit()
     return jsonify({'message' : 'New user created!'})
