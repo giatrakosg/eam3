@@ -48,11 +48,17 @@
                 </v-col>
 
                 <v-spacer/>
-                <v-col cols="auto"  >
+                <v-col cols="auto"  v-if="!isLoggedIn">
                     <v-btn text outlined to="/signup"> {{ $t("text.signup")}}</v-btn>
                 </v-col>
-                <v-col cols="auto" >
+                <v-col cols="auto"  v-if="!isLoggedIn" >
                     <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
+                </v-col>
+                <v-col cols="auto"  v-if="isLoggedIn" >
+                    <v-btn text outlined to="/user/profile">Hi Emilia !</v-btn>
+                </v-col>
+                <v-col cols="auto"  v-if="isLoggedIn" >
+                    <v-btn text outlined to="/user/profile">Logout</v-btn>
                 </v-col>
 
                 <v-col cols="1" class="d-sm-none d-md-flex">
@@ -95,6 +101,14 @@
                 ] ,
                 select : ''
             }
+        } ,
+        computed : {
+          isLoggedIn() {
+            if (this.$store.state.token) {
+              return true
+            }
+            return false  ;
+          }
         } ,
         methods : {
           setLanguage() {
