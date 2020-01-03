@@ -58,19 +58,16 @@
                     <v-btn text outlined to="/user/profile">Hi Emilia !</v-btn>
                 </v-col>
                 <v-col cols="auto"  v-if="isLoggedIn" >
-                    <v-btn text outlined to="/user/profile">Logout</v-btn>
+                    <v-btn text outlined @click="doLogout">Logout</v-btn>
                 </v-col>
 
                 <v-col cols="1" class="d-sm-none d-md-flex">
-
                     <v-text-field
-
                             append-icon="fas fa-search"
                             label="Search"
                             single-line
                             hide-details
                     />
-
                 </v-col>
 
                 <v-col cols="1">
@@ -116,6 +113,9 @@
             this.$i18n.locale = this.select ;
             return this.$store.commit('setLanguage' ,
             {'lang' : this.select})
+          } ,
+          doLogout() {
+            return this.$store.dispatch('logout')
           }
         }
     }
