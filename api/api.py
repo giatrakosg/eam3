@@ -15,6 +15,7 @@ import datetime
 from functools import wraps
 from schema import Schema, And, Use, Optional
 from pprint import pprint
+import jsonpickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisissecret'
@@ -34,6 +35,7 @@ class User(dbOASA.Model):
     email = dbOASA.Column(dbOASA.String(50),unique=True)
     phone = dbOASA.Column(dbOASA.String(15)) #Support for international phone numbers
     hasReduced = dbOASA.Column(dbOASA.Boolean())
+
 
 dbOASA.create_all()
 dbOASA.session.commit()
@@ -87,7 +89,7 @@ def login():
     if check_password_hash(user.password, auth.password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=90)}, app.config['SECRET_KEY'])
 
-        return jsonify({'token' : token.decode('UTF-8'),'first_name' : user.first_name , 'last_name' : user.last_name})
+        return jsonify({'token' : token.decode('UTF-8'),'user': {'first_name' : user.name}})
 
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
