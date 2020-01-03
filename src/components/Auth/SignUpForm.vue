@@ -132,12 +132,29 @@ export default {
     return {
       email : '' ,
       password : '' ,
-      passwordRetype : ''
+      passwordRetype : '',
+      tel : '',
+      username : '' ,
+      surname : ''
+
     }
   } ,
   methods : {
     handleSubmit() {
       console.log(this.email,this.password);
+      let data = {
+        name: this.username,
+        first_name: this.username,
+        last_name : this.surname ,
+        email: this.email,
+        password: this.password,
+        phone : this.tel
+      };
+      this.$store
+        .dispatch("register", data)
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err));
+
     } ,
   }
 }
