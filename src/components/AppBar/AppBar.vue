@@ -48,23 +48,26 @@
                 </v-col>
 
                 <v-spacer/>
-                <v-col cols="auto"  >
+                <v-col cols="auto"  v-if="!isLoggedIn">
                     <v-btn text outlined to="/signup"> {{ $t("text.signup")}}</v-btn>
                 </v-col>
-                <v-col cols="auto" >
+                <v-col cols="auto"  v-if="!isLoggedIn" >
                     <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
+                </v-col>
+                <v-col cols="auto"  v-if="isLoggedIn" >
+                    <v-btn text outlined to="/user/profile">Hi Emilia !</v-btn>
+                </v-col>
+                <v-col cols="auto"  v-if="isLoggedIn" >
+                    <v-btn text outlined @click="doLogout">Logout</v-btn>
                 </v-col>
 
                 <v-col cols="1" class="d-sm-none d-md-flex">
-
                     <v-text-field
-
                             append-icon="fas fa-search"
                             label="Search"
                             single-line
                             hide-details
                     />
-
                 </v-col>
 
                 <v-col cols="1">
@@ -96,12 +99,23 @@
                 select : ''
             }
         } ,
+        computed : {
+          isLoggedIn() {
+            if (this.$store.state.token) {
+              return true
+            }
+            return false  ;
+          }
+        } ,
         methods : {
           setLanguage() {
             //this.$store.setLanguage(this.select)
             this.$i18n.locale = this.select ;
             return this.$store.commit('setLanguage' ,
             {'lang' : this.select})
+          } ,
+          doLogout() {
+            return this.$store.dispatch('logout')
           }
         }
     }
