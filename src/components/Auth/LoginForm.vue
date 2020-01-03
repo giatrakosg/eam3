@@ -94,6 +94,12 @@ export default {
   methods : {
     handleSubmit() {
       console.log(this.email,this.password);
+      let email = this.email;
+      let password = this.password;
+      this.$store
+        .dispatch("login", { email, password })
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err));
     } ,
     showPassword() {
       this.hiddenPassword = true ;
