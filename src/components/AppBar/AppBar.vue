@@ -55,7 +55,7 @@
                     <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
                 </v-col>
                 <v-col cols="auto"  v-if="isLoggedIn" >
-                    <v-btn text outlined to="/user/profile">Hi Emilia !</v-btn>
+                    <v-btn text outlined to="/user/profile">Hi {{user.first_name}} !</v-btn>
                 </v-col>
                 <v-col cols="auto"  v-if="isLoggedIn" >
                     <v-btn text outlined @click="doLogout">Logout</v-btn>
@@ -105,6 +105,9 @@
               return true
             }
             return false  ;
+          } ,
+          user() {
+            return this.$store.state.user ;
           }
         } ,
         methods : {

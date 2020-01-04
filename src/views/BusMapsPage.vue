@@ -12,24 +12,24 @@
           </v-card-title>
         </v-card>
       </v-flex>
-      <v-flex sm1 md1 lg1>
+      <v-flex xs1 sm1 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex sm1 md1 lg1>
+      <v-flex x0 sm0 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
-      <v-flex sm3 md3 lg3>
+      <v-flex sm2 md3 lg3>
         <SideBar />
       </v-flex>
-      <v-flex sm1 md1 lg1>
+      <v-flex xs0 sm0 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
-      <v-flex sm6 md6 lg6>
+      <v-flex xs10 sm10 md6 lg6>
         <MapSection />
       </v-flex>
-      <v-flex sm1 md1 lg1>
+      <v-flex sm0 md1 lg1>
         <v-spacer></v-spacer>
       </v-flex>
     </v-layout>

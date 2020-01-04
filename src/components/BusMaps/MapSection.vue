@@ -4,7 +4,7 @@
       <v-layout row>
         <v-flex xs12 sm12 md12 >
           <l-map :zoom="zoom" :center="center"
-          style="z-index: 0; height: 50vh; width: 100"
+          style="z-index: 0; height: 50vh; width: 100%"
           >
             <l-tile-layer :url="url" ></l-tile-layer>
             <l-marker v-for="marker in markers" :key="marker.id" :lat-lng="marker.position">
