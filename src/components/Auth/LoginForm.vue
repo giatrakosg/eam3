@@ -48,13 +48,14 @@
                 <span>{{ errors[0] }}</span>
                 <v-btn
                 @click="showPassword"
-
+                color="success"
                 v-show="hiddenCont"
                 >Συνεχεια</v-btn>
               </validation-provider>
               <v-btn
                 @click="handleSubmit()"
                 v-show="hiddenPassword"
+                color="success"
                 >Εισοδος</v-btn>
             </v-form>
           </v-card-text>
@@ -93,6 +94,12 @@ export default {
   methods : {
     handleSubmit() {
       console.log(this.email,this.password);
+      let email = this.email;
+      let password = this.password;
+      this.$store
+        .dispatch("login", { email, password })
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err));
     } ,
     showPassword() {
       this.hiddenPassword = true ;
