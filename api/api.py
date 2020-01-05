@@ -61,7 +61,9 @@ class Station(db.Model):
         for route in self.routes:
             routes_pid.append(route.public_id)
         r['routes'] = routes_pid
-        return r
+        rr = {}
+        rr['stop'] = r
+        return rr
 
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)

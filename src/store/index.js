@@ -11,7 +11,9 @@ export default new Vuex.Store({
     token: localStorage.getItem('token') || '',
     user: {} ,
     routePIDS : {},
-    routes : []
+    routes : [] ,
+    stopPIDS : {} ,
+    stops : []
   },
   mutations: {
     setLanguage(state , payload) {
@@ -22,6 +24,12 @@ export default new Vuex.Store({
     },
     addRoute(state,payload) {
       state.routes.push(payload.route)
+    },
+    setStops(state,payload){
+      state.stopPIDS = payload.stops
+    },
+    addStop(state,payload) {
+      state.stops.push(payload.stop)
     },
     auth_request(state) {
       state.status = 'loading'
@@ -97,7 +105,6 @@ export default new Vuex.Store({
     } ,
     getRoutes({ commit , dispatch}){
       return new Promise((resolve, reject) => {
-        commit('auth_request')
         axios({ url: 'http://localhost:5000/routes', method: 'GET' })
           .then(resp => {
             //console.log(resp.data)
@@ -112,9 +119,8 @@ export default new Vuex.Store({
           })
       })
     } ,
-    getRoute({ commit } ,route_pid) {
+  getRoute({ commit } ,route_pid) {
       return new Promise((resolve, reject) => {
-        commit('auth_request')
         axios({ url: 'http://localhost:5000/route/' + route_pid, method: 'GET' })
           .then(resp => {
             //console.log(resp.data)
@@ -126,7 +132,38 @@ export default new Vuex.Store({
           .catch(err => {
           })
     }) ;
-  }
+  } ,
+  getStops({ commit , dispatch } ) {
+    return new Promise((resolve, reject) => {
+      axios({ url: 'http://localhost:5000/stations', method: 'GET' })
+        .then(resp => {
+          //console.log(resp.data)
+          const stops = resp.data.stops
+          commit('setStops',{stops})
+          for (var i = 0; i < stops.length; i++) {
+            dispatch('getStop',stops[i])
+          }
+          resolve(resp)
+        })
+        .catch(err => {
+        })
+    })
+  },
+  getStop({ commit } ,stop_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const stop = resp.data.stop
+            console.log(stop)
+            commit('addStop',{stop})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+
 },
   modules: {
   }

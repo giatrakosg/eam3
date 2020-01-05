@@ -46,7 +46,9 @@ export default {
     MapSection , SideBar
   } ,
   created () {
-    this.$store.dispatch('getRoutes')
+    this.$store.dispatch('getRoutes') ;
+    this.$store.dispatch('getStops') ;
+
   }
 }
 </script>
