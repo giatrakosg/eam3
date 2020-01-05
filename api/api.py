@@ -92,7 +92,9 @@ class Route(db.Model):
         for station in self.stations:
             station_pids.append(station.public_id)
         r['stations'] = station_pids
-        return r
+        rr = {}
+        rr['route'] = r
+        return rr
 
 
 

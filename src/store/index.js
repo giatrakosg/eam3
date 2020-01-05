@@ -10,14 +10,18 @@ export default new Vuex.Store({
     status: '',
     token: localStorage.getItem('token') || '',
     user: {} ,
-    routes : {}
+    routePIDS : {},
+    routes : []
   },
   mutations: {
     setLanguage(state , payload) {
       state.lang = payload.lang ;
     },
     setRoutes(state,payload){
-      state.routes = payload.routes
+      state.routePIDS = payload.routes
+    },
+    addRoute(state,payload) {
+      state.routes.push(payload.route)
     },
     auth_request(state) {
       state.status = 'loading'
@@ -91,7 +95,7 @@ export default new Vuex.Store({
         resolve()
       })
     } ,
-    getRoutes({ commit }){
+    getRoutes({ commit , dispatch}){
       return new Promise((resolve, reject) => {
         commit('auth_request')
         axios({ url: 'http://localhost:5000/routes', method: 'GET' })
@@ -99,13 +103,31 @@ export default new Vuex.Store({
             //console.log(resp.data)
             const routes = resp.data.routes
             commit('setRoutes',{routes})
+            for (var i = 0; i < routes.length; i++) {
+              dispatch('getRoute',routes[i])
+            }
             resolve(resp)
           })
           .catch(err => {
           })
       })
-    }
-  },
+    } ,
+    getRoute({ commit } ,route_pid) {
+      return new Promise((resolve, reject) => {
+        commit('auth_request')
+        axios({ url: 'http://localhost:5000/route/' + route_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const route = resp.data.route
+            console.log(route)
+            commit('addRoute',{route})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  }
+},
   modules: {
   }
 })
