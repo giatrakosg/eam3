@@ -75,6 +75,25 @@ class Route(db.Model):
     frequency = db.Column(db.String())
     stations = db.relationship('Station', secondary=route_has_stations, lazy='subquery',
     backref=db.backref('routes', lazy=True))
+    def to_dict(self):
+        r = {}
+        r['public_id'] = self.public_id
+        r['name'] = self.name
+        s = Station.query.get(self.start)
+        f = Station.query.get(self.start)
+
+        r['first_stop'] = s.public_id
+        r['last_stop'] = f.public_id
+        r['type'] = self.type
+        r['first_route'] = self.firstRoute
+        r['last_route'] = self.lastRoute
+        r['frequency'] = self.frequency
+        station_pids = []
+        for station in self.stations:
+            station_pids.append(station.public_id)
+        r['stations'] = station_pids
+        return r
+
 
 
 db.create_all()
@@ -196,18 +215,8 @@ def getRoutes():
     return jsonify({'routes' : routes_pid})
 @app.route('/route/<public_id>',methods=['GET'])
 def getRoute(public_id):
-    route = Route.query.filter_by(public_id=public_id).first()
-    station_pids = []
-    for station in route.stations:
-        station_pids.append(station.public_id)
-
-    startS = Station.query.get(route.start)
-    finishS = Station.query.get(route.finish)
-    return jsonify({'name' : route.name , 'start_station' : startS.public_id ,
-    'last_station' : finishS.public_id ,'type' : route.type ,
-    'first_route' : route.firstRoute , 'last_route' : route.lastRoute ,
-    'frequency' : route.frequency , 'stations' : station_pids})
-
+    route = Route.query.filter_by(public_id=public_id).first().to_dict()
+    return jsonify(route)
 @app.route('/stations',methods=['GET'])
 def getStations():
     stations = Station.query.filter_by().all()
