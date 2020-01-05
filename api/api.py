@@ -54,9 +54,15 @@ class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(50), unique=True)
     name = db.Column(db.String(50))
+    start = db.Column(db.Integer,db.ForeignKey('station.id'))
+    finish = db.Column(db.Integer,db.ForeignKey('station.id'))
     type = db.Column(db.String(6))
+    firstRoute = db.Column(db.DateTime())
+    lastRoute = db.Column(db.DateTime())
+    frequency = db.Column(db.DateTime())
     stations = db.relationship('Station', secondary=route_has_stations, lazy='subquery',
-    backref=db.backref('pages', lazy=True))
+    backref=db.backref('routes', lazy=True))
+
 
 db.create_all()
 db.session.commit()
