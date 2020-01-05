@@ -178,8 +178,18 @@ def get_one_user(current_user, public_id):
 def getRoutes():
     return 'hello'
 @app.route('/route/<public_id>',methods=['GET'])
-def getRoute():
-    return 'hello'
+def getRoute(public_id):
+    route = Route.query.filter_by(public_id=public_id).first()
+    station_pids = []
+    for station in route.stations:
+        station_pids.append(station.public_id)
+
+    startS = Station.query.get(route.start)
+    finishS = Station.query.get(route.finish)
+    return jsonify({'name' : route.name , 'start_station' : startS.public_id ,
+    'last_station' : finishS.public_id ,'type' : route.type ,
+    'first_route' : route.firstRoute , 'last_route' : route.lastRoute ,
+    'frequency' : route.frequency , 'stations' : station_pids})
 
 @app.route('/user', methods=['POST'])
 def addUserRequest():
