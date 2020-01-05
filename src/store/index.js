@@ -13,7 +13,11 @@ export default new Vuex.Store({
     routePIDS : {},
     routes : [] ,
     stopPIDS : {} ,
-    stops : []
+    stops : [] ,
+    routes_status : '',
+    stops_status : '' ,
+    pending_routes : 0 ,
+    pending_stops : 0
   },
   mutations: {
     setLanguage(state , payload) {
@@ -22,6 +26,42 @@ export default new Vuex.Store({
     setRoutes(state,payload){
       state.routePIDS = payload.routes
     },
+    routes_request(state){
+      state.routes_status = 'loading'
+    },
+    routes_success(state) {
+      state.routes_status = 'success'
+    } ,
+    routes_error(state) {
+      state.routes_status = 'error'
+    } ,
+    increment_stops(state) {
+      state.pending_stops++;
+    },
+    increment_routes(state) {
+      state.pending_routes++;
+    },
+    decrease_stops(state) {
+      state.pending_stops--;
+      if (state.pending_stops == 0) {
+        state.stops_status = 'success'
+      }
+    },
+    decrease_routes(state) {
+      state.pending_routes--;
+      if (state.pending_routes == 0) {
+        state.routes_status = 'success'
+      }
+    },
+    stops_request(state){
+      state.stops_status = 'loading'
+    },
+    stops_success(state) {
+      state.stops_status = 'success'
+    } ,
+    stops_error(state) {
+      state.stops_status = 'error'
+    } ,
     addRoute(state,payload) {
       state.routes.push(payload.route)
     },
@@ -105,17 +145,20 @@ export default new Vuex.Store({
     } ,
     getRoutes({ commit , dispatch}){
       return new Promise((resolve, reject) => {
+        commit('routes_request')
         axios({ url: 'http://localhost:5000/routes', method: 'GET' })
           .then(resp => {
             //console.log(resp.data)
             const routes = resp.data.routes
             commit('setRoutes',{routes})
             for (var i = 0; i < routes.length; i++) {
+              commit('increment_routes')
               dispatch('getRoute',routes[i])
             }
             resolve(resp)
           })
           .catch(err => {
+            commit('routes_error')
           })
       })
     } ,
@@ -127,6 +170,7 @@ export default new Vuex.Store({
             const route = resp.data.route
             console.log(route)
             commit('addRoute',{route})
+            commit('decrease_routes')
             resolve(resp)
           })
           .catch(err => {
@@ -135,17 +179,21 @@ export default new Vuex.Store({
   } ,
   getStops({ commit , dispatch } ) {
     return new Promise((resolve, reject) => {
+      commit('stops_request')
       axios({ url: 'http://localhost:5000/stations', method: 'GET' })
         .then(resp => {
           //console.log(resp.data)
           const stops = resp.data.stops
           commit('setStops',{stops})
           for (var i = 0; i < stops.length; i++) {
+            commit('increment_stops')
             dispatch('getStop',stops[i])
           }
+          commit('stops_success')
           resolve(resp)
         })
         .catch(err => {
+          commit('stops_error')
         })
     })
   },
@@ -157,6 +205,7 @@ export default new Vuex.Store({
             const stop = resp.data.stop
             console.log(stop)
             commit('addStop',{stop})
+            commit('decrease_stops')
             resolve(resp)
           })
           .catch(err => {
