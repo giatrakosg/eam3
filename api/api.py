@@ -176,7 +176,11 @@ def get_one_user(current_user, public_id):
 
 @app.route('/routes',methods=['GET'])
 def getRoutes():
-    return 'hello'
+    routes = Route.query.filter_by().all()
+    routes_pid = []
+    for route in routes:
+        routes_pid.append(route.public_id)
+    return jsonify({'routes' : routes_pid})
 @app.route('/route/<public_id>',methods=['GET'])
 def getRoute(public_id):
     route = Route.query.filter_by(public_id=public_id).first()
