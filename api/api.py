@@ -57,9 +57,9 @@ class Route(db.Model):
     start = db.Column(db.Integer,db.ForeignKey('station.id'))
     finish = db.Column(db.Integer,db.ForeignKey('station.id'))
     type = db.Column(db.String(6))
-    firstRoute = db.Column(db.DateTime())
-    lastRoute = db.Column(db.DateTime())
-    frequency = db.Column(db.DateTime())
+    firstRoute = db.Column(db.String())
+    lastRoute = db.Column(db.String())
+    frequency = db.Column(db.String())
     stations = db.relationship('Station', secondary=route_has_stations, lazy='subquery',
     backref=db.backref('routes', lazy=True))
 
