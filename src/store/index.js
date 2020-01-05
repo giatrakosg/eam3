@@ -9,11 +9,15 @@ export default new Vuex.Store({
     lang : 'gr' ,
     status: '',
     token: localStorage.getItem('token') || '',
-    user: {}
+    user: {} ,
+    routes : {}
   },
   mutations: {
     setLanguage(state , payload) {
       state.lang = payload.lang ;
+    },
+    setRoutes(state,payload){
+      state.routes = payload.routes
     },
     auth_request(state) {
       state.status = 'loading'
@@ -85,6 +89,20 @@ export default new Vuex.Store({
         localStorage.removeItem('token')
         delete axios.defaults.headers.common['Authorization']
         resolve()
+      })
+    } ,
+    getRoutes({ commit }){
+      return new Promise((resolve, reject) => {
+        commit('auth_request')
+        axios({ url: 'http://localhost:5000/routes', method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const routes = resp.data.routes
+            commit('setRoutes',{routes})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
       })
     }
   },

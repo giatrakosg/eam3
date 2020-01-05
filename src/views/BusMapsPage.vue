@@ -44,6 +44,9 @@ export default {
   name : 'BusMapsPage' ,
   components : {
     MapSection , SideBar
+  } ,
+  created () {
+    this.$store.dispatch('getRoutes')
   }
 }
 </script>
