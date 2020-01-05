@@ -49,6 +49,19 @@ class Station(db.Model):
     lng = db.Column(db.Float())
     accesible = db.Column(db.Boolean())
     type = db.Column(db.String(5))
+    def to_dict(self):
+        r = {}
+        r['public_id'] = self.public_id
+        r['name'] = self.name
+        r['lat'] = self.lat
+        r['lng'] = self.lng
+        r['accesible'] = self.accesible
+        r['type'] = self.type
+        routes_pid = []
+        for route in self.routes:
+            routes_pid.append(route.public_id)
+        r['routes'] = routes_pid
+        return r
 
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -194,6 +207,20 @@ def getRoute(public_id):
     'last_station' : finishS.public_id ,'type' : route.type ,
     'first_route' : route.firstRoute , 'last_route' : route.lastRoute ,
     'frequency' : route.frequency , 'stations' : station_pids})
+
+@app.route('/stations',methods=['GET'])
+def getStations():
+    stations = Station.query.filter_by().all()
+    stations_pid = []
+    for station in stations:
+        stations_pid.append(station.public_id)
+    return jsonify({'stops' : stations_pid})
+
+@app.route('/station/<public_id>',methods=['GET'])
+def getStation(public_id):
+    station = Station.query.filter_by(public_id=public_id).first().to_dict()
+    return jsonify(station)
+
 
 @app.route('/user', methods=['POST'])
 def addUserRequest():
