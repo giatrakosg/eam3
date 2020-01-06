@@ -15,7 +15,6 @@ import datetime
 from functools import wraps
 from schema import Schema, And, Use, Optional
 from pprint import pprint
-import jsonpickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisissecret'
