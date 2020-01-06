@@ -1,6 +1,6 @@
 export const ENGLISH_TRANSLATIONS = {
   text : {
-    route : 'Route' ,
+    route : 'Routes' ,
     stop : 'Stop' ,
     signup : 'Sign Up' ,
     login : 'Login' ,

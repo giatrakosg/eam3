@@ -31,7 +31,7 @@ const routes = [
     component: SearchRoutes,
     meta: {
       breadCrumb: 'Search Route'
-    },
+    }
   } ,
   {
     path: '/bus/route/:id' ,

@@ -23,7 +23,8 @@
         </v-col>
         <v-col>
             <div style="height: 20px">
-                <input  v-model="time" type="time"
+                <input
+                        v-model="time" type="time"
                         v-on:keyup="emitToParentTime"
                         required style="justify-self: center"/>
             </div>
@@ -32,13 +33,18 @@
     </v-container>
 </template>
 
+
+
 <script>
+
+    import moment from "moment";
+
     export default {
         name: "DateTime",
         data:() => ({
             date: new Date().toISOString().substr(0, 10),
             menu: false,
-            time:null
+            time:""
 
         }),
         methods:{
@@ -48,6 +54,10 @@
             emitToParentDate(){
                 this.$emit('childToParentDate',this.date)
             }
+
+        },
+        created() {
+            this.time= moment().format('HH:mm');
         }
     }
 </script>
