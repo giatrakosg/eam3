@@ -1,6 +1,6 @@
 export const GREEK_TRANSLATIONS = {
   text : {
-    route : 'Διαδρομη' ,
+    route : 'Δρομολόγια' ,
     stop : 'Σταση' ,
     signup : 'Είσοδος' ,
     login : 'Εγγραφή' ,
