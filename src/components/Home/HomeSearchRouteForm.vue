@@ -6,24 +6,26 @@
 
     >
         <v-card-title style="background:#1565C0 ">
-            <span style="color: aliceblue">Where To Next?</span>
+            <span style="color: aliceblue" > {{$t('text.wheretonext')}}</span>
         </v-card-title>
         <v-form>
             <v-container >
                 <v-row justify="center" dense>
                     <v-col>
                         <v-text-field
-                                label="FROM"
+
+                                :label="$t('text.from')"
                                 required
                                 v-model="from"
                         />
+
                     </v-col>
                     <v-spacer/>
                 </v-row>
                 <v-row justify="center" dense>
                     <v-col>
                         <v-text-field
-                                label="TO"
+                                :label="$t('text.to')"
                                 required
                                 v-model="to"
                         />

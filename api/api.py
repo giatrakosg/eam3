@@ -23,22 +23,49 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///oasa.db'
 
 cors = CORS(app)
 
-dbOASA = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
-class User(dbOASA.Model):
-    id = dbOASA.Column(dbOASA.Integer, primary_key=True)
-    public_id = dbOASA.Column(dbOASA.String(50), unique=True)
-    name = dbOASA.Column(dbOASA.String(50),unique=True)
-    password = dbOASA.Column(dbOASA.String(80))
-    first_name = dbOASA.Column(dbOASA.String(50))
-    last_name = dbOASA.Column(dbOASA.String(50))
-    email = dbOASA.Column(dbOASA.String(50),unique=True)
-    phone = dbOASA.Column(dbOASA.String(15)) #Support for international phone numbers
-    hasReduced = dbOASA.Column(dbOASA.Boolean())
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50),unique=True)
+    password = db.Column(db.String(80))
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    email = db.Column(db.String(50),unique=True)
+    phone = db.Column(db.String(15)) #Support for international phone numbers
+    hasReduced = db.Column(db.Boolean())
+
+route_has_stations = db.Table('route_has_stations',
+    db.Column('route_id', db.Integer, db.ForeignKey('route.id'), primary_key=True),
+    db.Column('station_id', db.Integer, db.ForeignKey('station.id'), primary_key=True)
+)
+
+class Station(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50))
+    lat = db.Column(db.Float())
+    lng = db.Column(db.Float())
+    accesible = db.Column(db.Boolean())
+    type = db.Column(db.String(5))
+
+class Route(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50))
+    start = db.Column(db.Integer,db.ForeignKey('station.id'))
+    finish = db.Column(db.Integer,db.ForeignKey('station.id'))
+    type = db.Column(db.String(6))
+    firstRoute = db.Column(db.String())
+    lastRoute = db.Column(db.String())
+    frequency = db.Column(db.String())
+    stations = db.relationship('Station', secondary=route_has_stations, lazy='subquery',
+    backref=db.backref('routes', lazy=True))
 
 
-dbOASA.create_all()
-dbOASA.session.commit()
+db.create_all()
+db.session.commit()
 
 def token_required(f):
     @wraps(f)
@@ -144,11 +171,15 @@ def get_one_user(current_user, public_id):
     user_data['last_name'] = user.last_name
     user_data['email'] = user.email
     user_data['phone'] = user.phone
-    user_data['location'] = user.location
-    user_data['tin'] = user.tin
-
 
     return jsonify({'user' : user_data})
+
+@app.route('/routes',methods=['GET'])
+def getRoutes():
+    return 'hello'
+@app.route('/route/<public_id>',methods=['GET'])
+def getRoute():
+    return 'hello'
 
 @app.route('/user', methods=['POST'])
 def addUserRequest():
@@ -175,9 +206,10 @@ def addUserRequest():
     hasReduced=False,
     )
 
-    dbOASA.session.add(new_user)
-    dbOASA.session.commit()
+    db.session.add(new_user)
+    db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
