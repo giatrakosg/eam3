@@ -3,7 +3,7 @@
     <v-container fluid >
         <v-row >
             <v-col >
-                <h2 style="color: #004B84;"> Journey Results</h2>
+                <h2 style="color: #004B84;"> {{$t('text.journeyresults')}}</h2>
             </v-col>
         </v-row>
         <v-row dense>

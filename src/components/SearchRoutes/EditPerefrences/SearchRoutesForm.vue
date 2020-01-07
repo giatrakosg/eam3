@@ -7,7 +7,7 @@
                 <v-row dense align="center">
                     <v-col cols="4">
                 <span class="font-weight-light">
-                    From:
+                    {{$t('text.from')}}:
                 </span>
                     </v-col>
                     <v-col >
@@ -22,7 +22,7 @@
                 <v-row dense align="center">
                     <v-col cols="4">
                 <span class="font-weight-light">
-                    To:
+                    {{$t('text.to')}}:
                 </span>
                     </v-col>
                     <v-col >
@@ -36,7 +36,7 @@
                 <v-row dense align="center">
                     <v-col cols="4">
                         <span class="font-weight-light">
-                            Leaving:
+                            {{$t('text.leaving')}}:
                         </span>
                     </v-col >
                     <v-col class="font-weight-medium" >

@@ -14,5 +14,19 @@ export const ENGLISH_TRANSLATIONS = {
     info : 'Information' ,
     traffic : 'traffic' ,
     at : 'at' ,
+    home:'Home',
+    journeyresults:'Journey Results',
+    editpreferences:'Edit Preferences',
+    leaving:'Leaving',
+    routeoptions:'Route Options',
+    buses:'Buses',
+    trolleys:'Trolleys',
+    metro:'Metro',
+    tram:'Tram',
+    accessibility:'Accessibility for disabled',
+    leastwalk:'Least Walk',
+    fastesroute:'Fastest Route',
+    leastchanges:'Least Changes',
+    apply:'APPLY'
   }
 };
