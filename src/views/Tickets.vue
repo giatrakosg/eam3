@@ -1,7 +1,17 @@
 <template lang="html">
-  <v-container>
-       
-    </v-container>
+  <v-row align="center">
+    <v-col class="text-center" cols="12" sm="4">
+      <div class="my-2">
+        <v-btn depressed large>ATH.ENA card</v-btn>
+      </div>
+      <div class="my-2">
+        <v-btn href="/tickets/buy" depressed large color="Primary">Buy Tickets</v-btn>
+      </div>
+      <div class="my-2">
+        <v-btn href="/tickets/reduced_info" depressed large color="Primary">Reduced</v-btn>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 <script>
 export default {
