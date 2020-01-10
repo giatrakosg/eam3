@@ -45,16 +45,35 @@
                 <tr>
                   <th class="text-left">Ονομα Στασης</th>
                   <th class="text-left">Πληροφοριες</th>
+                  <th class="text-left">Προσβαση</th>
                 </tr>
               </thead>
               <tbody>
-                  <!--
-                <tr v-for="item in routes[0].stations" :key="item.name">
+
+                <tr v-for="item in stations" :key="item.name">
                   <td>{{ item.name }}</td>
-                  <td class="align-left"> <i class="fa fa-info-circle"></i>
+                  <td class="align-left">
+                      <v-btn
+                      :to="'/bus/route/' + item.public_id"
+                      color="primary"
+                      tile
+                      raised
+                      >
+                          <v-icon>mdi-arrow-right-bold</v-icon>
+                      </v-btn>
                   </td>
+                      <td v-if="item.accesible">
+                          <v-icon>
+                              mdi-wheelchair-accessibility
+                          </v-icon>
+                      </td>
+                      <td v-if="item.accesible == false">
+                          <v-icon>
+                              mdi-car-brake-alert
+                          </v-icon>
+                      </td>
                 </tr>
-            -->
+
               </tbody>
             </template>
           </v-simple-table>
