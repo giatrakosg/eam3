@@ -82,7 +82,7 @@ class Route(db.Model):
         r['public_id'] = self.public_id
         r['name'] = self.name
         s = Station.query.get(self.start)
-        f = Station.query.get(self.start)
+        f = Station.query.get(self.finish)
 
         r['first_stop'] = s.public_id
         r['last_stop'] = f.public_id

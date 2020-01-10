@@ -9,16 +9,16 @@
             >
               <v-list-item three-line>
                 <v-list-item-content>
-                  <v-list-item-title class="headline mb-1">{{routes[0].direction}}</v-list-item-title>
-                  <v-list-item-subtitle>Απο : {{routes[0].from}}</v-list-item-subtitle>
-                  <v-list-item-subtitle>Προς : {{routes[0].to}}</v-list-item-subtitle>
+                  <v-list-item-title class="headline mb-1">{{route.name}}</v-list-item-title>
+                  <v-list-item-subtitle>Απο : {{from.name}}</v-list-item-subtitle>
+                  <v-list-item-subtitle>Προς : {{to.name}}</v-list-item-subtitle>
                 </v-list-item-content>
 
                 <v-list-item-avatar
                   raised
                   size="80"
                   color="primary"
-                >136</v-list-item-avatar>
+                >{{route.name}}</v-list-item-avatar>
               </v-list-item>
             </v-card>
           </v-flex>
@@ -112,28 +112,6 @@ export default {
   props : ['id'] ,
   data() {
     return {
-      routes : [
-        {
-          id:2,
-          number:136,
-          direction:'Προς Στ. Φιξ',
-          from:'Νεα Σμυρνη' ,
-          to : 'Φιξ' ,
-        } ,
-        {
-          id:3,
-          number:136,
-          direction:'Προς Συνταγμα',
-          from:'Νεο Κοσμο' ,
-          to : 'Φιξ' ,
-        }
-      ] ,
-      headers :
-        [
-          {text : 'id' , value : 'id'},
-          {text : 'name' , value : 'name'},
-        ]
-       ,
        zoom:13,
        url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
        markers : [
@@ -167,9 +145,6 @@ export default {
     addMarker(event) {
         this.markers.push(event.latlng);
     } ,
-  } ,
-  mounted() {
-      this.$store.dispatch('getRoute',this.id);
   } ,
   computed : {
       /*
@@ -226,7 +201,28 @@ export default {
         }
         let len = this.positions.length ;
         return L.latLng(sumx / len , sumy / len);
+    } ,
+    from() {
+        let s ;
+        for (let station of this.stations) {
+            if (station.public_id == this.route.first_stop) {
+                s = station ;
+                break ;
+            }
+        }
+        return s ;
+    } ,
+    to() {
+        let s ;
+        for (let station of this.stations) {
+            if (station.public_id == this.route.last_stop) {
+                s = station ;
+                break ;
+            }
+        }
+        return s ;
     }
+
   }
 
 }
