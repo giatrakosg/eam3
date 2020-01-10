@@ -3,7 +3,7 @@
         <v-expansion-panels>
             <v-expansion-panel >
                 <v-expansion-panel-header >
-                    <div class="font-weight-medium">Edit Preferences</div>
+                    <div class="font-weight-medium">{{$t('text.editpreferences')}}</div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content >
 
@@ -18,7 +18,7 @@
                     <v-row dense >
                         <v-col>
                             <v-btn class="my-2" color="success"  x-large >
-                                APPLY
+                                {{$t('text.apply')}}
                             </v-btn>
                         </v-col>
 

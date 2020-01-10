@@ -43,6 +43,11 @@ npm run lint
 
 Αρχεια config
 
+### Run API
+. venv/bin/activate
+
+python api.py
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

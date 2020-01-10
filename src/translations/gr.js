@@ -1,6 +1,6 @@
 export const GREEK_TRANSLATIONS = {
   text : {
-    route : 'Διαδρομη' ,
+    route : 'Δρομολόγια' ,
     stop : 'Σταση' ,
     signup : 'Είσοδος' ,
     login : 'Εγγραφή' ,
@@ -14,5 +14,19 @@ export const GREEK_TRANSLATIONS = {
     info : 'Πληροφορίες' ,
     traffic : 'κίνησης' ,
     at : 'στις' ,
+    home:'Αρχική',
+    journeyresults:'Αποτελέσματα Αναζήτησης',
+    editpreferences: 'Επιλογές',
+    routeoptions:'Επιλογές διαδρομής',
+    leaving:'Αναχώρηση',
+    buses:'Λεοφορεία',
+    trolleys:'Τρολλεϋ',
+    metro:'Μετρο',
+    tram:'Τραμ',
+    accessibility:'Προσβασιμότητα για ΑμεΑ',
+    leastwalk:'Λιγότερο περπάτημα',
+    fastesroute:'Γρηγορότερη διαδρομή',
+    leastchanges:'Λιγότερες Αλλαγές',
+    apply:'ΕΦΑΡΜΟΓΗ'
   }
 };
