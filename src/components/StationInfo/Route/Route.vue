@@ -128,7 +128,6 @@ export default {
         ]
        ,
        zoom:13,
-       center: L.latLng(37.938451, 23.721009),
        url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
        markers : [
          {id : 0 ,lat : 37.933163 , lng: 23.714648 },
@@ -208,6 +207,17 @@ export default {
       return positions ;
 
     } ,
+    // We calculate the center point by averaging each coordinate
+    center() {
+        let sumx = 0 ;
+        let sumy = 0 ;
+        for (let point of this.positions) {
+            sumx += point.position.lat ;
+            sumy += point.position.lng ;
+        }
+        let len = this.positions.length ;
+        return L.latLng(sumx / len , sumy / len);
+    }
   }
 
 }
