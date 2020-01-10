@@ -83,7 +83,14 @@
           <l-map :zoom="zoom" :center="center" style="z-index: 0; height: 50vh; width: 100%"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-marker v-for="marker in positions" :key="marker.id" :lat-lng="marker.position"></l-marker>
+            <l-marker
+                v-for="marker in positions"
+                :key="marker.id"
+                :lat-lng="marker.position">
+                <l-popup>
+                    {{marker.name}}
+                </l-popup>
+            </l-marker>
             <l-polyline
               :lat-lngs="positions.map(a => a.position)"
             >
@@ -97,7 +104,7 @@
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker,LPolyline } from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker,LPolyline, LPopup  } from 'vue2-leaflet';
 import L from 'leaflet'
 
 export default {
@@ -141,7 +148,8 @@ export default {
     LMap ,
     LTileLayer,
     LMarker ,
-    LPolyline
+    LPolyline ,
+    LPopup
   } ,
   methods : {
     zoomUpdated (zoom) {
@@ -200,9 +208,10 @@ export default {
       let positions = [];
       for (var i = 0; i < this.stations.length; i++) {
           let id = i ;
+          let name = this.stations[i].name ;
           let lat = this.stations[i].lat ;
           let lng = this.stations[i].lng ;
-          positions.push({"id" : id , "position" : L.latLng(lat,lng)} );
+          positions.push({"id" : id , "position" : L.latLng(lat,lng) , "name" : name} );
       }
       return positions ;
 
