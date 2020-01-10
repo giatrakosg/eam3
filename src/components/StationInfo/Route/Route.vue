@@ -54,7 +54,7 @@
                   <td>{{ item.name }}</td>
                   <td class="align-left">
                       <v-btn
-                      :to="'/bus/route/' + item.public_id"
+                      :to="'/stop/' + item.public_id"
                       color="primary"
                       tile
                       raised
