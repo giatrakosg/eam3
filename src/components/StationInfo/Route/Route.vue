@@ -48,23 +48,25 @@
                 </tr>
               </thead>
               <tbody>
+                  <!--
                 <tr v-for="item in routes[0].stations" :key="item.name">
                   <td>{{ item.name }}</td>
                   <td class="align-left"> <i class="fa fa-info-circle"></i>
                   </td>
                 </tr>
+            -->
               </tbody>
             </template>
           </v-simple-table>
         </v-flex>
         <v-flex xs1 sm1 md1></v-flex>
         <v-flex xs6 sm6 md6 align-left >
-          <l-map :zoom="zoom" :center="center"
+          <l-map :zoom="zoom" :center="center" style="z-index: 0; height: 50vh; width: 100%"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-marker v-for="marker in points" :key="marker.id" :lat-lng="marker.position"></l-marker>
+            <l-marker v-for="marker in positions" :key="marker.id" :lat-lng="marker.position"></l-marker>
             <l-polyline
-              :lat-lngs="positions"
+              :lat-lngs="positions.map(a => a.position)"
             >
             </l-polyline>
           </l-map>
@@ -76,7 +78,7 @@
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker , LPolyline } from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker,LPolyline } from 'vue2-leaflet';
 import L from 'leaflet'
 
 export default {
@@ -91,47 +93,19 @@ export default {
           direction:'Προς Στ. Φιξ',
           from:'Νεα Σμυρνη' ,
           to : 'Φιξ' ,
-          stations :
-            [
-              {id : 0 , name : 'Ευαγγελικη' , position :  L.latLng(37.933163, 23.714648)},
-              {id : 1 , name : 'Αιγαιου 1' , position :  L.latLng(37.938451, 23.721009)},
-              {id : 2 , name : 'Αιγαιου 3' , position :  L.latLng(37.943653, 23.727682)},
-              {id : 3 , name : 'Εφεσου' , position :  L.latLng(37.938451, 23.721009)},
-              {id : 4 , name : 'Παντειος' , position :  L.latLng(37.938451, 23.721009)},
-              {id : 5 , name : 'Φιξ' , position :  L.latLng(37.938451, 23.721009)}
-
-            ]} ,
+        } ,
         {
           id:3,
           number:136,
           direction:'Προς Συνταγμα',
           from:'Νεο Κοσμο' ,
           to : 'Φιξ' ,
-          stations :
-          [
-            {id : 0 , name : 'Ευαγγελικη'},
-            {id : 1 , name : 'Αιγαιου 1'},
-            {id : 2 , name : 'Αιγαιου 3'},
-            {id : 3 , name : 'Εφεσου'},
-            {id : 4 , name : 'Παντειος'},
-            {id : 5 , name : 'Φιξ'}
-          ]}
-      ] ,
-
-
-      stations : [
-        {id : 0 , name : 'ev'},
-        {id : 1 , name : 'ag 1'},
-        {id : 2 , name : 'ag 3'},
-        {id : 3 , name : 'ef'},
-        {id : 4 , name : 'pa'},
-        {id : 5 , name : 'f'} ,
+        }
       ] ,
       headers :
         [
           {text : 'id' , value : 'id'},
           {text : 'name' , value : 'name'},
-
         ]
        ,
        zoom:13,
@@ -169,12 +143,10 @@ export default {
     } ,
   } ,
   mounted() {
-    document.title = "Διαδρομη " + this.routes[this.id].number ;
-      this.$nextTick(() => {
-        this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-      })
+      this.$store.dispatch('getRoute',this.id);
   } ,
   computed : {
+      /*
     points () {
       let route = this.routes[0];
       let positions = [];
@@ -183,15 +155,40 @@ export default {
       }
       return positions ;
     },
+    */
+
+
+    // We need the following data to display
+    // 1. Name
+    // 2. Direction
+    // 3. First Stop name
+    // 4. Last stop name
+    // 5. List of stops with
+    // 5.1 Name
+    // 5.2 public id
+    // 5.3 position
+    route () {
+        return this.$store.state.route ;
+    } ,
+    stations() {
+        var stationsL = [] ;
+        var stations_list = this.$store.state.route.stations ;
+        for (let station of stations_list) {
+            stationsL.push(station.stop);
+        }
+        return stationsL ;
+    } ,
     positions () {
-      let route = this.routes[0];
       let positions = [];
-      for (var i = 0; i < route.stations.length; i++) {
-        positions.push(route.stations[i].position );
+      for (var i = 0; i < this.stations.length; i++) {
+          let id = i ;
+          let lat = this.stations[i].lat ;
+          let lng = this.stations[i].lng ;
+          positions.push({"id" : id , "position" : L.latLng(lat,lng)} );
       }
       return positions ;
 
-    }
+    } ,
   }
 
 }
@@ -199,14 +196,4 @@ export default {
 
 
 <style scoped>
-.v-timeline-item__divider {
-  min-width: 64px;
-}
-.v-timeline--dense .v-timeline-item__body {
-  max-width: calc(100% - 64px);
-}
-.v-application--is-ltr .v-timeline--dense:not(.v-timeline--reverse):before {
-    left: 0px
-}
-
 </style>

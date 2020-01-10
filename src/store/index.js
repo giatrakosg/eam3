@@ -17,7 +17,8 @@ export default new Vuex.Store({
     routes_status : '',
     stops_status : '' ,
     pending_routes : 0 ,
-    pending_stops : 0
+    pending_stops : 0 ,
+    route : {}
   },
   mutations: {
     setLanguage(state , payload) {
@@ -64,6 +65,9 @@ export default new Vuex.Store({
     } ,
     addRoute(state,payload) {
       state.routes.push(payload.route)
+    },
+    addSelectedRoute(state,payload) {
+      state.route = payload.route
     },
     setStops(state,payload){
       state.stopPIDS = payload.stops
@@ -169,8 +173,8 @@ export default new Vuex.Store({
             //console.log(resp.data)
             const route = resp.data.route
             console.log(route)
-            commit('addRoute',{route})
-            commit('decrease_routes')
+            commit('addSelectedRoute',{route})
+            //commit('decrease_routes')
             resolve(resp)
           })
           .catch(err => {

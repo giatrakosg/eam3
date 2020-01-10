@@ -90,10 +90,10 @@ class Route(db.Model):
         r['first_route'] = self.firstRoute
         r['last_route'] = self.lastRoute
         r['frequency'] = self.frequency
-        station_pids = []
+        stations = []
         for station in self.stations:
-            station_pids.append(station.public_id)
-        r['stations'] = station_pids
+            stations.append(station.to_dict())
+        r['stations'] = stations
         rr = {}
         rr['route'] = r
         return rr
