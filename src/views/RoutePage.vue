@@ -13,7 +13,7 @@ export default {
     Route
   } ,
   created() {
-    this.$store.dispatch('getRoute',this.id);
+    this.$store.dispatch('getSelectedRoute',this.id);
   }
 }
 </script>

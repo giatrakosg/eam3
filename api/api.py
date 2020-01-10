@@ -57,10 +57,15 @@ class Station(db.Model):
         r['lng'] = self.lng
         r['accesible'] = self.accesible
         r['type'] = self.type
-        routes_pid = []
+        routes = []
         for route in self.routes:
-            routes_pid.append(route.public_id)
-        r['routes'] = routes_pid
+            routes.append(
+            {'name' : route.name ,
+            'frequency' : route.frequency ,
+            'first' : route.firstRoute ,
+            'last' : route.lastRoute
+            })
+        r['routes'] = routes
         rr = {}
         rr['stop'] = r
         return rr

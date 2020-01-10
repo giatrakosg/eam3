@@ -114,11 +114,6 @@ export default {
     return {
        zoom:13,
        url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-       markers : [
-         {id : 0 ,lat : 37.933163 , lng: 23.714648 },
-         {id : 1 ,lat : 37.938451 , lng: 23.721009 },
-         {id : 2 ,lat : 37.943653 , lng: 23.727682 },
-       ]
 
     }
   } ,

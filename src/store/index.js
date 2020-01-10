@@ -18,7 +18,8 @@ export default new Vuex.Store({
     stops_status : '' ,
     pending_routes : 0 ,
     pending_stops : 0 ,
-    route : {}
+    route : {} ,
+    stop : {}
   },
   mutations: {
     setLanguage(state , payload) {
@@ -73,7 +74,10 @@ export default new Vuex.Store({
       state.stopPIDS = payload.stops
     },
     addStop(state,payload) {
-      state.stops.push(payload.stop)
+      state.stops.push(payload.stop) ;
+    },
+    addSelectedStop(state,payload) {
+      state.stop = payload.stop ;
     },
     auth_request(state) {
       state.status = 'loading'
@@ -173,6 +177,21 @@ export default new Vuex.Store({
             //console.log(resp.data)
             const route = resp.data.route
             console.log(route)
+            commit('addRoute',{route})
+            commit('decrease_routes')
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+  getSelectedRoute({ commit } ,route_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/route/' + route_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const route = resp.data.route
+            console.log(route)
             commit('addSelectedRoute',{route})
             //commit('decrease_routes')
             resolve(resp)
@@ -201,6 +220,20 @@ export default new Vuex.Store({
         })
     })
   },
+  getSelectedStop({ commit } ,stop_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const stop = resp.data.stop
+            console.log(stop)
+            commit('addSelectedStop',{stop})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
   getStop({ commit } ,stop_pid) {
       return new Promise((resolve, reject) => {
         axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })
@@ -209,7 +242,7 @@ export default new Vuex.Store({
             const stop = resp.data.stop
             console.log(stop)
             commit('addStop',{stop})
-            commit('decrease_stops')
+            commit('decrease_stops');
             resolve(resp)
           })
           .catch(err => {
