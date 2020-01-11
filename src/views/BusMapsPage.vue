@@ -21,7 +21,9 @@
         <v-spacer></v-spacer>
       </v-flex>
       <v-flex sm2 md3 lg3>
-        <SideBar />
+        <div v-if="stopStatus && routesStatus">
+          <SideBar />
+        </div>
       </v-flex>
       <v-flex xs0 sm0 md1 lg1>
         <v-spacer></v-spacer>
@@ -44,6 +46,19 @@ export default {
   name : 'BusMapsPage' ,
   components : {
     MapSection , SideBar
+  } ,
+  created () {
+    this.$store.dispatch('getRoutes') ;
+    this.$store.dispatch('getStops') ;
+
+  } ,
+  computed : {
+    stopStatus() {
+      return this.$store.state.stops_status == "success";
+    } ,
+    routesStatus() {
+      return this.$store.state.routes_status === 'success';
+    }
   }
 }
 </script>

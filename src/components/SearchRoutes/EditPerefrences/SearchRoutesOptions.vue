@@ -3,14 +3,14 @@
         <v-container fluid>
             <v-row  dense>
                 <v-col >
-                    <div class="font-weight-light border-bottom" style="color: #004B84; text-align: center">Route Options</div>
+                    <div class="font-weight-light border-bottom" style="color: #004B84; text-align: center">{{$t('text.routeoptions')}}</div>
                 </v-col>
             </v-row>
             <v-row dense align="center">
                 <v-col>
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
-                           <div style="margin-bottom: -8px">Buses</div>
+                           <div style="margin-bottom: -8px">{{$t('text.buses')}}</div>
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/bus.png"/>
 
                         </template>
@@ -20,7 +20,7 @@
                 <v-col>
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
-                            <div style="margin-bottom: -8px">Trolleys</div>
+                            <div style="margin-bottom: -8px">{{$t('text.trolleys')}}</div>
 
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/trolley.png"/>
                         </template>
@@ -31,7 +31,7 @@
                 <v-col>
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
-                            <div style="margin-bottom: -8px">Metro </div>
+                            <div style="margin-bottom: -8px">{{$t('text.metro')}}</div>
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/metro.png"/>
                         </template>
 
@@ -41,7 +41,7 @@
                 <v-col>
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
-                            <div style="margin-bottom: -8px">Tram</div>
+                            <div style="margin-bottom: -8px">{{$t('text.tram')}}</div>
                             <v-img style="margin-bottom: -10px" contain width="40px" height="40px" src="../../../assets/tram.png"/>
                         </template>
 
@@ -51,7 +51,7 @@
                 <v-col>
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
-                            <div style="margin-bottom: -8px">Accessibility for disabled</div>
+                            <div style="margin-bottom: -8px">{{$t('text.accessibility')}}</div>
                             <i  class="fas fa-wheelchair fa-2x ml-2"/>
                         </template>
 
@@ -68,17 +68,17 @@
                 <v-radio-group row>
                     <v-radio color="primary">
                         <template  v-slot:label>
-                            <div style="margin-bottom: -8px">Least walk</div>
+                            <div style="margin-bottom: -8px">{{$t('text.leastwalk')}}</div>
                         </template>
                     </v-radio>
                     <v-radio color="primary">
                         <template  v-slot:label>
-                            <div style="margin-bottom: -8px">Fastest route</div>
+                            <div style="margin-bottom: -8px">{{$t('text.fastestroute')}}</div>
                         </template>
                     </v-radio>
                     <v-radio color="primary" label="Least Changes">
                         <template v-slot:label>
-                            <div style="margin-bottom: -8px">Least Changes</div>
+                            <div style="margin-bottom: -8px">{{$t('text.leastchanges')}}</div>
                         </template>
                     </v-radio>
                 </v-radio-group>
