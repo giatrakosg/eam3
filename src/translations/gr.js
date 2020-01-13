@@ -27,6 +27,18 @@ export const GREEK_TRANSLATIONS = {
     leastwalk:'Λιγότερο περπάτημα',
     fastesroute:'Γρηγορότερη διαδρομή',
     leastchanges:'Λιγότερες Αλλαγές',
-    apply:'ΕΦΑΡΜΟΓΗ'
+    apply:'ΕΦΑΡΜΟΓΗ',
+    terms_and_policies:'Οροι και Πολιτικες',
+    terms_of_use:'οροι Χρησης',
+    personal_data_policies:'Πολιτική Προσωπικών Δεδομένων',
+    cookies_policies:'Πολιτική Cookies',
+    news:'Νέα',
+    press_releases:'Δελτία Τύπου',
+    announcements:'Ανακοινώσεις',
+    public_tendering:'Διαγωνισμοί',
+    job_openings:'Προσλήψεις Προσωπικού',
+    intrships:'Πρακτική',
+    complaints:'Παράπωνα',
+    links:'Συνδέσμοι'
   }
 };

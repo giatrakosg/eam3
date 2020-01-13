@@ -27,6 +27,19 @@ export const ENGLISH_TRANSLATIONS = {
     leastwalk:'Least Walk',
     fastesroute:'Fastest Route',
     leastchanges:'Least Changes',
-    apply:'APPLY'
+    apply:'APPLY',
+    terms_and_policies:'Terms and policies',
+    terms_of_use:'Terms Of Use',
+    personal_data_policies:'Personal Data Policies',
+    cookies_policies:'Cookies Policies',
+    news:'News',
+    press_releases:'PRESS Releases',
+    announcements:'Announcements',
+    public_tendering:'Public Tendering',
+    job_openings:'Job Openings',
+    intrships:'Interships',
+    complaints:'Complaints',
+    links:'Links'
+
   }
 };

@@ -1,14 +1,18 @@
 <template lang="HTML">
+    <div>
     <v-app-bar
             app
             color="blue darken-3"
             dark
-            height="130"
+            height="80"
             hide-on-scroll
 
     >
         <v-container class="p-0 m-0"  fluid  >
             <v-row  align="center"  dense >
+                <v-col class="hidden-md-and-up" cols="auto">
+                    <v-app-bar-nav-icon @click.stop="drawer=!drawer"/>
+                </v-col>
                 <v-col cols="auto" >
                     <v-btn href="/" text color="transparent">
                         <v-img
@@ -26,22 +30,22 @@
                     </v-btn>
 
                 </v-col>
-                <v-col cols="auto" >
+                <v-col cols="auto" class="hidden-sm-and-down">
                     <v-btn text to="/maps/bus">
                         {{ $t("text.route")}}
                     </v-btn>
                 </v-col>
-                <v-col cols="auto">
-                    <v-btn text href="/tickets">
+                <v-col cols="auto" class="hidden-sm-and-down">
+                    <v-btn text to="/tickets">
                         {{ $t("text.tickets")}}
                     </v-btn>
                 </v-col>
-                <v-col cols="auto"  >
-                    <v-btn text href="/contact" style="text-decoration:none ">
+                <v-col cols="auto" class="hidden-sm-and-down" >
+                    <v-btn text to="/contact" >
                         {{ $t("text.contact")}}
                     </v-btn>
                 </v-col>
-                <v-col cols="auto" >
+                <v-col cols="auto" class="hidden-sm-and-down">
                     <v-btn text >
                         {{ $t("text.about")}}
                     </v-btn>
@@ -84,6 +88,57 @@
         </v-container>
 
     </v-app-bar>
+    <v-navigation-drawer app disable-resize-watcher
+                         absolute
+                         temporary
+                         v-model="drawer"
+                         color="blue darken-3"
+                         width="160px"
+
+    >
+        <v-list
+
+        >
+            <v-list-item-group
+
+            >
+                <v-list-item>
+                    <v-list-item-title>
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none" href="/maps/bus">
+                            {{ $t("text.route")}}
+                        </a>
+                    </v-list-item-title>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-title>
+                        <v-btn text>
+                            {{ $t("text.tickets")}}
+                        </v-btn>
+                    </v-list-item-title>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-title>
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none" href="/contact" >
+                            {{ $t("text.contact")}}
+                        </a>
+                    </v-list-item-title>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-title>
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                            {{ $t("text.about")}}
+                        </a>
+                    </v-list-item-title>
+                </v-list-item>
+            </v-list-item-group>
+        </v-list>
+
+    </v-navigation-drawer>
+    </div>
+
 </template>
 
 <script>
@@ -96,7 +151,8 @@
                   { text : 'Greek' , value : 'gr'} ,
                   { text : 'English' , value : 'en'} ,
                 ] ,
-                select : ''
+                select : '',
+                drawer:false
             }
         } ,
         computed : {
