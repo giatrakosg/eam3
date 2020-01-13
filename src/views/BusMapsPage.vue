@@ -8,7 +8,7 @@
       <v-flex sm10 md10 lg10>
         <v-card raised tile>
           <v-card-title>
-            Λεωφορεία
+            {{ $t("text.buses")}}
             <v-icon>mdi-bus</v-icon>
           </v-card-title>
         </v-card>

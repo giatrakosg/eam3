@@ -27,6 +27,8 @@ export const ENGLISH_TRANSLATIONS = {
     leastwalk:'Least Walk',
     fastesroute:'Fastest Route',
     leastchanges:'Least Changes',
+    searchBusRoute : 'Search for Stop or Route',
+    search : 'Search' ,
     apply:'APPLY',
     terms_and_policies:'Terms and policies',
     terms_of_use:'Terms Of Use',
@@ -41,7 +43,7 @@ export const ENGLISH_TRANSLATIONS = {
     complaints:'Complaints',
     links:'Links' ,
     reset : 'Reset' ,
-    delays : 'DELAYS'
-
+    delays : 'DELAYS',
+    links:'Links'
   }
 };
