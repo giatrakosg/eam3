@@ -40,6 +40,7 @@ export const GREEK_TRANSLATIONS = {
     intrships:'Πρακτική',
     complaints:'Παράπωνα',
     links:'Συνδέσμοι' ,
-    reset : 'Επαναφορα'
+    reset : 'Επαναφορα' ,
+    delays : 'ΚΑΘΥΣΤΕΡΗΣΕΙΣ'
   }
 };

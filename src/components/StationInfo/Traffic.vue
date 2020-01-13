@@ -21,7 +21,7 @@
       >
         <v-subheader
         >
-            ΚΑΘΥΣΤΕΡΗΣΕΙΣ
+            {{$t('text.delays')}}
         </v-subheader>
         <v-list-item-group v-model="item" color="primary">
           <v-list-item
@@ -29,7 +29,7 @@
             :key="i"
             :inactive="inactive"
           >
-            <v-list-item-avatar v-if="avatar">
+            <v-list-item-avatar v-if="avatar" color="danger">
               <v-img :src="item.avatar"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>

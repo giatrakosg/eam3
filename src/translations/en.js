@@ -40,7 +40,8 @@ export const ENGLISH_TRANSLATIONS = {
     intrships:'Interships',
     complaints:'Complaints',
     links:'Links' ,
-    reset : 'Reset'
+    reset : 'Reset' ,
+    delays : 'DELAYS'
 
   }
 };
