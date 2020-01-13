@@ -43,7 +43,6 @@ export const ENGLISH_TRANSLATIONS = {
     complaints:'Complaints',
     links:'Links' ,
     reset : 'Reset' ,
-    delays : 'DELAYS',
-    links:'Links'
+    delays : 'DELAYS'
   }
 };
