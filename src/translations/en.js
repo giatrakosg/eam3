@@ -39,7 +39,8 @@ export const ENGLISH_TRANSLATIONS = {
     job_openings:'Job Openings',
     intrships:'Interships',
     complaints:'Complaints',
-    links:'Links'
+    links:'Links' ,
+    reset : 'Reset'
 
   }
 };

@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="">
+      <!--
     <v-layout row wrap class="my-4">
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
@@ -16,6 +17,7 @@
         <v-spacer></v-spacer>
       </v-flex>
     </v-layout>
+-->
     <v-layout row wrap>
       <v-flex x0 sm0 md1 lg1>
         <v-spacer></v-spacer>

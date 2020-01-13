@@ -39,6 +39,7 @@ export const GREEK_TRANSLATIONS = {
     job_openings:'Προσλήψεις Προσωπικού',
     intrships:'Πρακτική',
     complaints:'Παράπωνα',
-    links:'Συνδέσμοι'
+    links:'Συνδέσμοι' ,
+    reset : 'Επαναφορα'
   }
 };
