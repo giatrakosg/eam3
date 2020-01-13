@@ -2,13 +2,13 @@
   <div class="">
     <v-card tile raised>
       <v-card-title>
-        Αναζήτηση Στάσης ή Γραμμής:
+        {{ $t("text.searchBusRoute")}} :
       </v-card-title>
       <v-card-text>
         <div>
           <v-autocomplete
             v-model="selected"
-            label="Αναζητηση"
+            :label="this.label"
             :items="components"
             item-color="primary"
           ></v-autocomplete>
@@ -54,6 +54,9 @@ export default {
   computed : {
     components() {
       return this.routes.concat(this.stops) ;
+    } ,
+    label () {
+        return this.$t("text.search");
     }
   }
 }

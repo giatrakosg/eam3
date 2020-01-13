@@ -27,6 +27,8 @@ export const ENGLISH_TRANSLATIONS = {
     leastwalk:'Least Walk',
     fastesroute:'Fastest Route',
     leastchanges:'Least Changes',
-    apply:'APPLY'
+    apply:'APPLY' ,
+    searchBusRoute : 'Search for Stop or Route',
+    search : 'Search'
   }
 };

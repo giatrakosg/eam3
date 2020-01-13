@@ -19,7 +19,7 @@ export const GREEK_TRANSLATIONS = {
     editpreferences: 'Επιλογές',
     routeoptions:'Επιλογές διαδρομής',
     leaving:'Αναχώρηση',
-    buses:'Λεοφορεία',
+    buses:'Λεωφορεία',
     trolleys:'Τρολλεϋ',
     metro:'Μετρο',
     tram:'Τραμ',
@@ -27,6 +27,8 @@ export const GREEK_TRANSLATIONS = {
     leastwalk:'Λιγότερο περπάτημα',
     fastesroute:'Γρηγορότερη διαδρομή',
     leastchanges:'Λιγότερες Αλλαγές',
-    apply:'ΕΦΑΡΜΟΓΗ'
+    apply:'ΕΦΑΡΜΟΓΗ' ,
+    searchBusRoute : 'Αναζήτηση Στάσης ή Γραμμής' ,
+    search : 'Αναζητηση'
   }
 };
