@@ -41,6 +41,9 @@ export const ENGLISH_TRANSLATIONS = {
     job_openings:'Job Openings',
     intrships:'Interships',
     complaints:'Complaints',
+    links:'Links' ,
+    reset : 'Reset' ,
+    delays : 'DELAYS',
     links:'Links'
   }
 };

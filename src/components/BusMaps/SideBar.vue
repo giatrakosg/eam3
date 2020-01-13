@@ -5,7 +5,60 @@
         {{ $t("text.searchBusRoute")}} :
       </v-card-title>
       <v-card-text>
-        <div>
+            <v-btn
+              v-if="!chip1 && !chip2 && !chip3 && !chip4"
+              close
+              color="primary"
+              dark
+              @click="chip1 = true, chip2 = true, chip3 = true, chip4= true"
+            >
+            {{$t('text.reset')}}
+            </v-btn>
+
+            <v-chip
+              v-if="chip1"
+              close
+              color="primary"
+              dark
+              @click:close="chip1 = false"
+            >
+            {{$t('text.buses')}}
+            </v-chip>
+
+            <v-chip
+              v-if="chip2"
+              close
+              color="green"
+              text-color="white"
+              dark
+              @click:close="chip2 = false"
+            >
+            {{$t('text.tram')}}
+            </v-chip>
+
+            <v-chip
+              v-if="chip3"
+              class="ma-2"
+              close
+              color="red"
+              dark
+              text-color="white"
+              @click:close="chip3 = false"
+            >
+              {{$t('text.metro')}}
+            </v-chip>
+
+            <v-chip
+              v-if="chip4"
+              class="ma-2"
+              close
+              color="orange"
+              dark
+              @click:close="chip4 = false"
+            >
+            {{$t('text.trolleys')}}
+            </v-chip>
+
           <v-autocomplete
             v-model="selected"
             :label="this.label"
@@ -20,7 +73,6 @@
               Stop :  <StopInfoCard :id="selected.id" />
             </div>
           </div>
-        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -44,7 +96,11 @@ export default {
         { text : '10η Αιγαιου' , value : { id : 5 , type : 'stop'} },
         { text : 'Νεκροταφεία' , value : { id : 6 , type : 'stop'} },
       ] ,
-      selected : ''
+      selected : '' ,
+      chip1: true,
+      chip2: true,
+      chip3: true,
+      chip4: true,
     }
   } ,
   components : {
