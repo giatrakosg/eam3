@@ -15,7 +15,7 @@ import datetime
 from functools import wraps
 from schema import Schema, And, Use, Optional
 from pprint import pprint
-
+import jsonpickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisissecret'
@@ -49,6 +49,26 @@ class Station(db.Model):
     lng = db.Column(db.Float())
     accesible = db.Column(db.Boolean())
     type = db.Column(db.String(5))
+    def to_dict(self):
+        r = {}
+        r['public_id'] = self.public_id
+        r['name'] = self.name
+        r['lat'] = self.lat
+        r['lng'] = self.lng
+        r['accesible'] = self.accesible
+        r['type'] = self.type
+        routes = []
+        for route in self.routes:
+            routes.append(
+            {'name' : route.name ,
+            'frequency' : route.frequency ,
+            'first' : route.firstRoute ,
+            'last' : route.lastRoute
+            })
+        r['routes'] = routes
+        rr = {}
+        rr['stop'] = r
+        return rr
 
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -62,6 +82,27 @@ class Route(db.Model):
     frequency = db.Column(db.String())
     stations = db.relationship('Station', secondary=route_has_stations, lazy='subquery',
     backref=db.backref('routes', lazy=True))
+    def to_dict(self):
+        r = {}
+        r['public_id'] = self.public_id
+        r['name'] = self.name
+        s = Station.query.get(self.start)
+        f = Station.query.get(self.finish)
+
+        r['first_stop'] = s.public_id
+        r['last_stop'] = f.public_id
+        r['type'] = self.type
+        r['first_route'] = self.firstRoute
+        r['last_route'] = self.lastRoute
+        r['frequency'] = self.frequency
+        stations = []
+        for station in self.stations:
+            stations.append(station.to_dict())
+        r['stations'] = stations
+        rr = {}
+        rr['route'] = r
+        return rr
+
 
 
 db.create_all()
@@ -176,10 +217,28 @@ def get_one_user(current_user, public_id):
 
 @app.route('/routes',methods=['GET'])
 def getRoutes():
-    return 'hello'
+    routes = Route.query.filter_by().all()
+    routes_pid = []
+    for route in routes:
+        routes_pid.append(route.public_id)
+    return jsonify({'routes' : routes_pid})
 @app.route('/route/<public_id>',methods=['GET'])
-def getRoute():
-    return 'hello'
+def getRoute(public_id):
+    route = Route.query.filter_by(public_id=public_id).first().to_dict()
+    return jsonify(route)
+@app.route('/stations',methods=['GET'])
+def getStations():
+    stations = Station.query.filter_by().all()
+    stations_pid = []
+    for station in stations:
+        stations_pid.append(station.public_id)
+    return jsonify({'stops' : stations_pid})
+
+@app.route('/station/<public_id>',methods=['GET'])
+def getStation(public_id):
+    station = Station.query.filter_by(public_id=public_id).first().to_dict()
+    return jsonify(station)
+
 
 @app.route('/user', methods=['POST'])
 def addUserRequest():
@@ -212,4 +271,3 @@ def addUserRequest():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

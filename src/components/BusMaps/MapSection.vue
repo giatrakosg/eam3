@@ -17,7 +17,6 @@
             </l-marker>
           </l-map>
         </v-flex>
-
       </v-layout>
     </v-container>
   </div>
@@ -35,7 +34,7 @@ export default {
        zoom:14,
        center: L.latLng(37.938451, 23.721009),
        url: 'http://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-       markers : [
+       markersOld : [
          {id : 0 , position : L.latLng(37.933163,23.714648) , name : 'Ευαγγελική' , routesThrough : ['136,218']},
          {id : 1 , position : L.latLng(37.938451,23.721009) , name : 'Νεκτροταφεια' , routesThrough : ['136,137']},
          {id : 2 , position : L.latLng(37.943653,23.727682) , name : 'Δαφνη' , routesThrough : ['136']},
@@ -66,29 +65,18 @@ export default {
         this.markers.push(event.latlng);
     } ,
   } ,
-  mounted() {
-      this.$nextTick(() => {
-        this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-      })
-  } ,
   computed : {
-    points () {
-      let route = this.routes[0];
-      let positions = [];
-      for (var i = 0; i < route.stations.length; i++) {
-        positions.push({ id : route.stations[i].id , position : route.stations[i].position });
-      }
-      return positions ;
+    stops() {
+      return this.$store.state.stops ;
     },
-    positions () {
-      let route = this.routes[0];
-      let positions = [];
-      for (var i = 0; i < route.stations.length; i++) {
-        positions.push(route.stations[i].position );
+    markers () {
+      var ms = [] ;
+      for (var i = 0; i < this.stops.length; i++) {
+        var x = {'id' : this.stops[i].public_id , 'position' : L.latLng(this.stops[i].lat,this.stops[i].lng) , 'name' : this.stops[i].name } ;
+        ms.push(x);
       }
-      return positions ;
-
-    }
+      return ms
+    },
   }
 
 }

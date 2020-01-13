@@ -11,6 +11,9 @@ export default {
   props : ['id'] ,
   components : {
     Route
+  } ,
+  created() {
+    this.$store.dispatch('getSelectedRoute',this.id);
   }
 }
 </script>

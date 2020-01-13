@@ -9,11 +9,75 @@ export default new Vuex.Store({
     lang : 'gr' ,
     status: '',
     token: localStorage.getItem('token') || '',
-    user: {}
+    user: {} ,
+    routePIDS : {},
+    routes : [] ,
+    stopPIDS : {} ,
+    stops : [] ,
+    routes_status : '',
+    stops_status : '' ,
+    pending_routes : 0 ,
+    pending_stops : 0 ,
+    route : {} ,
+    stop : {}
   },
   mutations: {
     setLanguage(state , payload) {
       state.lang = payload.lang ;
+    },
+    setRoutes(state,payload){
+      state.routePIDS = payload.routes
+    },
+    routes_request(state){
+      state.routes_status = 'loading'
+    },
+    routes_success(state) {
+      state.routes_status = 'success'
+    } ,
+    routes_error(state) {
+      state.routes_status = 'error'
+    } ,
+    increment_stops(state) {
+      state.pending_stops++;
+    },
+    increment_routes(state) {
+      state.pending_routes++;
+    },
+    decrease_stops(state) {
+      state.pending_stops--;
+      if (state.pending_stops == 0) {
+        state.stops_status = 'success'
+      }
+    },
+    decrease_routes(state) {
+      state.pending_routes--;
+      if (state.pending_routes == 0) {
+        state.routes_status = 'success'
+      }
+    },
+    stops_request(state){
+      state.stops_status = 'loading'
+    },
+    stops_success(state) {
+      state.stops_status = 'success'
+    } ,
+    stops_error(state) {
+      state.stops_status = 'error'
+    } ,
+    addRoute(state,payload) {
+      state.routes.push(payload.route)
+    },
+    addSelectedRoute(state,payload) {
+      state.route = payload.route
+    },
+    setStops(state,payload){
+      state.stopPIDS = payload.stops
+    },
+    addStop(state,payload) {
+      state.stops.push(payload.stop) ;
+    },
+    addSelectedStop(state,payload) {
+      state.stop = payload.stop ;
     },
     auth_request(state) {
       state.status = 'loading'
@@ -86,8 +150,107 @@ export default new Vuex.Store({
         delete axios.defaults.headers.common['Authorization']
         resolve()
       })
-    }
+    } ,
+    getRoutes({ commit , dispatch}){
+      return new Promise((resolve, reject) => {
+        commit('routes_request')
+        axios({ url: 'http://localhost:5000/routes', method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const routes = resp.data.routes
+            commit('setRoutes',{routes})
+            for (var i = 0; i < routes.length; i++) {
+              commit('increment_routes')
+              dispatch('getRoute',routes[i])
+            }
+            resolve(resp)
+          })
+          .catch(err => {
+            commit('routes_error')
+          })
+      })
+    } ,
+  getRoute({ commit } ,route_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/route/' + route_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const route = resp.data.route
+            console.log(route)
+            commit('addRoute',{route})
+            commit('decrease_routes')
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+  getSelectedRoute({ commit } ,route_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/route/' + route_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const route = resp.data.route
+            console.log(route)
+            commit('addSelectedRoute',{route})
+            //commit('decrease_routes')
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+  getStops({ commit , dispatch } ) {
+    return new Promise((resolve, reject) => {
+      commit('stops_request')
+      axios({ url: 'http://localhost:5000/stations', method: 'GET' })
+        .then(resp => {
+          //console.log(resp.data)
+          const stops = resp.data.stops
+          commit('setStops',{stops})
+          for (var i = 0; i < stops.length; i++) {
+            commit('increment_stops')
+            dispatch('getStop',stops[i])
+          }
+          commit('stops_success')
+          resolve(resp)
+        })
+        .catch(err => {
+          commit('stops_error')
+        })
+    })
   },
+  getSelectedStop({ commit } ,stop_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const stop = resp.data.stop
+            console.log(stop)
+            commit('addSelectedStop',{stop})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+  getStop({ commit } ,stop_pid) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const stop = resp.data.stop
+            console.log(stop)
+            commit('addStop',{stop})
+            commit('decrease_stops');
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+  } ,
+
+},
   modules: {
   }
 })
