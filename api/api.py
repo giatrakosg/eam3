@@ -15,7 +15,6 @@ import datetime
 from functools import wraps
 from schema import Schema, And, Use, Optional
 from pprint import pprint
-import jsonpickle
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisissecret'
@@ -35,6 +34,16 @@ class User(db.Model):
     email = db.Column(db.String(50),unique=True)
     phone = db.Column(db.String(15)) #Support for international phone numbers
     hasReduced = db.Column(db.Boolean())
+    def to_dict(self):
+        r = {}
+        r['public_id'] = self.public_id
+        r['name'] = self.name
+        r['first_name'] = self.first_name
+        r['last_name'] = self.last_name
+        r['email'] = self.email
+        r['phone'] = self.phone
+        r['hasReduced'] = self.hasReduced
+        return r
 
 route_has_stations = db.Table('route_has_stations',
     db.Column('route_id', db.Integer, db.ForeignKey('route.id'), primary_key=True),
@@ -161,30 +170,22 @@ def login():
 
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
+@app.route('/user')
+@token_required
+def getUser(current_user) :
+    user = User.query.filter_by(public_id=current_user.public_id).first()
+    if not user:
+        return jsonify({'message' : 'No user found!'})
+    return jsonify({'user' : user.to_dict()})
+
 
 # Shows all registered users
 # if the current user is the admin.Else
 # gets the public id of the current user
 @app.route('/user', methods=['GET'])
 @token_required
-def showUsers(current_user):
-
-    if current_user.admin:
-        users = User.query.all()
-
-        output = []
-
-        for user in users:
-            if user.pending is True:
-                continue
-            user_data = {}
-            user_data['name'] = user.name
-            user_data['email'] = user.email
-            user_data['first_name'] = user.first_name
-            user_data['last_name'] = user.last_name
-            output.append(user_data)
-
-        return jsonify({'users' : output})
+def getUserData(current_user):
+    print(current_user)
     user = User.query.filter_by(public_id=current_user.public_id).first()
     if not user :
         return jsonify({'message' : 'No user found!'})

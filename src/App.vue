@@ -1,18 +1,15 @@
 <template>
   <v-app>
-      <AppBar/>
-    <v-content style="background-color:#BBE5F5 ">
-      <v-layout>
-        <v-flex xs1 md1 lg1>
-          <v-spacer></v-spacer>
-        </v-flex>
-        <v-flex xs11 md11 lg11>
-          <Breadcrumb />
-        </v-flex>
 
-      </v-layout>
-      <router-view/>
+
+      <AppBar  />
+    <v-content style="background-color:#BBE5F5 ">
+      <v-container fluid>
+        <Breadcrumb class="ml-7" />
+        <router-view/>
+      </v-container>
     </v-content>
+    <Footer/>
   </v-app>
 </template>
 
@@ -21,11 +18,13 @@
 
 import AppBar from "./components/AppBar/AppBar";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb"
+import Footer from "./views/Footer";
 export default {
   name: 'App',
-    components: {AppBar , Breadcrumb},
+    components: { Footer, AppBar , Breadcrumb},
     data: () => ({
-    //
-  }),
+
+    })
+
 };
 </script>

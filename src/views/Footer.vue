@@ -13,27 +13,27 @@
                <v-row justify="center" >
                   <v-col >
                      <v-list dense color="transparent" >
-                        <v-subheader  style="color: whitesmoke"> TERMS AND POLICIES </v-subheader>
+                        <v-subheader  style="color: whitesmoke"> {{$t('text.terms_and_policies')}} </v-subheader>
                         <v-divider style="background-color: whitesmoke"/>
                      <v-list-item-group color="primary" >
                         <v-list-item
                         >
                            <v-list-item-content>
-                              <v-list-item-title  style="color: whitesmoke"> Terms Of Use</v-list-item-title>
+                              <v-list-item-title  style="color: whitesmoke"> {{$t('text.terms_of_use')}}</v-list-item-title>
                            </v-list-item-content>
                         </v-list-item>
                         <v-list-item
                         >
 
                            <v-list-item-content>
-                              <v-list-item-title style="color: whitesmoke"> Personal Data Policies</v-list-item-title>
+                              <v-list-item-title style="color: whitesmoke"> {{$t('text.personal_data_policies')}}</v-list-item-title>
                            </v-list-item-content>
                         </v-list-item>
                         <v-list-item
                         >
 
                            <v-list-item-content>
-                              <v-list-item-title style="color: whitesmoke"> Cookies Policies</v-list-item-title>
+                              <v-list-item-title style="color: whitesmoke"> {{$t('text.cookies_policies')}}</v-list-item-title>
                            </v-list-item-content>
                         </v-list-item>
                      </v-list-item-group>
@@ -41,20 +41,20 @@
                   </v-col>
                   <v-col>
                      <v-list dense color="transparent" >
-                        <v-subheader  style="color: whitesmoke"> NEWS </v-subheader>
+                        <v-subheader  style="color: whitesmoke"> {{$t('text.news')}} </v-subheader>
                         <v-divider style="background-color: whitesmoke"/>
                         <v-list-item-group color="primary" >
                            <v-list-item
                            >
                               <v-list-item-content>
-                                 <v-list-item-title  style="color: whitesmoke"> PRESS Releases</v-list-item-title>
+                                 <v-list-item-title  style="color: whitesmoke"> {{$t('text.press_releases')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
                            <v-list-item
                            >
 
                               <v-list-item-content>
-                                 <v-list-item-title style="color: whitesmoke"> Announcements</v-list-item-title>
+                                 <v-list-item-title style="color: whitesmoke"> {{$t('text.announcements')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
 
@@ -63,27 +63,27 @@
                   </v-col>
                   <v-col>
                      <v-list dense color="transparent" >
-                        <v-subheader  style="color: whitesmoke"> PUBLIC TENDERING </v-subheader>
+                        <v-subheader  style="color: whitesmoke"> {{$t('text.public_tendering')}} </v-subheader>
                         <v-divider style="background-color: whitesmoke"/>
                         <v-list-item-group color="primary" >
                            <v-list-item
                            >
                               <v-list-item-content>
-                                 <v-list-item-title  style="color: whitesmoke"> Public Tendering</v-list-item-title>
+                                 <v-list-item-title  style="color: whitesmoke"> {{$t('text.job_openings')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
                            <v-list-item
                            >
 
                               <v-list-item-content>
-                                 <v-list-item-title style="color: whitesmoke"> Job Openings</v-list-item-title>
+                                 <v-list-item-title style="color: whitesmoke"> {{$t('text.intrships')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
                            <v-list-item
                            >
 
                               <v-list-item-content>
-                                 <v-list-item-title style="color: whitesmoke"> Interships</v-list-item-title>
+                                 <v-list-item-title style="color: whitesmoke"> {{$t('text.public_tendering')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
 
@@ -92,27 +92,21 @@
                   </v-col>
                   <v-col>
                      <v-list dense color="transparent" >
-                        <v-subheader  style="color: whitesmoke"> CONTACT </v-subheader>
+                        <v-subheader  style="color: whitesmoke"> {{$t('text.contact')}} </v-subheader>
                         <v-divider style="background-color: whitesmoke"/>
                         <v-list-item-group color="primary" >
                            <v-list-item
                            >
                               <v-list-item-content>
-                                 <v-list-item-title  style="color: whitesmoke"> Complaints</v-list-item-title>
+                                 <v-list-item-title  style="color: whitesmoke"> {{$t('text.complaints')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
+
                            <v-list-item
                            >
 
                               <v-list-item-content>
-                                 <v-list-item-title style="color: whitesmoke"> Notes</v-list-item-title>
-                              </v-list-item-content>
-                           </v-list-item>
-                           <v-list-item
-                           >
-
-                              <v-list-item-content>
-                                 <v-list-item-title style="color: whitesmoke"> Links</v-list-item-title>
+                                 <v-list-item-title style="color: whitesmoke"> {{$t('text.links')}}</v-list-item-title>
                               </v-list-item-content>
                            </v-list-item>
 

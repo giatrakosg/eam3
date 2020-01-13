@@ -11,6 +11,11 @@ import RoutePage from "../views/RoutePage";
 import StopPage from "../views/StopPage";
 import BusMapsPage from "../views/BusMapsPage";
 
+import Tickets from "../views/Tickets"
+import ReducedTickets from "../views/ReducedTickets"
+import ViewProfile from "../views/ViewProfile"
+import EditProfile from "../views/EditProfile"
+import BuyTicket from "../views/BuyTicket"
 
 
 Vue.use(VueRouter);
@@ -82,7 +87,49 @@ const routes = [
     meta: {
       breadCrumb: 'Bus Maps'
     },
-  }
+  },
+  {
+	path: '/tickets',
+	name: 'tickets_page',
+	component : Tickets,
+	meta: {
+		breadCrumb: 'Tickets'
+	},
+  },
+  {
+	path: '/tickets/reduced_info',
+	name: 'reduced_tickets_info_page',
+	component : ReducedTickets,
+	meta: {
+		breadCrumb: 'Tickets/Reduced'
+	},
+  },
+  {
+	path: '/profile/view',
+	name: 'view_profile',
+	component : ViewProfile,
+	meta: {
+		breadCrumb: 'Profile/View'
+	},
+  },
+  {
+	path: '/profile/edit',
+	name: 'edit_profile',
+	component : EditProfile,
+	meta: {
+		breadCrumb: 'Profile/Edit'
+	},
+  },
+  {
+	path: '/tickets/buy',
+	name: 'buy_ticket',
+	component : BuyTicket,
+	meta: {
+		breadCrumb: 'Tickets/Buy'
+	},
+  },
+
+
 ];
 
 const router = new VueRouter({
