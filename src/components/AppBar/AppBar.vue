@@ -52,20 +52,20 @@
                 </v-col>
 
                 <v-spacer/>
-                <v-col cols="auto"  v-if="!isLoggedIn">
+                <v-col cols="auto" class="hidden-xs-only" v-if="!isLoggedIn">
                     <v-btn text outlined to="/signup"> {{ $t("text.signup")}}</v-btn>
                 </v-col>
-                <v-col cols="auto"  v-if="!isLoggedIn" >
+                <v-col cols="auto" class="hidden-xs-only" v-if="!isLoggedIn" >
                     <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
                 </v-col>
-                <v-col cols="auto"  v-if="isLoggedIn" >
+                <v-col cols="auto"  class="hidden-xs-only" v-if="isLoggedIn" >
                     <v-btn text outlined to="/user/profile">Hi {{user.first_name}} !</v-btn>
                 </v-col>
-                <v-col cols="auto"  v-if="isLoggedIn" >
+                <v-col cols="auto"  class="hidden-xs-only" v-if="isLoggedIn" >
                     <v-btn text outlined @click="doLogout">Logout</v-btn>
                 </v-col>
 
-                <v-col cols="1" class="d-sm-none d-md-flex">
+                <v-col cols="1" class="hidden-xs-only">
                     <v-text-field
                             append-icon="fas fa-search"
                             label="Search"
@@ -74,7 +74,7 @@
                     />
                 </v-col>
 
-                <v-col cols="1">
+                <v-col cols="1" >
                     <v-select
                             :items="languages"
                             label="select language"
@@ -130,6 +130,20 @@
                     <v-list-item-title>
                         <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
                             {{ $t("text.about")}}
+                        </a>
+                    </v-list-item-title>
+                </v-list-item>
+                <v-list-item class="hidden-sm-and-up">
+                    <v-list-item-title>
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                            {{ $t("text.signup")}}
+                        </a>
+                    </v-list-item-title>
+                </v-list-item>
+                <v-list-item class="hidden-sm-and-up">
+                    <v-list-item-title>
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                            {{ $t("text.login")}}
                         </a>
                     </v-list-item-title>
                 </v-list-item>

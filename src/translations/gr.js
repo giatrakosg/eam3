@@ -25,7 +25,7 @@ export const GREEK_TRANSLATIONS = {
     tram:'Τραμ',
     accessibility:'Προσβασιμότητα για ΑμεΑ',
     leastwalk:'Λιγότερο περπάτημα',
-    fastesroute:'Γρηγορότερη διαδρομή',
+    fastestroute:'Γρηγορότερη διαδρομή',
     leastchanges:'Λιγότερες Αλλαγές',
     apply:'ΕΦΑΡΜΟΓΗ',
     terms_and_policies:'Οροι και Πολιτικες',

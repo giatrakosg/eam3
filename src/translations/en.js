@@ -25,7 +25,7 @@ export const ENGLISH_TRANSLATIONS = {
     tram:'Tram',
     accessibility:'Accessibility for disabled',
     leastwalk:'Least Walk',
-    fastesroute:'Fastest Route',
+    fastestroute:'Fastest Route',
     leastchanges:'Least Changes',
     apply:'APPLY',
     terms_and_policies:'Terms and policies',
