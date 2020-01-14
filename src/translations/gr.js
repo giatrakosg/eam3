@@ -19,7 +19,7 @@ export const GREEK_TRANSLATIONS = {
     editpreferences: 'Επιλογές',
     routeoptions:'Επιλογές διαδρομής',
     leaving:'Αναχώρηση',
-    buses:'Λεοφορεία',
+    buses:'Λεωφορεία',
     trolleys:'Τρολλεϋ',
     metro:'Μετρο',
     tram:'Τραμ',
@@ -27,6 +27,8 @@ export const GREEK_TRANSLATIONS = {
     leastwalk:'Λιγότερο περπάτημα',
     fastestroute:'Γρηγορότερη διαδρομή',
     leastchanges:'Λιγότερες Αλλαγές',
+    searchBusRoute : 'Αναζήτηση Στάσης ή Γραμμής' ,
+    search : 'Αναζητηση' ,
     apply:'ΕΦΑΡΜΟΓΗ',
     terms_and_policies:'Οροι και Πολιτικες',
     terms_of_use:'οροι Χρησης',
@@ -39,6 +41,8 @@ export const GREEK_TRANSLATIONS = {
     job_openings:'Προσλήψεις Προσωπικού',
     intrships:'Πρακτική',
     complaints:'Παράπωνα',
-    links:'Συνδέσμοι'
+    links:'Συνδέσμοι' ,
+    reset : 'Επαναφορα' ,
+    delays : 'ΚΑΘΥΣΤΕΡΗΣΕΙΣ'
   }
 };

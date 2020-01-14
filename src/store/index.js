@@ -19,7 +19,7 @@ export default new Vuex.Store({
     pending_routes : 0 ,
     pending_stops : 0 ,
     route : {} ,
-    stop : {}
+    stop : {} ,
   },
   mutations: {
     setLanguage(state , payload) {
@@ -76,6 +76,9 @@ export default new Vuex.Store({
     addStop(state,payload) {
       state.stops.push(payload.stop) ;
     },
+    addUser(state,payload) {
+      state.user = payload.user ;
+    },
     addSelectedStop(state,payload) {
       state.stop = payload.stop ;
     },
@@ -98,7 +101,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    login({ commit }, user) {
+    login({ commit , dispatch}, user) {
       const tok = user.email + ':' + user.password;
       const hash = btoa(tok);
       const Basic = 'Basic ' + hash;
@@ -111,9 +114,10 @@ export default new Vuex.Store({
             //console.log(user)
             localStorage.setItem('token', token)
             // Add the following line:
-            axios.defaults.headers.common['Authorization'] = token
+            axios.defaults.headers.common['x-access-token'] = token
             commit('auth_success', { token , user})
             resolve(resp)
+            dispatch('getUser');
           })
           .catch(err => {
             commit('auth_error')
@@ -234,6 +238,21 @@ export default new Vuex.Store({
           })
     }) ;
   } ,
+  getUser({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'http://localhost:5000/user', method: 'GET' })
+          .then(resp => {
+            //console.log(resp.data)
+            const user = resp.data.user
+            console.log(stop)
+            commit('addUser',{user})
+            resolve(resp)
+          })
+          .catch(err => {
+          })
+    }) ;
+
+  },
   getStop({ commit } ,stop_pid) {
       return new Promise((resolve, reject) => {
         axios({ url: 'http://localhost:5000/station/' + stop_pid, method: 'GET' })

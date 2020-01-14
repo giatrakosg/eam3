@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="">
+      <!--
     <v-layout row wrap class="my-4">
       <v-flex sm1 md1 lg1>
         <v-spacer></v-spacer>
@@ -7,7 +8,7 @@
       <v-flex sm10 md10 lg10>
         <v-card raised tile>
           <v-card-title>
-            Λεωφορεία
+            {{ $t("text.buses")}}
             <v-icon>mdi-bus</v-icon>
           </v-card-title>
         </v-card>
@@ -16,6 +17,7 @@
         <v-spacer></v-spacer>
       </v-flex>
     </v-layout>
+-->
     <v-layout row wrap>
       <v-flex x0 sm0 md1 lg1>
         <v-spacer></v-spacer>

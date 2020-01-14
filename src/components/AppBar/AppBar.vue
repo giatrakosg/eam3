@@ -36,7 +36,7 @@
                     </v-btn>
                 </v-col>
                 <v-col cols="auto" class="hidden-sm-and-down">
-                    <v-btn text>
+                    <v-btn text to="/tickets">
                         {{ $t("text.tickets")}}
                     </v-btn>
                 </v-col>
