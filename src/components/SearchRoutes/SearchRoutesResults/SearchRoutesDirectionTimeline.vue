@@ -32,15 +32,17 @@
                   </v-btn>
                 </v-timeline-item>
 
-                <v-timeline dense   v-if="t.show"   class="p-0" >
-
+                <v-timeline dense   v-if="t.show && t.transport!=='walk'"   class="p-0" >
 
                     <v-timeline-item class="pb-1" hide-dot
 
-                                     v-for="k in t.places"
-                                     v-bind:key="k"
+                                     v-for="(place,index) in t.places"
+                                     v-bind:key="index"
                                      >
-                         {{k}}
+                         {{place}}
+                        <span v-if="t.accessibility[index]">
+                            <i  class="fas fa-wheelchair fa-1x  ml-2 "/>
+                        </span>
 
                     </v-timeline-item>
 
