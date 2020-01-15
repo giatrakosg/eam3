@@ -27,8 +27,7 @@
 
         for ( k in info ) {
           if (info.hasOwnProperty(k)) {
-            // eslint-disable-next-line no-console
-            console.log(info[k])
+
             let path = info[k].path;
             if(path===""){continue;}
 
