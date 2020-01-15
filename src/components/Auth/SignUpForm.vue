@@ -150,10 +150,8 @@ export default {
         password: this.password,
         phone : this.tel
       };
-      this.$store
-        .dispatch("register", data)
-        .then(() => this.$router.push("/"))
-        .catch(err => console.log(err));
+      this.$store.dispatch("register", data);
+      this.$router.push('/sentemail')
 
     } ,
   }
