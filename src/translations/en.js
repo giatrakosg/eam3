@@ -48,6 +48,9 @@ export const ENGLISH_TRANSLATIONS = {
     billing : 'Billing Information' ,
     ticketNum : 'Number of Tickets' ,
     successBuy : 'Product purchased successfully' ,
-    thankyou : 'Thank you for choosing us for your transportation'
+    thankyou : 'Thank you for choosing us for your transportation',
+    buy_tickets: 'Buy Tickets',
+    buy_personalizedcard:"Buy personalized card"
+
   }
 };
