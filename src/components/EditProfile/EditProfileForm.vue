@@ -11,7 +11,7 @@
                         <validation-provider rules="required" v-slot="{ errors }">
                             <v-text-field
 
-                                    v-model="this.user.username"
+                                    v-model="user.first_name"
                                     label="Name"
                                     v-on:keyup.enter.native="showPassword"
 
@@ -22,13 +22,15 @@
                     <v-col>
                         <validation-provider rules="required" v-slot="{ errors }">
                             <v-text-field
-                                    v-model="this.user.last_name"
+                                    v-model="user.last_name"
                                     label="Surname"
                                     v-on:keyup.enter.native="showPassword"
                             >
                             </v-text-field>
                         </validation-provider>
                     </v-col>
+                </v-row>
+                <v-row>
                     <v-col>
                         <validation-provider rules="required" v-slot="{ errors }">
                             <v-text-field
@@ -42,37 +44,9 @@
                         </validation-provider>
                     </v-col>
                 </v-row>
-                <v-row>
-                    <v-col>
-                        <validation-provider rules="required" v-slot="{ errors }">
-                            <v-text-field
-                                    v-model="user.password"
-                                    label="Password"
-                                    append-icon="mdi-eye-off"
-                                    type="password"
-                                    @keyup.enter="handleSubmit()"
-                            >
-                            </v-text-field>
-                            <span>{{ errors[0] }}</span>
-                        </validation-provider>
-                    </v-col>
-                    <v-col>
-                        <validation-provider rules="required" v-slot="{ errors }">
-                            <v-text-field
-                                    v-model="user.passwordRetype"
-                                    label="Retype Password.."
-                                    append-icon="mdi-eye-off"
-                                    type="password"
-                                    @keyup.enter="handleSubmit()"
-                            >
-                            </v-text-field>
-                            <span>{{ errors[0] }}</span>
-                        </validation-provider>
-                    </v-col>
-                </v-row>
                 <validation-provider rules="required" v-slot="{ errors }">
                     <v-text-field
-                            v-model="user.tel"
+                            v-model="user.phone"
                             label="Telephone.."
                             append-icon="mdi-cellphone"
                             type="number"
@@ -109,23 +83,20 @@
             handleSubmit() {
                // console.log(this.email,this.password);
                 let data = {
-                    name: this.username,
-                    first_name: this.username,
-                    last_name : this.surname ,
-                    email: this.email,
+                    first_name: this.user.first_name,
+                    last_name : this.user.last_name ,
+                    email: this.user.email,
                     password: this.password,
                     phone : this.tel
                 };
                 this.$store
                     .dispatch("update", data)
                     .then(() => this.$router.push("/"))
-
-
             } ,
         },
         computed:{
             user(){
-                return {"firstname": this.$store.state.user.first_name};
+                return this.$store.state.user;
             }
         }
 
