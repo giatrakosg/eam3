@@ -46,7 +46,7 @@
                     </v-btn>
                 </v-col>
                 <v-col cols="auto" class="hidden-sm-and-down">
-                    <v-btn text >
+                    <v-btn text to="/about">
                         {{ $t("text.about")}}
                     </v-btn>
                 </v-col>
@@ -128,7 +128,7 @@
 
                 <v-list-item>
                     <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"  href="/about"  >
                             {{ $t("text.about")}}
                         </a>
                     </v-list-item-title>

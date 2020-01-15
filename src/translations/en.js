@@ -7,7 +7,7 @@ export const ENGLISH_TRANSLATIONS = {
     contact : 'Contact',
     tickets : 'Tickets' ,
     maps : 'Maps' ,
-    about : 'About Us'  ,
+    about : 'About'  ,
     wheretonext : 'Where to next ?' ,
     from : 'From' ,
     to : 'To' ,

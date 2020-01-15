@@ -34,7 +34,7 @@
 
              >
                <v-avatar >
-               <i class="fas fa-id-card fa-2x " style="color: #1DA1F2" ></i>
+               <i class="fas fa-id-card fa-2x " style="color: #1DA1F2" />
                </v-avatar>
              </v-list-item-avatar>
              <v-list-item-content>
@@ -50,6 +50,7 @@
         <EditProfileForm/>
       </v-col>
       <v-col>
+        <CardInfo/>
 
       </v-col>
     </v-row>
@@ -58,9 +59,10 @@
 </template>
 <script>
 import EditProfileForm from "../components/EditProfile/EditProfileForm";
+import CardInfo from "../components/EditProfile/CardInfo";
 export default {
   name : 'EditProfile',
-  components: {EditProfileForm}
+  components: {CardInfo, EditProfileForm}
 }
 </script>
 
