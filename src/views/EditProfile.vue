@@ -1,10 +1,12 @@
 <template lang="html">
   <v-container>
+      <v-card>
+          <v-card-title>Profile</v-card-title>
+      </v-card>
      <v-row >
        <v-col  >
          <v-card
-
-                 tile
+         tile
          >
            <v-list-item three-line>
              <v-list-item-avatar
