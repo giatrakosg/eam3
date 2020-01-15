@@ -2,8 +2,8 @@ export const GREEK_TRANSLATIONS = {
   text : {
     route : 'Δρομολόγια' ,
     stop : 'Σταση' ,
-    signup : 'Εγγραφή' ,
-    login : 'Είσοδος' ,
+    signup : 'Είσοδος' ,
+    login : 'Εγγραφή' ,
     contact : 'Επικοινωνια',
     tickets : 'Εισητήρια' ,
     maps : 'Χάρτες' ,
@@ -49,7 +49,8 @@ export const GREEK_TRANSLATIONS = {
     ticketNum : 'Αριθμος Εισητηριων',
     successBuy : 'Επιτυχης Αγορα Εισητηριου' ,
     thankyou : 'Ευχαριστουμε που μας προτιμισατε για τις μετακινησεις σας',
-    buy_tickets: 'Αγορά εισητηρίων',
-    buy_personalizedcard:"Αγορά προσωποποιημένης κάρτας"
+    emailSucess : 'Αποστολη Email',
+    toBuy : 'Προϊόντα προς αγορά'
+
   }
 };
