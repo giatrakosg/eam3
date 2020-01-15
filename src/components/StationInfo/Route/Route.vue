@@ -18,7 +18,8 @@
                   raised
                   size="80"
                   color="primary"
-                >{{route.name}}</v-list-item-avatar>
+                >{{route.name}}
+                </v-list-item-avatar>
               </v-list-item>
             </v-card>
           </v-flex>
