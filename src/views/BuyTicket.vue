@@ -7,7 +7,7 @@
               <v-select v-model="cardType" :items="cardTypes" label="Επιλέξτε τύπο προϊόντος" @change="HandleCardChange(cardTypes)"></v-select>
             </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="cardType">
             <TicketCounter/>
         </v-row>
     </v-col>
