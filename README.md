@@ -1,6 +1,8 @@
 # EAM 3
-Σάμιος Γρηγόρης 1115201500141<br />
-Γιατράκος  Γεώργιος 1115201600036<br /> 
+Σάμιος Γρηγόρης 1115201500141 
+
+Γιατράκος  Γεώργιος 1115201600036
+
 Ιωαννίδης Γεώργιος-Αλέξανδρος 1115201500049
 
 ## Υλοποιημένα Ζητούμενα:
@@ -101,6 +103,28 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+```
+
+## Api Setup
+Create virtual environment using Python-3
+```
+cd api
+python3 -m venv venv
+```
+
+Activate 
+```
+. venv/
+```
+
+Install requirements
+```
+pip install -r requirements.txt
+```
+
+### Run api
+```
+python api.py
 ```
 
 ## Quick Guide
