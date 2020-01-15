@@ -20,6 +20,11 @@ export default new Vuex.Store({
     pending_stops : 0 ,
     route : {} ,
     stop : {} ,
+    routesRetrieved : false ,
+    stopsRetrieved : false ,
+    amount : 0 ,
+    cardType : '' ,
+    price : 0
   },
   mutations: {
     setLanguage(state , payload) {
@@ -97,6 +102,15 @@ export default new Vuex.Store({
       state.token = ''
       state.user = {}
     },
+    setAmount(state,payload) {
+        state.amount = payload.amount ;
+    } ,
+    setType(state,payload) {
+        state.cardType = payload.type ;
+    } ,
+    setPrice(state,payload) {
+        state.price = payload.price ;
+    }
   },
 
   actions: {
@@ -165,7 +179,10 @@ export default new Vuex.Store({
         resolve()
       })
     } ,
-    getRoutes({ commit , dispatch}){
+    getRoutes({ commit , dispatch , state}){
+      if (state.routes_status === "success") {
+          return ;
+      }
       return new Promise((resolve, reject) => {
         commit('routes_request')
         axios({ url: 'http://localhost:5000/routes', method: 'GET' })
@@ -214,7 +231,10 @@ export default new Vuex.Store({
           })
     }) ;
   } ,
-  getStops({ commit , dispatch } ) {
+  getStops({ commit , dispatch , state } ) {
+      if (state.stops_status === "success") {
+          return ;
+      }
     return new Promise((resolve, reject) => {
       commit('stops_request')
       axios({ url: 'http://localhost:5000/stations', method: 'GET' })
@@ -333,7 +353,16 @@ getProducts({commit}, card_id){
                 
             })
     });
-    },
+  } ,
+  setAmount({commit} , amount) {
+      commit('setAmount',{amount}) ;
+  } ,
+  setType( {commit} , type) {
+      commit('setType' , {type}) ;
+  } ,
+  setPrice({commit} , price)  {
+      commit('setPrice' , {price})
+  }
 },
   modules: {
   }

@@ -93,7 +93,8 @@
                          temporary
                          v-model="drawer"
                          color="blue darken-3"
-                         width="160px"
+                         width="auto"
+
 
     >
         <v-list
@@ -103,7 +104,7 @@
 
             >
                 <v-list-item>
-                    <v-list-item-title>
+                    <v-list-item-title >
                         <router-link  class="white--text" style="text-transform: uppercase;text-decoration: none" to="/maps/bus">
                             {{ $t("text.route")}}
                         </router-link>

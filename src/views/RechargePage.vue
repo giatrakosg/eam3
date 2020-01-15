@@ -2,7 +2,7 @@
   <v-container>
       <v-row align="center">
           <v-col>
-            <TicketTypes />
+            <TicketTypes :disabled="false" />
           </v-col>
           <v-col>
              <BillingInfo />
@@ -28,8 +28,6 @@ export default{
     },
     methods:{
         submit(){
-            sessionStorage.setItem('product', this.product);
-            sessionStorage.setItem('cardType', this.cardType);
             this.$router.push("checkout");
         }
     //HandleCardChange: function(evt){
