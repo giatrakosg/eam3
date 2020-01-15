@@ -6,7 +6,7 @@
               {{amount}} x {{typeName}}
           </v-card-subtitle>
           <v-card-subtitle>
-              Κόστος: {{calculate_cost(amount , cardType)}} €
+              Κόστος: {{calculate_cost(cardType , amount )}} €
           </v-card-subtitle>
       </v-card>
     <BillingInfo />
