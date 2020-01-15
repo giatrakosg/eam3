@@ -28,7 +28,7 @@
             <v-chip
               v-if="chip2"
               close
-              color="green"
+              color="#DD137B"
               text-color="white"
               dark
               @click:close="chip2 = false"
@@ -40,7 +40,7 @@
               v-if="chip3"
               class="ma-2"
               close
-              color="red"
+              color="#006C4A"
               dark
               text-color="white"
               @click:close="chip3 = false"
@@ -52,7 +52,7 @@
               v-if="chip4"
               class="ma-2"
               close
-              color="orange"
+              color="#F27D00"
               dark
               @click:close="chip4 = false"
             >

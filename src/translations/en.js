@@ -7,7 +7,7 @@ export const ENGLISH_TRANSLATIONS = {
     contact : 'Contact',
     tickets : 'Tickets' ,
     maps : 'Maps' ,
-    about : 'About Us'  ,
+    about : 'About'  ,
     wheretonext : 'Where to next ?' ,
     from : 'From' ,
     to : 'To' ,
@@ -43,6 +43,9 @@ export const ENGLISH_TRANSLATIONS = {
     complaints:'Complaints',
     links:'Links' ,
     reset : 'Reset' ,
-    delays : 'DELAYS'
+    delays : 'DELAYS' ,
+    products : 'Products' ,
+    billing : 'Billing Information' ,
+    ticketNum : 'Number of Tickets'
   }
 };

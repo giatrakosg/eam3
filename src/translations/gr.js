@@ -43,6 +43,9 @@ export const GREEK_TRANSLATIONS = {
     complaints:'Παράπωνα',
     links:'Συνδέσμοι' ,
     reset : 'Επαναφορα' ,
-    delays : 'ΚΑΘΥΣΤΕΡΗΣΕΙΣ'
+    delays : 'ΚΑΘΥΣΤΕΡΗΣΕΙΣ' ,
+    products : 'Προϊόντα' ,
+    billing : 'Στοιχεια Αγορας' ,
+    ticketNum : 'Αριθμος Εισητηριων'
   }
 };
