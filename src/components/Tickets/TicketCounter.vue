@@ -2,14 +2,14 @@
   <v-card>
       <v-card-title>{{$t('text.ticketNum')}}</v-card-title>
       <v-card-text>
-          <v-btn @click="amount = amount - 1">
+          <v-btn @click="subtract()">
             <v-icon>mdi-minus-box</v-icon>
           </v-btn>
           <v-text-field
             v-model="amount"
           >
           </v-text-field>
-          <v-btn @click="amount = amount + 1">
+          <v-btn @click="add()">
             <v-icon>mdi-plus-box</v-icon>
           </v-btn>
       </v-card-text>
@@ -23,7 +23,18 @@ export default {
         return {
             amount : 0
         }
+    } ,
+    methods : {
+        subtract() {
+            if (this.amount > 0) {
+                this.amount = this.amount - 1;
+            }
+        } ,
+        add() {
+            this.amount = this.amount + 1;
+        }        
     }
+
 }
 </script>
 
