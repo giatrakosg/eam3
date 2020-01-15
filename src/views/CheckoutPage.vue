@@ -1,30 +1,22 @@
 <template lang="html">
   <v-container>
-    <h1>Προϊόντα προς αγορά</h1>
-    {{cardType}} x {{amount}}
-    <br>
-    Κόστος: {{calculate_cost(amount , cardType)}} €
-    <br>
-    <v-form name="persona" v-model="valid">
-            <v-text-field v-model="firstname" :rules="nameRules" :counter="60" label="First name" required>
-            </v-text-field>
-            <v-text-field v-model="lastname" :rules="nameRules" :counter="60" label="Last name" required>
-            </v-text-field>
-            <v-text-field v-model="realaddress" :rules="adressRules" :counter="90" label="Address" required>
-            </v-text-field>
-            <v-text-field v-model="email" :rules="emailRules" :counter="90" label="E-Mail" required>
-            </v-text-field>
-            <v-text-field v-model="phone" :rules="phoneRules" :counter="13" label="Phone" required>
-            </v-text-field>
-            <v-btn
-                @click="submit()"
-                >Submit</v-btn>
-        </v-form>
+      <v-card class="my-4">
+          <v-card-title>Προϊόντα προς αγορά</v-card-title>
+          <v-card-subtitle>
+              {{amount}} x {{typeName}}
+          </v-card-subtitle>
+          <v-card-subtitle>
+              Κόστος: {{calculate_cost(amount , cardType)}} €
+          </v-card-subtitle>
+      </v-card>
+    <BillingInfo />
   </v-container>
 </template>
 <script>
+import BillingInfo from "../components/Tickets/BillingInfo"
 export default {
     name : 'CheckoutPage' ,
+    components : {BillingInfo},
     methods:{
         calculate_cost(a,b){
             switch(a){
@@ -56,6 +48,32 @@ export default {
         } ,
         price() {
             return this.$store.state.price ;
+        } ,
+        typeName() {
+            var type = "";
+            switch (this.cardType) {
+                case 0:
+                    type = "1 εισητήριο 90 λεπτών" ;
+                    break;
+                case 1:
+                    type = "5 εισητήρια 90 λεπτών" ;
+                    break ;
+                case 2:
+                    type = "10+1 εισητήρια 90 λεπτών" ;
+                    break ;
+                case 3:
+                    type = "1 ημέρας" ;
+                    break ;
+                case 4:
+                    type = "5 ημέρων" ;
+                    break ;
+                case 5:
+                    type = "30 ημέρων" ;
+                    break ;
+                default:
+
+            }
+            return type ;
         }
 
     }
