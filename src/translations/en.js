@@ -43,6 +43,8 @@ export const ENGLISH_TRANSLATIONS = {
     complaints:'Complaints',
     links:'Links' ,
     reset : 'Reset' ,
-    delays : 'DELAYS'
+    delays : 'DELAYS' ,
+    products : 'Products' ,
+    billing : 'Billing Information'
   }
 };
