@@ -34,6 +34,8 @@ class User(db.Model):
     email = db.Column(db.String(50),unique=True)
     phone = db.Column(db.String(15)) #Support for international phone numbers
     hasReduced = db.Column(db.Boolean())
+    address=db.Column(db.String(50))
+    AMKA_id=db.Column(db.Integer)
     def to_dict(self):
         r = {}
         r['public_id'] = self.public_id
@@ -43,6 +45,8 @@ class User(db.Model):
         r['email'] = self.email
         r['phone'] = self.phone
         r['hasReduced'] = self.hasReduced
+        r['address'] = self.address
+        r['AMKA_id'] = self.AMKA_id
         return r
 
 route_has_stations = db.Table('route_has_stations',
@@ -112,6 +116,37 @@ class Route(db.Model):
         rr['route'] = r
         return rr
 
+class Card(db.Model):
+    __tablename__= 'card'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, unique=True)
+    hasReduced = db.Column(db.Boolean())
+    def to_dict(self):
+        r = {}
+        r['id'] = self.id
+        r['user_id'] = self.user_id
+        r['hasReduced'] = self.hasReduced
+        return r
+    
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    card_id = db.Column(db.Integer) #db.Column(db.Integer)
+    duration = db.Column(db.Integer)
+    amount = db.Column(db.Integer)
+    def to_dict(self):
+        r = {}
+        r['card_id'] = self.card_id
+        r['duration'] = self.duration
+        r['amount'] = self.amount
+        return r
+class AMKA(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    reducedCategory=db.Column(db.Integer())
+    def to_dict(self):
+        r={}
+        r['id']=self.id
+        r['reducedCategory']=self.reducedCategory;
+        return r;
 
 
 db.create_all()
@@ -211,6 +246,8 @@ def get_one_user(current_user, public_id):
     user_data['last_name'] = user.last_name
     user_data['email'] = user.email
     user_data['phone'] = user.phone
+    user_data['address'] = user.address
+    user_data['AMKA_id'] = user.AMKA_id
 
     return jsonify({'user' : user_data})
 
@@ -252,7 +289,6 @@ def addUserRequest():
     if len(uEmail) > 0 :
         return jsonify({'message' : 'Email already exists!'}),400
 
-
     new_user = User(
     public_id=str(uuid.uuid4()),
     name=data['name'],
@@ -262,6 +298,8 @@ def addUserRequest():
     email=data['email'],
     phone=data['phone'],
     hasReduced=False,
+    address=data['address'],
+    AMKA_id=data['AMKA_id'],
     )
 
     db.session.add(new_user)
@@ -292,37 +330,12 @@ def editUserRequest(current_user):
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
-class Card(db.Model):
-    __tablename__= 'card'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, unique=True)
-    hasReduced = db.Column(db.Boolean())
-    def to_dict(self):
-        r = {}
-        r['id'] = self.id
-        r['user_id'] = self.user_id
-        r['hasReduced'] = self.hasReduced
-        return r
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    card_id = db.Column(db.Integer) #db.Column(db.Integer)
-    duration = db.Column(db.Integer)
-    amount = db.Column(db.Integer)
-    def to_dict(self):
-        r = {}
-        r['card_id'] = self.card_id
-        r['duration'] = self.duration
-        r['amount'] = self.amount
-        return r
-class AMKA(db.Model):
-    id=db.Column(db.Integer, primary_key=True)
-    deservesReduced=db.Column(db.Boolean())
-    def to_dict(self):
-        r={}
-        r['id']=self.id
-        r['deservesReduced']=self.deservesReduced;
-        return r;
-
+@app.route('/HasPersona/<user_id>', methods=['GET'])
+def userHasCard(user_id):
+    card=Card.query.fitler_by(user_id=user_id).first()
+    if not card:
+        return jsonify({"card_id": -1});
+    return jsonify({"card_id": card});
     
 @app.route('/BuyPersona', methods=['POST'])
 def addPersonalCard():
@@ -334,27 +347,34 @@ def addPersonalCard():
     db.session.commit()
     return jsonify({'message': 'New card created!'})
  
-@app.route('/RechargeCard', methods=['POST'])
+@app.route('/tickets/recharge', methods=['POST'])
 def RechargeCard(): #aka AddProducts
     data=request.get_json()
-    print(data,file=sys.stder)
+    print(data,file=sys.stderr)
     
-    card_id=data['card_id']
-    products=data['products']
-    for product in products:
-        db.session.add(product)
+    j_card_id=data['card_id']
+    j_durations=data['durations']
+    j_amounts=data['amounts']
+    num_products=data['num_products']
+    for i in range(0,num_products):
+        new_product=Product(card_id=j_card_id, duration=j_durations[i], amount=j_amounts[i])
+        db.session.add(new_product)
+    #for product in products:
+    #    db.session.add(product)
     #new_product=Product(card_id=data['card_id'],duration=data['duration'],amount=data['amount'])
     db.session.commit()
     return jsonify({'message': 'Products successfully passed on!'})
 
-@app.route('/whatever', methods=['GET'])
+@app.route('/products/get/<card_id>', methods=['GET'])
 def getProducts(card_id):
-    products=Product.query.filter_by(card_id=card_id)
+    products=Product.query.filter_by(card_id=card_id).all()
     product_pid=[]
     for product in products:
-        product_pid.append(product)
-    return jsonify(product_pid);
-    
+        product_pid.append((product.duration, product.amount))
+    duration=list((product[0] for product in product_pid))
+    amount=list((product[1] for product in product_pid))
+    return jsonify({"duration" : duration, "amount": amount});
+
 
 if __name__ == '__main__':
     app.run(debug=True)
