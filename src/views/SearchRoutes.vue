@@ -18,6 +18,26 @@
             </v-card>
             </v-col>
         </v-row>
+        <v-row >
+            <v-col cols="auto">
+                <v-card>
+                    <v-card-text>
+                        <span style="color: #004B84;">
+                        TICKET PRICE:
+                        </span>
+                        <span class="ml-3" style="font-weight: bolder;color: black">
+                            1,4
+                             <i class="fas fa-euro-sign"></i>
+
+                            <span style="font-size: small;color: #004B84" class="ml-2" >  90min</span>
+                            <a class="ml-4" href="/tickets" > {{$t('text.tickets')}}</a>
+                        </span>
+
+
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
 
 
 
