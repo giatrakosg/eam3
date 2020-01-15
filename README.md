@@ -40,6 +40,59 @@
     - Διαφορετικα καλειται να τις συμπληρωσει
     - Ο χρηστης μπορει να αγορασει μεμονομενα εισητηρια . Επιλεγει τον τυπο του εισητηριου και τον αριθμο και υπολογιζεται         το κοστος που καλειται να πληρωσει .
 
+## Links
+
+### Passwords
+
+Δοκιμαστικος χρηστης email = emilia password = emilia
+
+### Διεπαφη αναζητησης διαδρομης
+
+Παταμε το κουμπι στην αρχικη οθονη :
+![Image](https://i.imgur.com/y9Wv108.png)
+![Image](https://i.imgur.com/0SwP4HM.png)
+
+### Παρουσιαση δρομολογιων και σταθμων
+
+![Image](https://i.imgur.com/BFudxeA.png)
+
+#### Παρουσιαση Δρομολογιου
+
+![Image](https://i.imgur.com/O9CQKFF.png)
+
+#### Παρουσιαση Στασης
+
+![Imgur](https://i.imgur.com/hNAf6Ac.png)
+
+#### Επιλογη Αγορας Εισητηριου
+
+![Imgur](https://i.imgur.com/TmbHJ01.png)
+
+#### Επαναφορτιση Καρτας ως συνδεδεμενος χρηστης
+
+![Imgur](https://i.imgur.com/lVRjTkL.png)
+
+#### Επαναφορτιση Καρτας ως μη συνδεδεμενος χρηστης
+
+![Imgur](https://i.imgur.com/6ORoNyF.png)
+
+#### Προβολη Προφιλ
+
+![Imgur](https://i.imgur.com/uA7QooG.png)
+
+#### Επεξεργασια Προφιλ
+
+![Imgur](https://i.imgur.com/qI2bcJr.png)
+
+#### Εγγραφη Νεου Χρηστη
+
+![Imgur](https://i.imgur.com/Ukiovvn.png)
+
+#### Εισοδος Νεου Χρηστη
+
+![Imgur](https://i.imgur.com/uubr20g.png)
+
+
 ## Project setup
 ```
 npm install
