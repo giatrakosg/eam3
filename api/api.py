@@ -157,7 +157,7 @@ def login():
 
     if not auth or not auth.username or not auth.password:
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
-
+    
     user = User.query.filter_by(name=auth.username).first()
 
     if not user:
@@ -305,8 +305,7 @@ class Card(db.Model):
         return r
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    card_id = db.relationship("card.id") #db.Column(db.Integer) 
-    card=db.relationship("Card")
+    card_id = db.Column(db.Integer) #db.Column(db.Integer)
     duration = db.Column(db.Integer)
     amount = db.Column(db.Integer)
     def to_dict(self):
