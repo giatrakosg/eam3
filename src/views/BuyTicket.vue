@@ -13,7 +13,7 @@
     </v-col>
     <v-col class="text-center" cols="12" sm="4">
       <template v-if="cardType=='Απλό εισητήριο'">
-          <TicketTypes />
+          <TicketTypes disabled="false"/>
       </template>
       <template v-if="cardType=='Προσωποποιημένη κάρτα'">
         <v-form name="personal" v-model="klpaips">
