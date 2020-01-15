@@ -1,16 +1,44 @@
 <template lang="html">
   <v-row align="center">
-    <v-col class="text-center" cols="12" sm="4">
-      <div class="my-2">
-        <v-btn to="/tickets/buy" depressed large>Αγορα απροσωπων εισητηριων</v-btn>
-      </div>
-      <div class="my-2">
-        <v-btn to="/tickets/recharge" depressed large>Αγορα προσωποποιημενης καρτας ATH.ENA card</v-btn>
-      </div>
-      <div class="my-2">
-        tooltip: Οι δικαιούχοι μειωμένου κόμιστρου πρέπει να εκδόσουν προσωποποιημένη κάρτα για να οφεληθούν από το μειωμένο κόμιστρα. Το σύστημα μέσω του ΑΜΚΑ θα μειώσει τις τιμές των προϊόντων αυτόματα.
-      </div>
-    </v-col>
+    <v-layout row wrap>
+        <v-flex xs0 sm0 md1 lg1></v-flex>
+        <v-flex xs12 sm12 md10 lg10>
+            <v-card>
+                <v-card-title class="justify-center">
+                  <v-img
+                    src="https://www.newmoney.gr/wp-content/uploads/2019/07/mhxannn-550x289.jpg"
+                    height="200"
+                    gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+                    >
+                  </v-img>
+                </v-card-title >
+                <v-card-text>
+                   <v-tooltip bottom>
+                       <template v-slot:activator="{ on }">
+                           <v-layout row wrap>
+                               <v-flex xs0 sm0 md1 lg1>
+                                   <v-spacer></v-spacer>
+                               </v-flex>
+                               <v-flex xs12 sm12 md4 lg4>
+                                   <v-btn v-on="on" to="/tickets/buy" block color="success">Αγορα εισητηριων</v-btn>
+                               </v-flex>
+                               <v-flex xs0 sm0 md1 lg1>
+                                   <v-spacer></v-spacer>
+                               </v-flex>
+                               <v-flex xs12 sm12 md4 lg4 wrap>
+                                   <v-btn v-on="on" to="/tickets/recharge" block color="success">Αγορα προσωποποιημενης καρτας</v-btn>
+                               </v-flex>
+                               <v-flex xs0 sm0 md1 lg1>
+                                   <v-spacer></v-spacer>
+                               </v-flex>
+                           </v-layout>
+                      </template>
+                      <span> Οι δικαιούχοι μειωμένου κόμιστρου πρέπει να εκδόσουν προσωποποιημένη κάρτα για να οφεληθούν από το μειωμένο κόμιστρα. Το σύστημα μέσω του ΑΜΚΑ θα μειώσει τις τιμές των προϊόντων αυτόματα.</span>
+                  </v-tooltip >
+                </v-card-text>
+            </v-card>
+        </v-flex>
+    </v-layout>
   </v-row>
 </template>
 <script>
