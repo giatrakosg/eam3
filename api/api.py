@@ -194,8 +194,6 @@ def getUserData(current_user):
     user_data['public_id'] = user.public_id
     return jsonify({'user' : user_data})
 
-
-
 @app.route('/user/<public_id>', methods=['GET'])
 @token_required
 def get_one_user(current_user, public_id):
@@ -267,6 +265,31 @@ def addUserRequest():
     )
 
     db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message' : 'New user created!'})
+
+
+@app.route('/user', methods=['PUT'])
+@token_required
+def editUserRequest(current_user):
+    user = User.query.filter_by(public_id=current_user.public_id).first()
+    if not user:
+        return jsonify({'Not allowed'})
+
+    data = request.get_json()
+    print(data,file=sys.stderr)
+    if 'email' in data.keys():
+        if data['email'] != user.email:
+            user.email = data['email']
+    if 'first_name' in data.keys():
+        if data['first_name'] != user.first_name:
+            user.first_name = data['first_name']
+    if 'last_name' in data.keys():
+        if data['last_name'] != user.last_name:
+            user.last_name = data['last_name']
+    if 'phone' in data.keys():
+        if data['phone'] != user.phone:
+            user.phone = data['phone']
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
