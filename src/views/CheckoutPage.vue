@@ -38,9 +38,9 @@ export default {
                     return 700*b/100
                 case "ten":
                     return 1400*b/100
-                case "day"
+                case "day":
                     return 500*b/100
-                case "five_days"
+                case "five_days":
                     return 1000*b/100
             }
             return -1
