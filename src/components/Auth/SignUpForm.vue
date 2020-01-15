@@ -97,6 +97,25 @@
                 </v-text-field>
                 <span>{{ errors[0] }}</span>
               </validation-provider>
+              <validation-provider rules="required" v-slot="{ errors }">
+                <v-text-field
+                  v-model="address"
+                  label="Address"
+                  @keyup.enter="handleSubmit()"
+                >
+                </v-text-field>
+                <span>{{ errors[0] }}</span>
+              </validation-provider>
+              <validation-provider rules="required" v-slot="{ errors }">
+                <v-text-field
+                  v-model="AMKA_id"
+                  label="AMKA"
+                  type="number"
+                  @keyup.enter="handleSubmit()"
+                >
+                </v-text-field>
+                <span>{{ errors[0] }}</span>
+              </validation-provider>
               <v-btn
                 @click="handleSubmit()"
                 block
@@ -135,8 +154,9 @@ export default {
       passwordRetype : '',
       tel : '',
       username : '' ,
-      surname : ''
-
+      surname : '',
+      address: '',
+      AMKA_id: ''
     }
   } ,
   methods : {
@@ -148,7 +168,9 @@ export default {
         last_name : this.surname ,
         email: this.email,
         password: this.password,
-        phone : this.tel
+        phone : this.tel,
+        address: this.address,
+        AMKA_id: this.AMKA_id
       };
       this.$store
         .dispatch("register", data)

@@ -34,6 +34,8 @@ class User(db.Model):
     email = db.Column(db.String(50),unique=True)
     phone = db.Column(db.String(15)) #Support for international phone numbers
     hasReduced = db.Column(db.Boolean())
+    address=db.Column(db.String(50))
+    AMKA_id=db.Column(db.Integer)
     def to_dict(self):
         r = {}
         r['public_id'] = self.public_id
@@ -43,6 +45,8 @@ class User(db.Model):
         r['email'] = self.email
         r['phone'] = self.phone
         r['hasReduced'] = self.hasReduced
+        r['address'] = self.address
+        r['AMKA_id'] = self.AMKA_id
         return r
 
 route_has_stations = db.Table('route_has_stations',
@@ -137,11 +141,11 @@ class Product(db.Model):
         return r
 class AMKA(db.Model):
     id=db.Column(db.Integer, primary_key=True)
-    deservesReduced=db.Column(db.Boolean())
+    reducedCategory=db.Column(db.Integer())
     def to_dict(self):
         r={}
         r['id']=self.id
-        r['deservesReduced']=self.deservesReduced;
+        r['reducedCategory']=self.reducedCategory;
         return r;
 
 
@@ -242,6 +246,8 @@ def get_one_user(current_user, public_id):
     user_data['last_name'] = user.last_name
     user_data['email'] = user.email
     user_data['phone'] = user.phone
+    user_data['address'] = user.address
+    user_data['AMKA_id'] = user.AMKA_id
 
     return jsonify({'user' : user_data})
 
@@ -283,7 +289,6 @@ def addUserRequest():
     if len(uEmail) > 0 :
         return jsonify({'message' : 'Email already exists!'}),400
 
-
     new_user = User(
     public_id=str(uuid.uuid4()),
     name=data['name'],
@@ -293,6 +298,8 @@ def addUserRequest():
     email=data['email'],
     phone=data['phone'],
     hasReduced=False,
+    address=data['address'],
+    AMKA_id=data['AMKA_id'],
     )
 
     db.session.add(new_user)
@@ -323,6 +330,12 @@ def editUserRequest(current_user):
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
+@app.route('/HasPersona/<user_id>', methods=['GET'])
+def userHasCard(user_id):
+    card=Card.query.fitler_by(user_id=user_id).first()
+    if not card:
+        return jsonify({"card_id": -1});
+    return jsonify({"card_id": card});
     
 @app.route('/BuyPersona', methods=['POST'])
 def addPersonalCard():
@@ -355,7 +368,6 @@ def RechargeCard(): #aka AddProducts
 @app.route('/products/get/<card_id>', methods=['GET'])
 def getProducts(card_id):
     products=Product.query.filter_by(card_id=card_id).all()
-    print(products)
     product_pid=[]
     for product in products:
         product_pid.append((product.duration, product.amount))

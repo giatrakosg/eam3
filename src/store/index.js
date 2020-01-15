@@ -277,8 +277,63 @@ export default new Vuex.Store({
           .catch(err => {
           })
     }) ;
-  } ,
-
+  },
+  userHasCard({commit}, user_id){
+      return new Promise((resolve, reject) => {
+          axios({url: 'http://localhost:5000/HasPersona/' + user_id, method: 'GET'})
+            .then(resp=>{
+                const card=resp.data.card
+                console.log(card)
+                commit('card',{card})
+                resolve(resp)
+            })
+            .catch(err=> {
+                
+            })
+    });
+    },
+  addPersonalCard({commit}, card){
+      return new Promise((resolve, reject) => {
+          axios({url: 'http://localhost:5000/BuyPersona', method: 'POST'})
+            .then(resp=>{
+                const card=resp.data.card
+                console.log(card)
+                commit('card',{card})
+                resolve(resp)
+            })
+            .catch(err=> {
+                
+            })
+    });
+    },
+RechargeCard({commit}, card){
+      return new Promise((resolve, reject) => {
+          axios({url: 'http://localhost:5000/tickets/recharge/', method: 'GET'})
+            .then(resp=>{
+                const card=resp.data.card
+                console.log(card)
+                commit('card',{card})
+                resolve(resp)
+            })
+            .catch(err=> {
+                
+            })
+    });
+    },
+getProducts({commit}, card_id){
+      return new Promise((resolve, reject) => {
+          axios({url: 'http://localhost:5000/products/get' + card_id, method: 'GET'})
+            .then(resp=>{
+                const card=resp.data.card
+                console.log(card)
+                commit('card',{card})
+                resolve(resp)
+            })
+            .catch(err=> {
+                
+            })
+    });
+    },
 },
   modules: {
   }
