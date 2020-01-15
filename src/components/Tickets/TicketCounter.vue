@@ -28,11 +28,13 @@ export default {
         subtract() {
             if (this.amount > 0) {
                 this.amount = this.amount - 1;
+                this.$store.dispatch('setAmount',this.amount);
             }
         } ,
         add() {
             this.amount = this.amount + 1;
-        }        
+            this.$store.dispatch('setAmount',this.amount);
+        }
     }
 
 }

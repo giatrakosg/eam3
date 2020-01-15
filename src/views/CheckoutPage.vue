@@ -3,7 +3,7 @@
     <h1>Προϊόντα προς αγορά</h1>
     {{cardType}} x {{amount}}
     <br>
-    Κόστος: {{calculate_cost(product, amount)}} €
+    Κόστος: {{calculate_cost(amount , cardType)}} €
     <br>
     <v-form name="persona" v-model="valid">
             <v-text-field v-model="firstname" :rules="nameRules" :counter="60" label="First name" required>
@@ -24,32 +24,40 @@
 </template>
 <script>
 export default {
-  data:()=>({
-        product: sessionStorage.getItem("product"),
-        cardType: sessionStorage.getItem("cardType"),
-        amount: sessionStorage.getItem("amount"),
-    }),
+    name : 'CheckoutPage' ,
     methods:{
         calculate_cost(a,b){
             switch(a){
-                case "one":
+                case 0:
                     return 140*b/100
-                case "five":
+                case 1:
                     return 700*b/100
-                case "ten":
+                case 2:
                     return 1400*b/100
-                case "day":
+                case 3:
                     return 500*b/100
-                case "five_days":
+                case 4:
                     return 1000*b/100
             }
             return -1
         },
         submit(){
             //show message
-            
+
             this.$router.push("../tickets");
         }
+    } ,
+    computed : {
+        amount() {
+            return this.$store.state.amount ;
+        } ,
+        cardType() {
+            return this.$store.state.cardType ;
+        } ,
+        price() {
+            return this.$store.state.price ;
+        }
+
     }
 }
 </script>

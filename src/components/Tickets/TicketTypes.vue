@@ -30,6 +30,12 @@ export default {
         return {
             product : ''
         }
+    } ,
+    methods : {
+        submit() {
+            this.$store.dispatch('setType',this.product);
+            this.$router.push("checkout");
+        }
     }
 }
 </script>

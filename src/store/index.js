@@ -21,7 +21,10 @@ export default new Vuex.Store({
     route : {} ,
     stop : {} ,
     routesRetrieved : false ,
-    stopsRetrieved : false
+    stopsRetrieved : false ,
+    amount : 0 ,
+    cardType : '' ,
+    price : 0
   },
   mutations: {
     setLanguage(state , payload) {
@@ -99,6 +102,15 @@ export default new Vuex.Store({
       state.token = ''
       state.user = {}
     },
+    setAmount(state,payload) {
+        state.amount = payload.amount ;
+    } ,
+    setType(state,payload) {
+        state.cardType = payload.type ;
+    } ,
+    setPrice(state,payload) {
+        state.price = payload.price ;
+    }
   },
 
   actions: {
@@ -286,6 +298,15 @@ export default new Vuex.Store({
           })
     }) ;
   } ,
+  setAmount({commit} , amount) {
+      commit('setAmount',{amount}) ;
+  } ,
+  setType( {commit} , type) {
+      commit('setType' , {type}) ;
+  } ,
+  setPrice({commit} , price)  {
+      commit('setPrice' , {price})
+  }
 
 },
   modules: {
