@@ -46,6 +46,8 @@ export const ENGLISH_TRANSLATIONS = {
     delays : 'DELAYS' ,
     products : 'Products' ,
     billing : 'Billing Information' ,
-    ticketNum : 'Number of Tickets'
+    ticketNum : 'Number of Tickets' ,
+    successBuy : 'Product purchased successfully' ,
+    thankyou : 'Thank you for choosing us for your transportation'
   }
 };

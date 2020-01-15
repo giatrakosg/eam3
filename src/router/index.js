@@ -20,6 +20,8 @@ import BuyTicket from "../views/BuyTicket"
 import RechargePage from "../views/RechargePage.vue"
 import CheckoutPage from "../views/CheckoutPage.vue"
 import About from "../views/About";
+import SuccessBuyPage from "../views/SuccessBuyPage";
+
 
 Vue.use(VueRouter);
 
@@ -155,8 +157,16 @@ const routes = [
 		breadCrumb: 'Tickets/Checkout'
 	},
   },
+  {
+	path: '/buysuccess',
+	name: 'buysuccess',
+	component : SuccessBuyPage,
+	meta: {
+		breadCrumb: 'Success'
+	},
+  },
 
-  
+
 ];
 
 const router = new VueRouter({
