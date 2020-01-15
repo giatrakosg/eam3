@@ -41,7 +41,9 @@
                                      >
                          {{place}}
                         <span v-if="t.accessibility[index]">
-                            <i  class="fas fa-wheelchair fa-1x  ml-2 "/>
+                             <v-icon>
+                              mdi-wheelchair-accessibility
+                          </v-icon>
                         </span>
 
                     </v-timeline-item>

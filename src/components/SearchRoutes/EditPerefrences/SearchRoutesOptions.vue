@@ -52,7 +52,9 @@
                     <v-checkbox    color="primary" hide-details >
                         <template v-slot:label>
                             <div style="margin-bottom: -8px">{{$t('text.accessibility')}}</div>
-                            <i  class="fas fa-wheelchair fa-2x ml-2"/>
+                            <v-icon>
+                                mdi-wheelchair-accessibility
+                            </v-icon>
                         </template>
 
                     </v-checkbox>

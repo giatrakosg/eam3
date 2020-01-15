@@ -30,7 +30,7 @@
                              <i class="fas fa-euro-sign"></i>
 
                             <span style="font-size: small;color: #004B84" class="ml-2" >  90min</span>
-                            <a class="ml-4" href="/tickets" > {{$t('text.tickets')}}</a>
+                            <router-link class="ml-4" to="/tickets" > {{$t('text.tickets')}}</router-link>
                         </span>
 
 

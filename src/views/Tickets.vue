@@ -20,20 +20,20 @@
                                    <v-spacer></v-spacer>
                                </v-flex>
                                <v-flex xs12 sm12 md4 lg4>
-                                   <v-btn v-on="on" to="/tickets/buy" block color="success">Αγορα εισητηριων</v-btn>
+                                   <v-btn v-on="on" to="/tickets/buy" block color="success">{{$t("text.buy_tickets")}}</v-btn>
                                </v-flex>
                                <v-flex xs0 sm0 md1 lg1>
                                    <v-spacer></v-spacer>
                                </v-flex>
                                <v-flex xs12 sm12 md4 lg4 wrap>
-                                   <v-btn v-on="on" to="/tickets/recharge" block color="success">Αγορα προσωποποιημενης καρτας</v-btn>
+                                   <v-btn v-on="on" to="/tickets/recharge" block color="success">{{$t("text.buy_personalizedcard")}}</v-btn>
                                </v-flex>
                                <v-flex xs0 sm0 md1 lg1>
                                    <v-spacer></v-spacer>
                                </v-flex>
                            </v-layout>
                       </template>
-                      <span> Οι δικαιούχοι μειωμένου κόμιστρου πρέπει να εκδόσουν προσωποποιημένη κάρτα για να οφεληθούν από το μειωμένο κόμιστρα. Το σύστημα μέσω του ΑΜΚΑ θα μειώσει τις τιμές των προϊόντων αυτόματα.</span>
+                      <span> Οι δικαιούχοι μειωμένου κόμιστρου πρέπει να εκδόσουν προσωποποιημένη κάρτα για να οφεληθούν από το μειωμένο κόμιστρα. <br/> Το σύστημα μέσω του ΑΜΚΑ θα μειώσει τις τιμές των προϊόντων αυτόματα.</span>
                   </v-tooltip >
                 </v-card-text>
             </v-card>
