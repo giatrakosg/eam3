@@ -88,7 +88,6 @@ export default new Vuex.Store({
     auth_success(state, payload) {
       state.status = 'success'
       state.token = payload.token
-      state.user = payload.user
     },
     auth_registererror(state) {
       state.status = 'error'
