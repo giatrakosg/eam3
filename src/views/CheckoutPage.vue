@@ -1,27 +1,52 @@
 <template lang="html">
-  <v-row align="center">
-    <v-col class="text-center" cols="12" sm="4">
-      <div class="my-2">
-        <v-btn href="/tickets/buy" depressed large>Buy Tickets As Guest</v-btn>
-      </div>
-      <div class="my-2">
-        <v-btn href="/login" depressed large>Buy Tickets As User</v-btn>
-      </div>
-      <div class="my-2">
-        <v-btn depressed large>ATH.ENA card</v-btn>
-      </div>
-      <div class="my-2">
-        <v-btn href="/tickets/buy" depressed large color="Primary">Buy Tickets</v-btn>
-      </div>
-      <div class="my-2">
-        <v-btn href="/tickets/reduced_info" depressed large color="Primary">Reduced</v-btn>
-      </div>
-    </v-col>
-  </v-row>
+  <v-container>
+    <h1>Προϊόντα προς αγορά</h1>
+    {{cardType}} x 1
+    <br>
+    Κόστος: {{calculate_cost(product)}} €
+    <br>
+    <v-form name="persona" v-model="valid">
+            <v-text-field v-model="firstname" :rules="nameRules" :counter="60" label="First name" required>
+            </v-text-field>
+            <v-text-field v-model="lastname" :rules="nameRules" :counter="60" label="Last name" required>
+            </v-text-field>
+            <v-text-field v-model="realaddress" :rules="adressRules" :counter="90" label="Address" required>
+            </v-text-field>
+            <v-text-field v-model="email" :rules="emailRules" :counter="90" label="E-Mail" required>
+            </v-text-field>
+            <v-text-field v-model="phone" :rules="phoneRules" :counter="13" label="Phone" required>
+            </v-text-field>
+            <v-btn
+                @click="submit()"
+                >Submit</v-btn>
+        </v-form>
+  </v-container>
 </template>
 <script>
 export default {
-  name : 'Tickets'
+  data:()=>({
+        product: sessionStorage.getItem("product"),
+        cardType: sessionStorage.getItem("cardType"),
+    }),
+    methods:{
+        calculate_cost(a){
+            switch(a){
+                case "one":
+                    return 1.40
+                case "five":
+                    return 7.00
+                case "ten":
+                    return 14.00
+                
+            }
+            return -1
+        },
+        submit(){
+            //show message
+            
+            this.$router.push("../tickets");
+        }
+    }
 }
 </script>
 
