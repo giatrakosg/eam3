@@ -105,6 +105,28 @@ npm install
 npm run serve
 ```
 
+## Api Setup
+Create virtual environment using Python-3
+```
+cd api
+python3 -m venv venv
+```
+
+Activate 
+```
+. venv/
+```
+
+Install requirements
+```
+pip install -r requirements.txt
+```
+
+### Run api
+```
+python api.py
+```
+
 ## Quick Guide
 
 ### /components
