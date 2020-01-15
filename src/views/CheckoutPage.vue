@@ -1,9 +1,9 @@
 <template lang="html">
   <v-container>
     <h1>Προϊόντα προς αγορά</h1>
-    {{cardType}} x 1
+    {{cardType}} x {{amount}}
     <br>
-    Κόστος: {{calculate_cost(product)}} €
+    Κόστος: {{calculate_cost(product, amount)}} €
     <br>
     <v-form name="persona" v-model="valid">
             <v-text-field v-model="firstname" :rules="nameRules" :counter="60" label="First name" required>
@@ -27,17 +27,21 @@ export default {
   data:()=>({
         product: sessionStorage.getItem("product"),
         cardType: sessionStorage.getItem("cardType"),
+        amount: sessionStorage.getItem("amount"),
     }),
     methods:{
-        calculate_cost(a){
+        calculate_cost(a,b){
             switch(a){
                 case "one":
-                    return 1.40
+                    return 140*b/100
                 case "five":
-                    return 7.00
+                    return 700*b/100
                 case "ten":
-                    return 14.00
-                
+                    return 1400*b/100
+                case "day":
+                    return 500*b/100
+                case "five_days":
+                    return 1000*b/100
             }
             return -1
         },

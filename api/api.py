@@ -157,7 +157,7 @@ def login():
 
     if not auth or not auth.username or not auth.password:
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
-
+    
     user = User.query.filter_by(name=auth.username).first()
 
     if not user:
@@ -268,7 +268,6 @@ def addUserRequest():
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
-
 @app.route('/user', methods=['PUT'])
 @token_required
 def editUserRequest(current_user):
@@ -292,6 +291,70 @@ def editUserRequest(current_user):
             user.phone = data['phone']
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
+
+class Card(db.Model):
+    __tablename__= 'card'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, unique=True)
+    hasReduced = db.Column(db.Boolean())
+    def to_dict(self):
+        r = {}
+        r['id'] = self.id
+        r['user_id'] = self.user_id
+        r['hasReduced'] = self.hasReduced
+        return r
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    card_id = db.Column(db.Integer) #db.Column(db.Integer)
+    duration = db.Column(db.Integer)
+    amount = db.Column(db.Integer)
+    def to_dict(self):
+        r = {}
+        r['card_id'] = self.card_id
+        r['duration'] = self.duration
+        r['amount'] = self.amount
+        return r
+class AMKA(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    deservesReduced=db.Column(db.Boolean())
+    def to_dict(self):
+        r={}
+        r['id']=self.id
+        r['deservesReduced']=self.deservesReduced;
+        return r;
+
+    
+@app.route('/BuyPersona', methods=['POST'])
+def addPersonalCard():
+    data=request.get_json()
+    print(data,file=sys.stderr)
+    
+    new_card=Card(user_id=data['user_id'], hasReduced=data['hasReduced'])
+    db.session.add(new_card)
+    db.session.commit()
+    return jsonify({'message': 'New card created!'})
+ 
+@app.route('/RechargeCard', methods=['POST'])
+def RechargeCard(): #aka AddProducts
+    data=request.get_json()
+    print(data,file=sys.stder)
+    
+    card_id=data['card_id']
+    products=data['products']
+    for product in products:
+        db.session.add(product)
+    #new_product=Product(card_id=data['card_id'],duration=data['duration'],amount=data['amount'])
+    db.session.commit()
+    return jsonify({'message': 'Products successfully passed on!'})
+
+@app.route('/whatever', methods=['GET'])
+def getProducts(card_id):
+    products=Product.query.filter_by(card_id=card_id)
+    product_pid=[]
+    for product in products:
+        product_pid.append(product)
+    return jsonify(product_pid);
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -5,6 +5,11 @@
       <v-col cols="12">
         <v-select v-model="cardType" :items="cardTypes" label="Επιλέξτε τύπο προϊόντος" @change="HandleCardChange(cardTypes)"></v-select>
       </v-col>
+      <v-btn @click="minusone">
+        <v-icon>mdi-minus-box</v-icon></v-btn>
+        {{this.amount}}<v-btn @click="addone">
+        
+        <v-icon>mdi-plus-box</v-icon></v-btn>
     </v-col>
     <v-col class="text-center" cols="12" sm="4">
       <h1>Προϊόντα</h1>
@@ -20,6 +25,8 @@
         </v-radio-group>
             <v-btn class="mr-4" @click.stop.prevent="submit()">Submit</v-btn>
         </v-form>
+        
+        
       </template>
       <template v-if="cardType=='Προσωποποιημένη κάρτα'">
         <v-form name="personal" v-model="klpaips">
@@ -45,6 +52,7 @@
 <script>
 export default{
     data:()=>({
+        amount:0,
         product:"",
         cardType:"",
         cardTypes:[
@@ -54,9 +62,17 @@ export default{
         
     }),
     methods:{
+        minusone(){
+            if(this.amount>0)
+                this.amount--;
+        },
+        addone(){
+            this.amount++;
+        },
         submit(){
             sessionStorage.setItem('product', this.product);
             sessionStorage.setItem('cardType', this.cardType);
+            sessionStorage.setItem('amount', this.amount);
             this.$router.push("checkout");
         }
     //HandleCardChange: function(evt){
