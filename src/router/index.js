@@ -21,6 +21,7 @@ import RechargePage from "../views/RechargePage.vue"
 import CheckoutPage from "../views/CheckoutPage.vue"
 import About from "../views/About";
 import SuccessBuyPage from "../views/SuccessBuyPage";
+import SentEmail from "../views/SentEmail";
 
 
 Vue.use(VueRouter);
@@ -161,6 +162,14 @@ const routes = [
 	path: '/buysuccess',
 	name: 'buysuccess',
 	component : SuccessBuyPage,
+	meta: {
+		breadCrumb: 'Success'
+	},
+  },
+  {
+	path: '/sentemail',
+	name: 'sentemail',
+	component : SentEmail,
 	meta: {
 		breadCrumb: 'Success'
 	},
