@@ -79,7 +79,7 @@
 
 #### Προβολη Προφιλ
 
-![Imgur](https://i.imgur.com/uA7QooG.png)
+![Imgur](https://i.imgur.com/Gk9dMcT.png)
 
 #### Επεξεργασια Προφιλ
 
