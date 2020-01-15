@@ -58,8 +58,8 @@
                 <v-col cols="auto" class="hidden-xs-only" v-if="!isLoggedIn" >
                     <v-btn text outlined to="/login">{{ $t("text.login")}}</v-btn>
                 </v-col>
-                <v-col cols="auto"  class="hidden-xs-only" v-if="isLoggedIn" >
-                    <v-btn text outlined to="/user/profile">Hi {{user.first_name}} !</v-btn>
+                <v-col cols="auto"  class="hidden-xs-only" v-if="isLoggedIn"  >
+                    <v-btn text outlined to="/profile/edit">Hi {{user.first_name}} !</v-btn>
                 </v-col>
                 <v-col cols="auto"  class="hidden-xs-only" v-if="isLoggedIn" >
                     <v-btn text outlined @click="doLogout">Logout</v-btn>
@@ -112,9 +112,9 @@
 
                 <v-list-item>
                     <v-list-item-title>
-                        <v-btn text>
+                        <a class="white--text" style="text-transform: uppercase;text-decoration: none" href="/tickets" >
                             {{ $t("text.tickets")}}
-                        </v-btn>
+                        </a>
                     </v-list-item-title>
                 </v-list-item>
 
