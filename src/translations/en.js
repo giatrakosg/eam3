@@ -50,6 +50,8 @@ export const ENGLISH_TRANSLATIONS = {
     successBuy : 'Product purchased successfully' ,
     thankyou : 'Thank you for choosing us for your transportation',
     emailSucess : 'Sent Email' ,
-    toBuy : 'Products to buy'
+    toBuy : 'Products to buy',
+    buy_tickets: 'Buy Tickets',
+    buy_personalizedcard: 'Buy Personalized card'
   }
 };

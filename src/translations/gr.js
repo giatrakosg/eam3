@@ -50,7 +50,9 @@ export const GREEK_TRANSLATIONS = {
     successBuy : 'Επιτυχης Αγορα Εισητηριου' ,
     thankyou : 'Ευχαριστουμε που μας προτιμισατε για τις μετακινησεις σας',
     emailSucess : 'Αποστολη Email',
-    toBuy : 'Προϊόντα προς αγορά'
+    toBuy : 'Προϊόντα προς αγορά',
+    buy_tickets:'Αγορά Εισητηρίων',
+    buy_personalizedcard:'Αγορά προσοποποιμένης κάρτας'
 
   }
 };
