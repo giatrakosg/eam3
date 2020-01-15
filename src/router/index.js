@@ -19,6 +19,7 @@ import BuyTicket from "../views/BuyTicket"
 
 import RechargePage from "../views/RechargePage.vue"
 import CheckoutPage from "../views/CheckoutPage.vue"
+import About from "../views/About";
 
 Vue.use(VueRouter);
 
@@ -136,8 +137,16 @@ const routes = [
 	component : RechargePage,
 	meta: {
 		breadCrumb: 'Tickets/Recharge'
-	},
+	}
   },
+   {
+       path: '/about',
+       name: 'about',
+       component : About,
+       meta: {
+           breadCrumb: 'About'
+       },
+   },
   {
 	path: '/tickets/checkout',
 	name: 'checkout_page',
@@ -146,6 +155,7 @@ const routes = [
 		breadCrumb: 'Tickets/Checkout'
 	},
   },
+
   
 ];
 
