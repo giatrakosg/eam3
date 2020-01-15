@@ -14,7 +14,7 @@
                     <v-app-bar-nav-icon @click.stop="drawer=!drawer"/>
                 </v-col>
                 <v-col cols="auto" >
-                    <v-btn href="/" text color="transparent">
+                    <v-btn to="/" text color="transparent">
                         <v-img
                                 class="shrink mr-2  flex-fill"
                                 contain
@@ -104,47 +104,61 @@
             >
                 <v-list-item>
                     <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none" href="/maps/bus">
+                        <router-link  class="white--text" style="text-transform: uppercase;text-decoration: none" to="/maps/bus">
                             {{ $t("text.route")}}
-                        </a>
+                        </router-link>
                     </v-list-item-title>
                 </v-list-item>
 
                 <v-list-item>
                     <v-list-item-title>
-                        <a class="white--text" style="text-transform: uppercase;text-decoration: none" href="/tickets" >
+                        <router-link class="white--text" style="text-transform: uppercase;text-decoration: none" to="/tickets" >
                             {{ $t("text.tickets")}}
-                        </a>
+                        </router-link>
                     </v-list-item-title>
                 </v-list-item>
 
                 <v-list-item>
                     <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none" href="/contact" >
+                        <router-link  class="white--text" style="text-transform: uppercase;text-decoration: none" to="/contact" >
                             {{ $t("text.contact")}}
-                        </a>
+                        </router-link>
                     </v-list-item-title>
                 </v-list-item>
 
                 <v-list-item>
                     <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"  href="/about"  >
+                        <router-link  class="white--text" style="text-transform: uppercase;text-decoration: none"  to="/about"  >
                             {{ $t("text.about")}}
-                        </a>
+                        </router-link>
                     </v-list-item-title>
                 </v-list-item>
-                <v-list-item class="hidden-sm-and-up">
+                <v-list-item class="hidden-sm-and-up" v-if="!isLoggedIn">
                     <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                        <router-link   class="white--text" style="text-transform: uppercase;text-decoration: none"  to="/signup" >
                             {{ $t("text.signup")}}
-                        </a>
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
+                <v-list-item class="hidden-sm-and-up" v-if="!isLoggedIn" >
+                    <v-list-item-title>
+                        <router-link  class="white--text" style="text-transform: uppercase;text-decoration: none"  to="/login" >
+                            {{ $t("text.login")}}
+                        </router-link>
                     </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="hidden-sm-and-up">
-                    <v-list-item-title>
-                        <a  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
-                            {{ $t("text.login")}}
-                        </a>
+                    <v-list-item-title v-if="isLoggedIn">
+                        <router-link   class="white--text" style="text-transform: uppercase;text-decoration: none"  to="/profile/edit" >
+                            Hi {{user.first_name}} !
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
+                <v-list-item class="hidden-sm-and-up">
+                    <v-list-item-title v-if="isLoggedIn">
+                        <span  @click="doLogout"  class="white--text" style="text-transform: uppercase;text-decoration: none"   >
+                            Logout
+                        </span>
                     </v-list-item-title>
                 </v-list-item>
             </v-list-item-group>
@@ -157,8 +171,10 @@
 
 <script>
 
+    import Route from "../StationInfo/Route/Route";
     export default {
         name: "AppBar",
+        components: {Route},
         data(){
             return{
                 languages:[
