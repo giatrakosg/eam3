@@ -1,8 +1,22 @@
 <template>
     <v-card tile>
-        <v-card-title class="justify-center">
-          Edit Profile:
-        </v-card-title>
+        <v-toolbar
+          flat
+          color="primary"
+        >
+          <v-icon>mdi-account</v-icon>
+          <v-toolbar-title class="font-weight-light">User Profile</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="success"
+            fab
+            small
+            @click="isEditing = !isEditing"
+          >
+            <v-icon v-if="isEditing">mdi-close</v-icon>
+            <v-icon v-else>mdi-pencil</v-icon>
+          </v-btn>
+        </v-toolbar>
         <v-divider></v-divider>
         <v-card-text>
             <v-form >
@@ -10,11 +24,10 @@
                     <v-col>
                         <validation-provider rules="required" v-slot="{ errors }">
                             <v-text-field
-
                                     v-model="user.first_name"
                                     label="Name"
                                     v-on:keyup.enter.native="showPassword"
-
+                                    :disabled="!isEditing"
                             >
                             </v-text-field>
                         </validation-provider>
@@ -25,6 +38,7 @@
                                     v-model="user.last_name"
                                     label="Surname"
                                     v-on:keyup.enter.native="showPassword"
+                                    :disabled="!isEditing"
                             >
                             </v-text-field>
                         </validation-provider>
@@ -38,6 +52,7 @@
                                     label="Email.."
                                     v-on:keyup.enter.native="showPassword"
                                     append-icon="mdi-email"
+                                    :disabled="!isEditing"
                             >
                             </v-text-field>
                             <span>{{ errors[0] }}</span>
@@ -51,6 +66,7 @@
                             append-icon="mdi-cellphone"
                             type="number"
                             @keyup.enter="handleSubmit()"
+                            :disabled="!isEditing"
                     >
                     </v-text-field>
                     <span>{{ errors[0] }}</span>
@@ -79,6 +95,11 @@
         components : {
             ValidationProvider
         },
+        data () {
+            return {
+                isEditing : false
+            }
+        },
         methods : {
             handleSubmit() {
                // console.log(this.email,this.password);
@@ -93,6 +114,9 @@
                     .dispatch("update", data)
                     .then(() => this.$router.push("/"))
             } ,
+            changeEditing() {
+                this.isEditing = !this.isEditing ;
+            }
         },
         computed:{
             user(){
