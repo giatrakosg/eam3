@@ -1,55 +1,81 @@
 <template lang="html">
   <v-container>
-    <h1>Προϊόντα προς αγορά</h1>
-    {{cardType}} x {{amount}}
-    <br>
-    Κόστος: {{calculate_cost(product, amount)}} €
-    <br>
-    <v-form name="persona" v-model="valid">
-            <v-text-field v-model="firstname" :rules="nameRules" :counter="60" label="First name" required>
-            </v-text-field>
-            <v-text-field v-model="lastname" :rules="nameRules" :counter="60" label="Last name" required>
-            </v-text-field>
-            <v-text-field v-model="realaddress" :rules="adressRules" :counter="90" label="Address" required>
-            </v-text-field>
-            <v-text-field v-model="email" :rules="emailRules" :counter="90" label="E-Mail" required>
-            </v-text-field>
-            <v-text-field v-model="phone" :rules="phoneRules" :counter="13" label="Phone" required>
-            </v-text-field>
-            <v-btn
-                @click="submit()"
-                >Submit</v-btn>
-        </v-form>
+      <v-card class="my-4">
+          <v-card-title>Προϊόντα προς αγορά</v-card-title>
+          <v-card-subtitle>
+              {{amount}} x {{typeName}}
+          </v-card-subtitle>
+          <v-card-subtitle>
+              Κόστος: {{calculate_cost(amount , cardType)}} €
+          </v-card-subtitle>
+      </v-card>
+    <BillingInfo />
   </v-container>
 </template>
 <script>
+import BillingInfo from "../components/Tickets/BillingInfo"
 export default {
-  data:()=>({
-        product: sessionStorage.getItem("product"),
-        cardType: sessionStorage.getItem("cardType"),
-        amount: sessionStorage.getItem("amount"),
-    }),
+    name : 'CheckoutPage' ,
+    components : {BillingInfo},
     methods:{
         calculate_cost(a,b){
             switch(a){
-                case "one":
+                case 0:
                     return 140*b/100
-                case "five":
+                case 1:
                     return 700*b/100
-                case "ten":
+                case 2:
                     return 1400*b/100
-                case "day":
+                case 3:
                     return 500*b/100
-                case "five_days":
+                case 4:
                     return 1000*b/100
             }
             return -1
         },
         submit(){
             //show message
-            
+
             this.$router.push("../tickets");
         }
+    } ,
+    computed : {
+        amount() {
+            return this.$store.state.amount ;
+        } ,
+        cardType() {
+            return this.$store.state.cardType ;
+        } ,
+        price() {
+            return this.$store.state.price ;
+        } ,
+        typeName() {
+            var type = "";
+            switch (this.cardType) {
+                case 0:
+                    type = "1 εισητήριο 90 λεπτών" ;
+                    break;
+                case 1:
+                    type = "5 εισητήρια 90 λεπτών" ;
+                    break ;
+                case 2:
+                    type = "10+1 εισητήρια 90 λεπτών" ;
+                    break ;
+                case 3:
+                    type = "1 ημέρας" ;
+                    break ;
+                case 4:
+                    type = "5 ημέρων" ;
+                    break ;
+                case 5:
+                    type = "30 ημέρων" ;
+                    break ;
+                default:
+
+            }
+            return type ;
+        }
+
     }
 }
 </script>

@@ -59,6 +59,9 @@
                         :disabled="isUser"
                     >
                     </v-text-field>
+                    <v-btn block color="success" @click="submit()">
+                        Αγορα
+                    </v-btn>
                 </v-form>
             </v-card-text>
         </v-card>
@@ -85,6 +88,11 @@ export default {
             else {
                 return true ;
             }
+        }
+    } ,
+    methods : {
+        submit() {
+            this.$router.push('/buysuccess')
         }
     }
 }

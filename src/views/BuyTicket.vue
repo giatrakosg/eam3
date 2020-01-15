@@ -61,10 +61,6 @@ export default{
             this.amount++;
         },
         submit(){
-            sessionStorage.setItem('product', this.product);
-            sessionStorage.setItem('cardType', this.cardType);
-            sessionStorage.setItem('amount', this.amount);
-            this.$router.push("checkout");
         }
     //HandleCardChange: function(evt){
     //    if(evt == 'Προσωποποιημένη κάρτα'){

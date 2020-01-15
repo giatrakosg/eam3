@@ -13,7 +13,7 @@
                         <v-radio label="5 ημέρων" ></v-radio>
                         <v-radio label="30 ημέρων" ></v-radio>
                 </v-radio-group>
-                    <v-btn color="success" class="mr-4" @click.stop.prevent="submit()">Submit</v-btn>
+                    <v-btn color="success" class="mr-4" v-if="disabled" @click.stop.prevent="submit()">Submit</v-btn>
                 </v-form>
             </v-card-text>
         </v-card>
@@ -26,9 +26,16 @@
 <script>
 export default {
     name : 'TicketTypes' ,
+    props : ['disabled'],
     data () {
         return {
             product : ''
+        }
+    } ,
+    methods : {
+        submit() {
+            this.$store.dispatch('setType',this.product);
+            this.$router.push("checkout");
         }
     }
 }
