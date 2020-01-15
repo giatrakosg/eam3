@@ -85,17 +85,6 @@ export default {
   name : 'SideBar' ,
   data() {
     return {
-      routes: [
-        { text : '136 προς Νεο Κοσμο' , value : { id : 0 , type : 'route'}},
-        { text : '136 προς Φαληρο'    , value : { id : 1 , type : 'route'} },
-        { text : '218 προς Πειραια'   , value : { id : 2 , type : 'route'} },
-        { text : '218 προς Καλιθέα'   , value : { id : 3 , type : 'route'} },
-      ],
-      stops : [
-        { text : '3η Αιγαιου'  , value : { id : 4 , type : 'stop'} },
-        { text : '10η Αιγαιου' , value : { id : 5 , type : 'stop'} },
-        { text : 'Νεκροταφεία' , value : { id : 6 , type : 'stop'} },
-      ] ,
       selected : '' ,
       chip1: true,
       chip2: true,
@@ -113,7 +102,28 @@ export default {
     } ,
     label () {
         return this.$t("text.search");
-    }
+    } ,
+    storedRoutes() {
+        return this.$store.state.routes ;
+    } ,
+    storedStops() {
+        return this.$store.state.stops ;
+    } ,
+    routes() {
+        var ret = [] ;
+        for (var route of this.storedRoutes) {
+            ret.push({'text' : route.name , 'value' : {'id' : route.public_id , 'type': 'route'}})
+        }
+        return ret;
+    } ,
+    stops() {
+        var ret = [] ;
+        for (var stop of this.storedStops) {
+            ret.push({'text' : stop.name , 'value' : {'id' : stop.public_id , 'type': 'stop'}})
+        }
+        return ret;
+    } ,
+
   }
 }
 </script>

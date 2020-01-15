@@ -20,6 +20,8 @@ export default new Vuex.Store({
     pending_stops : 0 ,
     route : {} ,
     stop : {} ,
+    routesRetrieved : false ,
+    stopsRetrieved : false
   },
   mutations: {
     setLanguage(state , payload) {
@@ -165,7 +167,10 @@ export default new Vuex.Store({
         resolve()
       })
     } ,
-    getRoutes({ commit , dispatch}){
+    getRoutes({ commit , dispatch , state}){
+      if (state.routes_status === "success") {
+          return ;
+      }
       return new Promise((resolve, reject) => {
         commit('routes_request')
         axios({ url: 'http://localhost:5000/routes', method: 'GET' })
@@ -214,7 +219,10 @@ export default new Vuex.Store({
           })
     }) ;
   } ,
-  getStops({ commit , dispatch } ) {
+  getStops({ commit , dispatch , state } ) {
+      if (state.stops_status === "success") {
+          return ;
+      }
     return new Promise((resolve, reject) => {
       commit('stops_request')
       axios({ url: 'http://localhost:5000/stations', method: 'GET' })
