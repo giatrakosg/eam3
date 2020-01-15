@@ -49,6 +49,7 @@ export const ENGLISH_TRANSLATIONS = {
     ticketNum : 'Number of Tickets' ,
     successBuy : 'Product purchased successfully' ,
     thankyou : 'Thank you for choosing us for your transportation',
-    emailSucess : 'Sent Email'
+    emailSucess : 'Sent Email' ,
+    toBuy : 'Products to buy'
   }
 };

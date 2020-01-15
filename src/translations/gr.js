@@ -49,7 +49,8 @@ export const GREEK_TRANSLATIONS = {
     ticketNum : 'Αριθμος Εισητηριων',
     successBuy : 'Επιτυχης Αγορα Εισητηριου' ,
     thankyou : 'Ευχαριστουμε που μας προτιμισατε για τις μετακινησεις σας',
-    emailSucess : 'Αποστολη Email'
+    emailSucess : 'Αποστολη Email',
+    toBuy : 'Προϊόντα προς αγορά'
 
   }
 };
