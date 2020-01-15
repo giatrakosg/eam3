@@ -45,6 +45,7 @@ export const GREEK_TRANSLATIONS = {
     reset : 'Επαναφορα' ,
     delays : 'ΚΑΘΥΣΤΕΡΗΣΕΙΣ' ,
     products : 'Προϊόντα' ,
-    billing : 'Στοιχεια Αγορας'
+    billing : 'Στοιχεια Αγορας' ,
+    ticketNum : 'Αριθμος Εισητηριων'
   }
 };
